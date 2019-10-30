@@ -555,5 +555,31 @@
 1572350183 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\entitymanagersingleton.cpp
 	"EntityManagerSingleton.h"
 
-1572350183 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\entitymanagersingleton.h
+1572357967 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\entitymanagersingleton.h
+	<cstdint>
+	<vector>
+
+1572355136 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\entitymanagersingleton.cpp
+	"EntityManagerSingleton.h"
+
+1572355686 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
+	"ComponentManagerSingleton.h"
+
+1572358280 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\componentmanagersingleton.h
+	<unordered_map>
+	<cstdint>
+	<EntityManagerSingleton.h>
+
+1572448590 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\component.cpp
+
+1572448580 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\component.h
+	<cstdint>
+	<sstream>
+	<string>
+
+1572448825 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\positoncomponent.cpp
+	"PositonComponent.h"
+
+1572448750 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\positoncomponent.h
+	<Component.h>
 

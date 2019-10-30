@@ -9,7 +9,7 @@ using Entity = uint32_t; //une entité n'étant représentée que par un ID, on crée
 class EntityManagerSingleton
 {
     public:
-        EntityManagerSingleton* getInstance(); //renvois l'instance du singleton
+        static EntityManagerSingleton* getInstance(); //renvois l'instance du singleton
         virtual ~EntityManagerSingleton(); //destructeur
 
         Entity createNewEntity(); //ajoute une nouvelle entités à la liste des entité existantes et renvoie cette entité
