@@ -1,14 +1,14 @@
-#ifndef POSITONCOMPONENT_H
-#define POSITONCOMPONENT_H
+#ifndef POSITIONCOMPONENT_H
+#define POSITIONCOMPONENT_H
 
 #include <Component.h>
 
 
-class PositonComponent : public Component
+class PositionComponent : public Component
 {
     public:
-        PositonComponent(float x = 0, float y = 0);
-        virtual ~PositonComponent();
+        PositionComponent(float x = 0, float y = 0);
+        virtual ~PositionComponent();
 
         float getX() const;
         float getY() const;

@@ -14,6 +14,9 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="include" />
+					<Add directory="include/ECS" />
+					<Add directory="include/ECS/Components" />
+					<Add directory="include/ECS/Systems" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-d" />
@@ -31,6 +34,9 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="include" />
+					<Add directory="include/ECS" />
+					<Add directory="include/ECS/Components" />
+					<Add directory="include/ECS/Systems" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -51,34 +57,25 @@
 		<Linker>
 			<Add directory="C:/_libraries/C++/SFML-2.5.1/lib" />
 		</Linker>
-		<Unit filename="include/Ball.h" />
-		<Unit filename="include/BallHole.h" />
-		<Unit filename="include/Character.h" />
-		<Unit filename="include/CheckPoint.h" />
-		<Unit filename="include/EndPoint.h" />
-		<Unit filename="include/Enemy.h" />
-		<Unit filename="include/GameManagerSingleton.h" />
-		<Unit filename="include/ITriggerableElement.h" />
-		<Unit filename="include/Level.h" />
-		<Unit filename="include/LevelElement.h" />
-		<Unit filename="include/Platform.h" />
-		<Unit filename="include/Player.h" />
-		<Unit filename="include/PoolCue.h" />
-		<Unit filename="include/Warp.h" />
+		<Unit filename="include/ECS/Component.h" />
+		<Unit filename="include/ECS/ComponentManagerSingleton.h" />
+		<Unit filename="include/ECS/Components/GravityComponent.h" />
+		<Unit filename="include/ECS/Components/PositionComponent.h" />
+		<Unit filename="include/ECS/Components/VelocityComponent.h" />
+		<Unit filename="include/ECS/ECSCoordinatorSingleton.h" />
+		<Unit filename="include/ECS/EntityManagerSingleton.h" />
+		<Unit filename="include/ECS/System.h" />
+		<Unit filename="include/ECS/SystemManagerSingleton.h" />
+		<Unit filename="include/ECS/Systems/PhysicSystem.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Ball.cpp" />
-		<Unit filename="src/BallHole.cpp" />
-		<Unit filename="src/Character.cpp" />
-		<Unit filename="src/CheckPoint.cpp" />
-		<Unit filename="src/EndPoint.cpp" />
-		<Unit filename="src/Enemy.cpp" />
-		<Unit filename="src/GameManagerSingleton.cpp" />
-		<Unit filename="src/Level.cpp" />
-		<Unit filename="src/LevelElement.cpp" />
-		<Unit filename="src/Platform.cpp" />
-		<Unit filename="src/Player.cpp" />
-		<Unit filename="src/PoolCue.cpp" />
-		<Unit filename="src/Warp.cpp" />
+		<Unit filename="src/ECS/ComponentManagerSingleton.cpp" />
+		<Unit filename="src/ECS/Components/GravityComponent.cpp" />
+		<Unit filename="src/ECS/Components/PositionComponent.cpp" />
+		<Unit filename="src/ECS/Components/VelocityComponent.cpp" />
+		<Unit filename="src/ECS/ECSCoordinatorSingleton.cpp" />
+		<Unit filename="src/ECS/EntityManagerSingleton.cpp" />
+		<Unit filename="src/ECS/SystemManagerSingleton.cpp" />
+		<Unit filename="src/ECS/Systems/PhysicSystem.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
