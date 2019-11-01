@@ -31,17 +31,6 @@ void ECSCoordinatorSingleton::removeEntity(Entity entity)
     entityManager->deleteEntity(entity);
 }
 
-template <typename T>
-void ECSCoordinatorSingleton::addComponent(ComponentID component)
-{
-    componentManager->addComponent<T>(component);
-}
-
-void ECSCoordinatorSingleton::addComponenntToEntity(Component& component, Entity entity)
-{
-    componentManager->addComponentToEntity(component, entity);
-}
-
 void ECSCoordinatorSingleton::removeComponentFromEntity(ComponentID component, Entity entity)
 {
     componentManager->removeComponentFromEntity(component, entity);
@@ -55,9 +44,4 @@ void ECSCoordinatorSingleton::addSystem(System& system)
 void ECSCoordinatorSingleton::updateSystems(float dt)
 {
     systemManager->updateSystems(dt);
-}
-
-EntityComponentMap<Component>* ECSCoordinatorSingleton::getEntityComponentMap(ComponentID component)
-{
-    return componentManager->getEntityComponentMap(component);
 }

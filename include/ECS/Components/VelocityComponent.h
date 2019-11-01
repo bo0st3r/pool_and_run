@@ -10,10 +10,12 @@ class VelocityComponent : public Component
         VelocityComponent();
         virtual ~VelocityComponent();
 
+        static inline const ComponentID ID = 1;
+
         float getVx() const;
         float getVy() const;
         virtual ComponentID getTypeId() const;
-        static ComponentID getId(){return id;};
+        static ComponentID getId(){return ID;};
         void setVx(float vx);
         void setVy(float vy);
 
@@ -28,7 +30,6 @@ class VelocityComponent : public Component
     private:
         float vx;
         float vy;
-        static inline ComponentID id = 1;
 };
 
 #endif // VELOCITYCOMPONENT_H

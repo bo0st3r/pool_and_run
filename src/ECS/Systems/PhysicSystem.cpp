@@ -40,6 +40,5 @@ void PhysicSystem::addGravityToVelocity(Entity entity, float dt)
 void PhysicSystem::addVelocityToPosition(Entity entity, float dt)
 {
     positions->at(entity).translate(velocities->at(entity).getVx() * dt, velocities->at(entity).getVy() * dt);
-    //juste pour les test
-    std::cout << positions->at(entity).str();
+    std::cout << "debug position PhysicSystem Ligne 43 : " << positions->at(entity).str() << std::endl;
 }

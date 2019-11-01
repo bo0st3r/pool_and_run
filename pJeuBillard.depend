@@ -491,8 +491,12 @@
 1570708469 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\pool&run\include\level.h
 	<string>
 
-1572187982 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
+1572630029 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
 	<SFML/Graphics.hpp>
+	<ECSCoordinatorSingleton.h>
+	<chrono>
+	<iostream>
+	<thread>
 
 1572187983 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ball.cpp
 	"Ball.h"
@@ -555,27 +559,30 @@
 1572350183 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\entitymanagersingleton.cpp
 	"EntityManagerSingleton.h"
 
-1572357967 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\entitymanagersingleton.h
+1572357968 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\entitymanagersingleton.h
 	<cstdint>
 	<vector>
 
-1572355136 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\entitymanagersingleton.cpp
+1572355138 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\entitymanagersingleton.cpp
 	"EntityManagerSingleton.h"
 
-1572539444 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
+1572626010 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
 	"ComponentManagerSingleton.h"
+	<iostream>
 
-1572539841 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\componentmanagersingleton.h
+1572624212 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\componentmanagersingleton.h
 	<unordered_map>
 	<cstdint>
 	<vector>
 	<EntityManagerSingleton.h>
 	<Component.h>
 	<PositionComponent.h>
+	<VelocityComponent.h>
+	<GravityComponent.h>
 
 1572448590 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\component.cpp
 
-1572448580 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\component.h
+1572448582 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\component.h
 	<cstdint>
 	<sstream>
 	<string>
@@ -586,14 +593,14 @@
 1572448750 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\positoncomponent.h
 	<Component.h>
 
-1572512495 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systemmanagersingleton.cpp
+1572629692 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systemmanagersingleton.cpp
 	"SystemManagerSingleton.h"
 
-1572528564 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systemmanagersingleton.h
+1572528566 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systemmanagersingleton.h
 	<vector>
 	<PhysicSystem.h>
 
-1572539822 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\system.h
+1572539824 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\system.h
 	<unordered_map>
 	<EntityManagerSingleton.h>
 	<ComponentManagerSingleton.h>
@@ -602,36 +609,120 @@
 	<VelocityComponent.h>
 	<GravityComponent.h>
 
-1572528293 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\gravitycomponent.cpp
+1572603848 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\gravitycomponent.cpp
 	"GravityComponent.h"
 
-1572528295 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\gravitycomponent.h
+1572604410 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\gravitycomponent.h
 	<Component.h>
 
-1572514481 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\velocitycomponent.cpp
+1572603848 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\velocitycomponent.cpp
 	"VelocityComponent.h"
 
-1572514484 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\velocitycomponent.h
+1572603996 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\velocitycomponent.h
 	<Component.h>
 
-1572515443 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\positioncomponent.h
+1572604434 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\positioncomponent.h
 	<Component.h>
 
-1572515491 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\positioncomponent.cpp
+1572603848 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\positioncomponent.cpp
 	"PositionComponent.h"
 
-1572538388 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\physicsystem.cpp
+1572609666 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\physicsystem.cpp
 	"PhysicSystem.h"
 	<iostream>
 
-1572539822 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\physicsystem.h
+1572539824 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\physicsystem.h
 	<System.h>
 
-1572539434 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\ecscoordinatorsingleton.cpp
+1572629582 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\ecscoordinatorsingleton.cpp
 	"ECSCoordinatorSingleton.h"
 
-1572539396 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\ecscoordinatorsingleton.h
+1572625264 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\ecscoordinatorsingleton.h
 	<EntityManagerSingleton.h>
 	<ComponentManagerSingleton.h>
 	<SystemManagerSingleton.h>
+
+1572625604 source:c:\_pc++\333\main.cpp
+	<SFML/Graphics.hpp>
+	<ECSCoordinatorSingleton.h>
+	<chrono>
+	<iostream>
+	<thread>
+
+1572625262 c:\_pc++\333\include\ecs\ecscoordinatorsingleton.h
+	<EntityManagerSingleton.h>
+	<ComponentManagerSingleton.h>
+	<SystemManagerSingleton.h>
+
+1572357968 c:\_pc++\333\include\ecs\entitymanagersingleton.h
+	<cstdint>
+	<vector>
+
+1572624211 c:\_pc++\333\include\ecs\componentmanagersingleton.h
+	<unordered_map>
+	<cstdint>
+	<vector>
+	<EntityManagerSingleton.h>
+	<Component.h>
+	<PositionComponent.h>
+	<VelocityComponent.h>
+	<GravityComponent.h>
+
+1572448582 c:\_pc++\333\include\ecs\component.h
+	<cstdint>
+	<sstream>
+	<string>
+
+1572604434 c:\_pc++\333\include\ecs\components\positioncomponent.h
+	<Component.h>
+
+1572603996 c:\_pc++\333\include\ecs\components\velocitycomponent.h
+	<Component.h>
+
+1572604410 c:\_pc++\333\include\ecs\components\gravitycomponent.h
+	<Component.h>
+
+1572528566 c:\_pc++\333\include\ecs\systemmanagersingleton.h
+	<vector>
+	<PhysicSystem.h>
+
+1572539824 c:\_pc++\333\include\ecs\systems\physicsystem.h
+	<System.h>
+
+1572539824 c:\_pc++\333\include\ecs\system.h
+	<unordered_map>
+	<EntityManagerSingleton.h>
+	<ComponentManagerSingleton.h>
+	<Component.h>
+	<PositionComponent.h>
+	<VelocityComponent.h>
+	<GravityComponent.h>
+
+1572626009 source:c:\_pc++\333\src\ecs\componentmanagersingleton.cpp
+	"ComponentManagerSingleton.h"
+	<iostream>
+
+1572603848 source:c:\_pc++\333\src\ecs\components\gravitycomponent.cpp
+	"GravityComponent.h"
+
+1572603848 source:c:\_pc++\333\src\ecs\components\positioncomponent.cpp
+	"PositionComponent.h"
+
+1572603848 source:c:\_pc++\333\src\ecs\components\velocitycomponent.cpp
+	"VelocityComponent.h"
+
+1572625254 source:c:\_pc++\333\src\ecs\ecscoordinatorsingleton.cpp
+	"ECSCoordinatorSingleton.h"
+	<iostream>
+
+1572355138 source:c:\_pc++\333\src\ecs\entitymanagersingleton.cpp
+	"EntityManagerSingleton.h"
+
+1572620897 source:c:\_pc++\333\src\ecs\systemmanagersingleton.cpp
+	"SystemManagerSingleton.h"
+	<iostream>
+
+1572609666 source:c:\_pc++\333\src\ecs\systems\physicsystem.cpp
+	"PhysicSystem.h"
+	<iostream>
 

@@ -5,10 +5,13 @@ SystemManagerSingleton::SystemManagerSingleton()
 
 SystemManagerSingleton::~SystemManagerSingleton()
 {
-    for(System* system : systems)
-    {
-        delete system;
-    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+//    for(System* system : systems)
+//    {
+//        delete system;
+//    }
 
     delete instance;
 }

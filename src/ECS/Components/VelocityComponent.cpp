@@ -22,7 +22,7 @@ float VelocityComponent::getVy() const
 
 ComponentID VelocityComponent::getTypeId() const
 {
-    return id;
+    return ID;
 }
 
 void VelocityComponent::setVx(float vx)
@@ -51,7 +51,7 @@ void VelocityComponent::setVelocity(float vx, float vy)
 std::string VelocityComponent::str() const
 {
     std::stringstream sstr;
-    sstr << id << " :(" << vx << ", " << vy << ")";
+    sstr << ID << " :(" << vx << ", " << vy << ")";
     return sstr.str();
 }
 

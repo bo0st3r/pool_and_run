@@ -1,4 +1,5 @@
 #include "ComponentManagerSingleton.h"
+#include <iostream>
 
 ComponentManagerSingleton::ComponentManagerSingleton()
 {}
@@ -18,52 +19,60 @@ ComponentManagerSingleton* ComponentManagerSingleton::getInstance()
     return instance;
 }
 
-template <typename T>
-void ComponentManagerSingleton::addComponent(ComponentID component)
+//template<typename T>
+void ComponentManagerSingleton::addComponentToEntity(Component& component, ComponentID componentId, Entity entity) //ajoute un composant donné à l'entité
 {
-    maps.push_back(EntityComponentMap<T>());
-    T test = maps[maps.size()-1];
-    componentIndexes.insert(std::pair<ComponentID, int>(component, maps.size()-1));
-}
-
-void ComponentManagerSingleton::addComponentToEntity(Component& component, Entity entity)
-{
-    //récupère l'index de la map de liaison dans le tableau grace à la map d'index
-    int index = componentIndexes.at(component.getTypeId());
-    //récupère la map dans le tableau grace à l'index
-    EntityComponentMap<Component&>& linkMap = *maps[index];
-
-    //ajoute le lien entity-component dans la map si il n'y est pas deja
-    if(linkMap.find(entity) != linkMap.end())
+    switch (componentId)
     {
-        linkMap.insert(std::pair<Entity, Component&>(entity, component));
+        case PositionComponent::ID :{
+                PositionComponent& casted = dynamic_cast<PositionComponent&>(component);
+                entityPositions.insert(std::pair<Entity, PositionComponent&>(entity, casted));
+                break;
+        }
+
+        case VelocityComponent::ID :{
+                VelocityComponent& casted = dynamic_cast<VelocityComponent&>(component);
+                entityVelocities.insert(std::pair<Entity, VelocityComponent&>(entity, casted));
+                break;
+        }
+
+        case GravityComponent::ID :{
+                GravityComponent& casted = dynamic_cast<GravityComponent&>(component);
+                entityGravities.insert(std::pair<Entity, GravityComponent&>(entity, casted));
+                break;
+        }
     }
 }
 
 void ComponentManagerSingleton::removeComponentFromEntity(ComponentID component, Entity entity)
 {
-    //récupère l'index de la map de liaison dans le tableau grace à la map d'index
-    int index = componentIndexes.at(component);
-    //récupère la map dans le tableau grace à l'index
-    EntityComponentMap<Component&>& linkMap = *maps[index];
-
-    //essaye de supprimer le lien entity-component de la map
-    linkMap.erase(entity);
+    switch(component)
+    {
+        case PositionComponent::ID : {entityPositions.erase(entity);}break;
+        case VelocityComponent::ID : {entityVelocities.erase(entity);}break;
+        case GravityComponent::ID : {entityGravities.erase(entity);}break;
+    }
 }
 
 void ComponentManagerSingleton::removeAllFromEntity(Entity entity)
 {
-    for(EntityComponentMap<Component&>* linkMap : maps)
-    {
-        linkMap->erase(entity);
-    }
+    removeComponentFromEntity(PositionComponent::ID, entity);
+    removeComponentFromEntity(VelocityComponent::ID, entity);
+    removeComponentFromEntity(GravityComponent::ID, entity);
 }
 
-EntityComponentMap<Component>* ComponentManagerSingleton::getEntityComponentMap(ComponentID component)
+EntityComponentMap<PositionComponent>& ComponentManagerSingleton::getEntityPositionMap()
 {
-    //récupère l'index de la map de liaison dans le tableau grace à la map d'index
-    int index = componentIndexes.at(component);
-    //récupère la map dans le tableau grace à l'index
-    return maps[index];
-
+    return entityPositions;
 }
+
+EntityComponentMap<VelocityComponent>& ComponentManagerSingleton::getEntityVelocityMap()
+{
+    return entityVelocities;
+}
+
+EntityComponentMap<GravityComponent>& ComponentManagerSingleton::getEntityGravityMap()
+{
+    return entityGravities;
+}
+

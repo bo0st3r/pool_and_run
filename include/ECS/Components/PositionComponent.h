@@ -10,10 +10,12 @@ class PositionComponent : public Component
         PositionComponent(float x = 0, float y = 0);
         virtual ~PositionComponent();
 
+        static inline const ComponentID ID = 0;
+
         float getX() const;
         float getY() const;
         virtual ComponentID getTypeId() const;
-        static ComponentID getId(){return id;};
+        static ComponentID getId(){return ID;};
         void setX(float X);
         void setY(float Y);
 
@@ -27,7 +29,6 @@ class PositionComponent : public Component
     private:
         float x;
         float y;
-        static inline ComponentID id = 0;
 };
 
 #endif // POSITONCOMPONENT_H

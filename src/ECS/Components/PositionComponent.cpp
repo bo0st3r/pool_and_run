@@ -19,7 +19,7 @@ float PositionComponent::getY() const
 
 ComponentID PositionComponent::getTypeId() const
 {
-    return id;
+    return ID;
 }
 
 void PositionComponent::setX(float x)
@@ -47,6 +47,6 @@ void PositionComponent::setPosition(float x, float y)
 std::string PositionComponent::str() const
 {
     std::stringstream sstr;
-    sstr << id << " :(" << x << ", " << y << ")";
+    sstr << ID << " :(" << x << ", " << y << ")";
     return sstr.str();
 }
