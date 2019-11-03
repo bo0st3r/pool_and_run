@@ -1,15 +1,46 @@
+#include <iostream>
+#include <chrono>
 #include <SFML/Graphics.hpp>
 
-#include <ECSCoordinatorSingleton.h>
-#include <chrono>
-#include <iostream>
-#include <thread>
+#include "ECSCoordinatorSingleton.h"
+#include "AssetManager.h"
 
 using std::cout;
 using std::endl;
 
 int main()
 {
+    pr::AssetManager am;
+    sf::Sprite ballSprite;
+
+
+    am.loadTexture("ball texture", pr::AssetManager::BALLS_PATH + "ball0.png");
+    am.setSpriteTexture(ballSprite, "ball texture");
+
+
+    sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
+    while(window.isOpen()){
+
+        sf::Event event;
+        while(window.pollEvent(event)){
+            switch(event.type){
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+            }
+        }
+
+        window.clear();
+        if(ballSprite.getTexture() != nullptr){
+            window.draw(ballSprite);
+        }
+        window.display();
+    }
+
+
+
+
+
     // Getting instances of ECS Coordinator and ComponenManager singletons
     ECSCoordinatorSingleton& ecs = *(ECSCoordinatorSingleton::getInstance());
     ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());
@@ -21,7 +52,6 @@ int main()
                                         compManager.getEntityGravityMap()
                                        );
     ecs.addSystem(physic);
-
 
 
     PositionComponent& position = *(new PositionComponent(500, 8000));
@@ -38,12 +68,12 @@ int main()
     float dt = 0.0f;
     float time = 0.0f;
 
-	while (time < 2)
+	while (time < 0.01)
 	{
 		auto startTime = std::chrono::high_resolution_clock::now();
 
 		ecs.updateSystems(dt);
-//		std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        sf::sleep(sf::milliseconds(100));
 
 		auto stopTime = std::chrono::high_resolution_clock::now();
 		dt = std::chrono::duration<float, std::chrono::seconds::period>(stopTime - startTime).count();
