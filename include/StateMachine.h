@@ -11,25 +11,37 @@ namespace pr
     typedef std::unique_ptr<State> StateRef;
 
     ////////////////////////////////////////////////////////////////
-    /// \class StateMachine is part of the State design pattern and manages the differents possible states.
+    /// \class Manages the states of the game. It is part of the "State" design pattern.
+    ///
+    /// We picked this pattern because our game has many differents states have different proccesses.
+    /// It is using a Stack as states collection so the last in is the first out.
     ////////////////////////////////////////////////////////////////
-    // The StateMachine is used to manage all the states.
-    // This cliss will be adding/removing states, process the state changes, ...
-    // It is using a Stack as states collection so the last in is the first out.
     class StateMachine
     {
         public:
             StateMachine();
             virtual ~StateMachine();
 
-            // Adds a new state.
-            // Decide wether the last state should be removed (isReplacing, default value) or paused (!isReplacing)
-            void addState(StateRef newState, bool isReplaceing = true);
+            ////////////////////////////////////////////////////////////////
+            /// \brief Adds a state to the stack and decides wether the last state should be removedor replaced.
+            ////////////////////////////////////////////////////////////////
+            void addState(StateRef newState, bool isReplacing = true);
+
             // Removes a state
+            ////////////////////////////////////////////////////////////////
+            /// \brief Removes the last state and resume the previous one.
+            ////////////////////////////////////////////////////////////////
             void removeState();
+
+            ////////////////////////////////////////////////////////////////
+            /// \brief Processes the state changes : removing, adding, replacing.
+            ////////////////////////////////////////////////////////////////
             void processStateChanges();
 
-            StateRef& GetActiveState();
+            ////////////////////////////////////////////////////////////////
+            /// \brief Returns a reference to the active state.
+            ////////////////////////////////////////////////////////////////
+            //StateRef& GetActiveState();
 
         private:
             std::stack<StateRef> _states;

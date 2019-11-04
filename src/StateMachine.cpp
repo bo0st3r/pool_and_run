@@ -1,75 +1,69 @@
 #include "StateMachine.h"
 
-namespace pr
-{
-StateMachine::StateMachine()
-{
-    //ctor
-}
 
-StateMachine::~StateMachine()
-{
-    //dtor
-}
+namespace pr{
+    StateMachine::StateMachine(){}
 
-void StateMachine::addState(StateRef newState, bool isReplaceing)
-{
-    this->_isAdding = true;
-    this->_isReplacing = isReplaceing;
+    StateMachine::~StateMachine(){}
 
-    // Nullify the given StateRef and fills _newState with it.
-    this->_newState = std::move(newState);
-}
-
-void StateMachine::removeState()
-{
-    this->_isRemoving = true;
-}
-
-void StateMachine::processStateChanges()
-{
-    // When removing and the states are not empty
-    // Pops the last state and if not empty resumes the last one
-    if(this->_isRemoving && !this->_states.empty())
+    void StateMachine::addState(StateRef newState, bool isReplacing)
     {
-        this->_states.pop();
+        _isAdding = true;
+        _isReplacing = isReplacing;
 
-        if(!this->_states.empty())
-        {
-            this->_states.top()->resume();
-        }
+        // Moves the give unique_ptr to _newState
+        _newState = std::move(newState);
     }
 
-    // When adding a new state
-    if(this ->_isAdding)
+    void StateMachine::removeState()
     {
-        // If the states are not empty
-        // Pops a state if isReplacing or pause the last state instead
-        if(!this->_states.empty())
+        _isRemoving = true;
+        processStateChanges();
+    }
+
+    void StateMachine::processStateChanges()
+    {
+        // When removing and the states are not empty
+        // Pops the last state and if not empty resumes the last one
+        if(_isRemoving && !_states.empty())
         {
-            if(this->_isReplacing)
+            _states.pop();
+
+            if(!_states.empty())
             {
-                this->_states.pop();
-            }
-            else
-            {
-                this->_states.top()->pause();
+                _states.top()->resume();
             }
         }
 
-        // Adds and inits the new state
-        // Set isAdding to false
-        this->_states.push(std::move(this->_newState));
-        this->_states.top()->init();
-        this->_isAdding = false;
+        // When adding a new state
+        if(_isAdding)
+        {
+            // If the states are not empty
+            // Pops a state if isReplacing or pause the last state instead
+            if(!_states.empty())
+            {
+                if(_isReplacing)
+                {
+                    _states.pop();
+                }
+                else
+                {
+                    _states.top()->pause();
+                }
+            }
+
+            // Adds and inits the new state
+            // Set isAdding to false
+            _states.push(std::move(_newState));
+            _states.top()->init();
+            _isAdding = false;
+        }
     }
-}
 
 
-// Returns the reference of the state at the top of the _states Stack
-StateRef& StateMachine::GetActiveState()
-{
-    return this->_states.top();
-}
-
+    // Returns the reference of the state at the top of the _states Stack
+    /*StateRef& StateMachine::GetActiveState()
+    {
+        return _states.top();
+    }*/
 }

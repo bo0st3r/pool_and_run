@@ -5,7 +5,6 @@
 		<Option title="pJeuBillard" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="src\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/pJeuBillard" prefix_auto="1" extension_auto="1" />
@@ -54,7 +53,7 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++14" />
 			<Add option="-fexceptions" />
-			<Add directory="C:/_libraries/C++/SFML-2.5.1/include" />
+			<Add directory="SFML-2.5.1/include" />
 		</Compiler>
 		<Linker>
 			<Add directory="C:/_libraries/C++/SFML-2.5.1/lib" />
@@ -71,6 +70,7 @@
 		<Unit filename="include/ECS/System.h" />
 		<Unit filename="include/ECS/SystemManagerSingleton.h" />
 		<Unit filename="include/ECS/Systems/PhysicSystem.h" />
+		<Unit filename="include/InputManager.h" />
 		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
 		<Unit filename="main.cpp" />
@@ -81,11 +81,10 @@
 		<Unit filename="src/ECS/Components/PositionComponent.cpp" />
 		<Unit filename="src/ECS/Components/VelocityComponent.cpp" />
 		<Unit filename="src/ECS/ECSCoordinatorSingleton.cpp" />
-		<Unit filename="src/ECS/EntityManagerSingleton.cpp">
-			<Option virtualFolder="src/" />
-		</Unit>
+		<Unit filename="src/ECS/EntityManagerSingleton.cpp" />
 		<Unit filename="src/ECS/SystemManagerSingleton.cpp" />
 		<Unit filename="src/ECS/Systems/PhysicSystem.cpp" />
+		<Unit filename="src/InputManager.cpp" />
 		<Unit filename="src/StateMachine.cpp" />
 		<Extensions>
 			<code_completion />

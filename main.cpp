@@ -4,19 +4,25 @@
 
 #include "ECSCoordinatorSingleton.h"
 #include "AssetManager.h"
+#include "InputManager.h"
 
 using std::cout;
 using std::endl;
 
+
+bool test(){
+    return true;
+}
 int main()
 {
     pr::AssetManager am;
+    am.loadTexture("ball", pr::AssetManager::BALLS_PATH + "ball0.png");
+
     sf::Sprite ballSprite;
+    am.setSpriteTexture(ballSprite, "ball");
+    ballSprite.scale(sf::Vector2f(0.1, 0.1));
 
-
-    am.loadTexture("ball texture", pr::AssetManager::BALLS_PATH + "ball0.png");
-    am.setSpriteTexture(ballSprite, "ball texture");
-
+    pr::InputManager im;
 
     sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
     while(window.isOpen()){
@@ -27,6 +33,17 @@ int main()
                 case sf::Event::Closed:
                     window.close();
                     break;
+
+                case sf::Event::MouseButtonPressed:
+                    switch(event.mouseButton.button){
+                        case sf::Mouse::Left:{
+                            if(im.isSpriteClicked(ballSprite, sf::Mouse::Left, window)){
+                                cout << "clicked" << endl;
+                            }
+
+                            break;
+                        }
+                    }
             }
         }
 

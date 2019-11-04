@@ -12,7 +12,7 @@ using sf::Sprite;
 namespace pr{
 
     ////////////////////////////////////////////////////////////
-    /// \class Manages and contains the textures, fonts, sounds and so on.    ////////////////////////////////////////////////////////////
+    /// \class Manages and holds textures, fonts, sounds and so on.    ////////////////////////////////////////////////////////////
     class AssetManager
     {
         public:
@@ -22,6 +22,7 @@ namespace pr{
 
             inline static const string IMG_PATH = RESSOURCES_PATH + "img/";
             inline static const string BALLS_PATH = IMG_PATH + "balls/";
+            inline static const string OTHERS_PATH = IMG_PATH + "others/";
 
             AssetManager();
             virtual ~AssetManager();
@@ -50,6 +51,8 @@ namespace pr{
             /// \brief Returns if _textures has a Texture for the given name.
             ////////////////////////////////////////////////////////////
             bool hasTexture(const string& name);
+            bool test(const string& name);
+            bool test2(const string& name);
 
             ////////////////////////////////////////////////////////////            /// \brief Returns the Texture, if existing, that corresponds to the given name.
             ////////////////////////////////////////////////////////////
@@ -76,7 +79,7 @@ namespace pr{
 
             ////////////////////////////////////////////////////////////            /// \brief Returns the Font, if existing, that corresponds to the given name.
             ////////////////////////////////////////////////////////////
-            sf::Font& getFont(const string& name) const;
+            sf::Font& getFont(const string& name);
 
         private:
             std::map<string, Texture> _textures;

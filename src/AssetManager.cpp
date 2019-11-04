@@ -1,11 +1,9 @@
 #include <iostream>
 #include <stdexcept>
 
-
 #include "Collision.h"
 #include "AssetManager.h"
 
-using namespace std;
 namespace pr{
     AssetManager::AssetManager()
     {
@@ -26,6 +24,7 @@ namespace pr{
             return true;
         }
 
+
         return false;
     }
 
@@ -38,7 +37,19 @@ namespace pr{
     }
 
     bool AssetManager::hasTexture(const string& name){
-        return _textures.count(name) > 0;
+        bool res = false;
+        if(_textures.count(name) > 0){
+            res = true;
+        }
+        return res;
+    }
+
+    bool AssetManager::test(const string& name){
+        return true;
+    }
+
+    bool AssetManager::test2(const string& name){
+        return false;
     }
 
     Texture& AssetManager::getTexture(const string& name){
@@ -52,15 +63,23 @@ namespace pr{
     ////////////////////////////// FONTS ///////////////////////////////////
 
     bool AssetManager::loadFont(const string& name, const string& filePath){
+        return _fonts[name].loadFromFile(filePath);
     }
 
     void AssetManager::unloadFont(const string& name){
+        _fonts.erase(name);
     }
 
     bool AssetManager::hasFont(const string& name){
+        return _fonts.count(name) > 0;
     }
 
-    sf::Font& AssetManager::getFont(const string& name) const{
+    sf::Font& AssetManager::getFont(const string& name){
+        try{
+            return _fonts.at(name);
+        }catch(std::out_of_range const& e){
+            std::cerr << e.what() << std::endl;
+        }
     }
 
 
