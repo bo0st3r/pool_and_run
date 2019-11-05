@@ -2,6 +2,8 @@
 #include <chrono>
 #include <SFML/Graphics.hpp>
 
+#include "Game.h"
+
 #include "ECSCoordinatorSingleton.h"
 #include "AssetManager.h"
 #include "InputManager.h"

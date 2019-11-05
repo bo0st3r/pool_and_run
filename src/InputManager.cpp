@@ -16,12 +16,12 @@ namespace pr{
         Sprite mouse(tex);
 
         mouse.setOrigin(Vector2f(0.5, 0.5));
-        mouse.setPosition((Vector2f) Mouse::getPosition(window));
+        mouse.setPosition((Vector2f) getMousePosition(window));
 
         return Mouse::isButtonPressed(btn) && Collision::PixelPerfectTest(target, mouse);
     }
 
     Vector2i InputManager::getMousePosition(RenderWindow &window){
-
+        return Mouse::getPosition(window);
     }
 }

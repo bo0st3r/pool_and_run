@@ -62,8 +62,8 @@ namespace pr{
 
 
     // Returns the reference of the state at the top of the _states Stack
-    /*StateRef& StateMachine::GetActiveState()
+    StateRef& StateMachine::getActiveState()
     {
         return _states.top();
-    }*/
+    }
 }

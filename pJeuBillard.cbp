@@ -70,6 +70,7 @@
 		<Unit filename="include/ECS/System.h" />
 		<Unit filename="include/ECS/SystemManagerSingleton.h" />
 		<Unit filename="include/ECS/Systems/PhysicSystem.h" />
+		<Unit filename="include/Game.h" />
 		<Unit filename="include/InputManager.h" />
 		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
@@ -84,6 +85,7 @@
 		<Unit filename="src/ECS/EntityManagerSingleton.cpp" />
 		<Unit filename="src/ECS/SystemManagerSingleton.cpp" />
 		<Unit filename="src/ECS/Systems/PhysicSystem.cpp" />
+		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/InputManager.cpp" />
 		<Unit filename="src/StateMachine.cpp" />
 		<Extensions>
