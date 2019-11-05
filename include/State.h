@@ -17,7 +17,7 @@ namespace pr{
             virtual void handleInput() = 0;
 
             // Updates the state elements
-            virtual void update() = 0;
+            virtual void update(float dt) = 0;
 
             // Draws the state drawables
             virtual void draw(float dt) = 0;

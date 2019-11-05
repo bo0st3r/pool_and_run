@@ -41,7 +41,7 @@ namespace pr
             ////////////////////////////////////////////////////////////////
             /// \brief Returns a reference to the active state.
             ////////////////////////////////////////////////////////////////
-            //StateRef& GetActiveState();
+            StateRef& getActiveState();
 
         private:
             std::stack<StateRef> _states;
