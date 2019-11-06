@@ -11,6 +11,7 @@
 #include <PositionComponent.h>
 #include <VelocityComponent.h>
 #include <GravityComponent.h>
+#include <RendererComponent.h>
 
 //template pour les association Entité<->Component
 template <typename T>
@@ -30,6 +31,7 @@ class ComponentManagerSingleton
         EntityComponentMap<PositionComponent>& getEntityPositionMap();
         EntityComponentMap<VelocityComponent>& getEntityVelocityMap();
         EntityComponentMap<GravityComponent>& getEntityGravityMap();
+        EntityComponentMap<RendererComponent>& getEntityRendererMap();
 
     protected:
 
@@ -41,6 +43,7 @@ class ComponentManagerSingleton
         EntityComponentMap<PositionComponent> entityPositions;
         EntityComponentMap<VelocityComponent> entityVelocities;
         EntityComponentMap<GravityComponent> entityGravities;
+        EntityComponentMap<RendererComponent> entityRenderers;
 };
 
 #endif // COMPONENTMANAGERSINGLETON_H

@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <PhysicSystem.h>
+#include <RenderSystem.h>
 
 class SystemManagerSingleton
 {

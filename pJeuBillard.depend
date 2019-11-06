@@ -491,10 +491,11 @@
 1570708469 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\pool&run\include\level.h
 	<string>
 
-1572945020 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
+1572959372 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
 	<iostream>
 	<chrono>
 	<SFML/Graphics.hpp>
+	"Game.h"
 	"ECSCoordinatorSingleton.h"
 	"AssetManager.h"
 	"InputManager.h"
@@ -567,11 +568,11 @@
 1572355138 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\entitymanagersingleton.cpp
 	"EntityManagerSingleton.h"
 
-1572626010 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
+1572951071 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
 	"ComponentManagerSingleton.h"
 	<iostream>
 
-1572624212 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\componentmanagersingleton.h
+1572950897 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\componentmanagersingleton.h
 	<unordered_map>
 	<cstdint>
 	<vector>
@@ -580,6 +581,7 @@
 	<PositionComponent.h>
 	<VelocityComponent.h>
 	<GravityComponent.h>
+	<RendererComponent.h>
 
 1572448590 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\component.cpp
 
@@ -597,11 +599,12 @@
 1572629692 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systemmanagersingleton.cpp
 	"SystemManagerSingleton.h"
 
-1572528566 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systemmanagersingleton.h
+1572959044 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systemmanagersingleton.h
 	<vector>
 	<PhysicSystem.h>
+	<RenderSystem.h>
 
-1572539824 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\system.h
+1572951205 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\system.h
 	<unordered_map>
 	<EntityManagerSingleton.h>
 	<ComponentManagerSingleton.h>
@@ -609,6 +612,7 @@
 	<PositionComponent.h>
 	<VelocityComponent.h>
 	<GravityComponent.h>
+	<RendererComponent.h>
 
 1572603848 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\gravitycomponent.cpp
 	"GravityComponent.h"
@@ -1684,19 +1688,46 @@
 	<map>
 	"Collision.h"
 
-1572945020 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\inputmanager.cpp
+1572947067 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\inputmanager.cpp
 	<iostream>
 	"Collision.h"
 	"InputManager.h"
 	"AssetManager.h"
 
-1572945020 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\statemachine.cpp
+1572947067 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\statemachine.cpp
 	"StateMachine.h"
 
-1572945020 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\statemachine.h
+1572947067 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\statemachine.h
 	<memory>
 	<stack>
 	"State.h"
 
-1572945020 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\state.h
+1572947067 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\state.h
+
+1572947067 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\game.h
+	<memory>
+	<string>
+	<SFML/Graphics.hpp>
+	"StateMachine.h"
+	"AssetManager.h"
+	"InputManager.h"
+
+1572947067 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\game.cpp
+	"Game.h"
+	<iostream>
+
+1572951098 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\renderercomponent.cpp
+	"RendererComponent.h"
+
+1572950823 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\renderercomponent.h
+	<SFML/Graphics.hpp>
+	<Component.h>
+
+1572958949 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\rendersystem.h
+	<SFML/Graphics.hpp>
+	<System.h>
+	<AssetManager.h>
+
+1572958949 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\rendersystem.cpp
+	"RenderSystem.h"
 

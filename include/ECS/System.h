@@ -10,10 +10,12 @@
 #include <PositionComponent.h>
 #include <VelocityComponent.h>
 #include <GravityComponent.h>
+#include <RendererComponent.h>
 
 using Positions = EntityComponentMap<PositionComponent>;
 using Velocities = EntityComponentMap<VelocityComponent>;
 using Gravities = EntityComponentMap<GravityComponent>;
+using Renderers = EntityComponentMap<RendererComponent>;
 
 class System
 {

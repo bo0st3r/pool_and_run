@@ -27,7 +27,7 @@ int main()
     pr::InputManager im;
 
     sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
-    while(window.isOpen()){
+    /*while(window.isOpen()){
 
         sf::Event event;
         while(window.pollEvent(event)){
@@ -54,7 +54,7 @@ int main()
             window.draw(ballSprite);
         }
         window.display();
-    }
+    }*/
 
 
 
@@ -65,34 +65,42 @@ int main()
     ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());
 
     //ajout des systemes
-    PhysicSystem physic = PhysicSystem(
+    PhysicSystem physicSystem = PhysicSystem(
                                         compManager.getEntityPositionMap(),
                                         compManager.getEntityVelocityMap(),
                                         compManager.getEntityGravityMap()
                                        );
-    ecs.addSystem(physic);
+
+    RenderSystem renderSystem = RenderSystem(
+                                       compManager.getEntityPositionMap(),
+                                       compManager.getEntityRendererMap(),
+                                       window,
+                                       am
+                                       );
+    ecs.addSystem(physicSystem);
+    ecs.addSystem(renderSystem);
 
 
-    PositionComponent& position = *(new PositionComponent(500, 8000));
+    PositionComponent& position = *(new PositionComponent(0, 0));
     GravityComponent& gravity = *(new GravityComponent());
     VelocityComponent& velocity = *(new VelocityComponent());
+    RendererComponent& render = *(new RendererComponent("ball"));
 
     Entity e1 = ecs.createNewEntity();
     compManager.addComponentToEntity(position, PositionComponent::ID, e1);
     compManager.addComponentToEntity(gravity, GravityComponent::ID, e1);
     compManager.addComponentToEntity(velocity, VelocityComponent::ID, e1);
-
-
+    compManager.addComponentToEntity(render, RendererComponent::ID, e1);
 
     float dt = 0.0f;
     float time = 0.0f;
 
-	while (time < 0.01)
+	while (time < 20)
 	{
 		auto startTime = std::chrono::high_resolution_clock::now();
 
 		ecs.updateSystems(dt);
-        sf::sleep(sf::milliseconds(100));
+        sf::sleep(sf::milliseconds(20));
 
 		auto stopTime = std::chrono::high_resolution_clock::now();
 		dt = std::chrono::duration<float, std::chrono::seconds::period>(stopTime - startTime).count();
@@ -101,6 +109,6 @@ int main()
 		cout << time << endl << endl;
 	}
 
-    delete &position, &gravity, &velocity;
+    delete &position, &gravity, &velocity, &render;
     return 0;
 }
