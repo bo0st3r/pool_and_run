@@ -41,6 +41,12 @@ void ComponentManagerSingleton::addComponentToEntity(Component& component, Compo
                 entityGravities.insert(std::pair<Entity, GravityComponent&>(entity, casted));
                 break;
         }
+
+        case RendererComponent::ID :{
+                RendererComponent& casted = dynamic_cast<RendererComponent&>(component);
+                entityRenderers.insert(std::pair<Entity, RendererComponent&>(entity, casted));
+                break;
+        }
     }
 }
 
@@ -51,6 +57,7 @@ void ComponentManagerSingleton::removeComponentFromEntity(ComponentID component,
         case PositionComponent::ID : {entityPositions.erase(entity);}break;
         case VelocityComponent::ID : {entityVelocities.erase(entity);}break;
         case GravityComponent::ID : {entityGravities.erase(entity);}break;
+        case RendererComponent::ID : {entityRenderers.erase(entity);}break;
     }
 }
 
@@ -59,6 +66,7 @@ void ComponentManagerSingleton::removeAllFromEntity(Entity entity)
     removeComponentFromEntity(PositionComponent::ID, entity);
     removeComponentFromEntity(VelocityComponent::ID, entity);
     removeComponentFromEntity(GravityComponent::ID, entity);
+    removeComponentFromEntity(RendererComponent::ID, entity);
 }
 
 EntityComponentMap<PositionComponent>& ComponentManagerSingleton::getEntityPositionMap()
@@ -74,5 +82,10 @@ EntityComponentMap<VelocityComponent>& ComponentManagerSingleton::getEntityVeloc
 EntityComponentMap<GravityComponent>& ComponentManagerSingleton::getEntityGravityMap()
 {
     return entityGravities;
+}
+
+EntityComponentMap<RendererComponent>& ComponentManagerSingleton::getEntityRendererMap()
+{
+    return entityRenderers;
 }
 
