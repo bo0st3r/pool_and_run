@@ -1,7 +1,7 @@
 #include "RendererComponent.h"
 
-RendererComponent::RendererComponent(std::string textureName)
-:textureName(textureName)
+RendererComponent::RendererComponent(std::string textureName, sf::Vector2f scale)
+:textureName(textureName), scale(scale)
 {}
 
 RendererComponent::~RendererComponent()
@@ -17,6 +17,11 @@ std::string RendererComponent::getTextureName() const
     return textureName;
 }
 
+sf::Vector2f RendererComponent::getScale() const
+{
+    return scale;
+}
+
 sf::Sprite& RendererComponent::getSpriteRef()
 {
     return sprite;
@@ -30,6 +35,6 @@ bool RendererComponent::hasSpriteTextured() const
 std::string RendererComponent::str() const
 {
     std::stringstream sstr;
-    sstr << ID << " : " << textureName;
+    sstr << ID << " (renderer) : " << textureName << " scale : (" << scale.x << ", " << scale.y << ")";
     return sstr.str();
 }

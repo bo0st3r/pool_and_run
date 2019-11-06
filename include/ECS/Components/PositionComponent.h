@@ -8,27 +8,26 @@ class PositionComponent : public Component
 {
     public:
         PositionComponent(float x = 0, float y = 0);
+        PositionComponent(sf::Vector2f position);
         virtual ~PositionComponent();
 
         static inline const ComponentID ID = 0;
 
-        float getX() const;
-        float getY() const;
+        sf::Vector2f getPosition() const;
         virtual ComponentID getTypeId() const;
         static ComponentID getId(){return ID;};
-        void setX(float X);
-        void setY(float Y);
 
         void translate(float dx, float dy);
+        void translate(sf::Vector2f dp);
         void setPosition(float x, float y);
+        void setPosition(sf::Vector2f position);
 
         virtual std::string str() const;
 
     protected:
 
     private:
-        float x;
-        float y;
+        sf::Vector2f position;
 };
 
 #endif // POSITONCOMPONENT_H

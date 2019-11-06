@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <sstream>
 #include <string>
+#include <SFML/System.hpp>
+
 
 using ComponentID = uint32_t;
 

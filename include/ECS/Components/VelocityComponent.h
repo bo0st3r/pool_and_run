@@ -12,15 +12,14 @@ class VelocityComponent : public Component
 
         static inline const ComponentID ID = 1;
 
-        float getVx() const;
-        float getVy() const;
+        sf::Vector2f getVelocity() const;
         virtual ComponentID getTypeId() const;
         static ComponentID getId(){return ID;};
-        void setVx(float vx);
-        void setVy(float vy);
 
-        void addVelocity(float dvx, float dvy);
-        void setVelocity(float vx, float vy);
+        void addVelocity(float dvx = 0, float dvy = 0);
+        void addVelocity(sf::Vector2f dv);
+        void setVelocity(float vx = 0, float vy = 0);
+        void setVelocity(sf::Vector2f velocity);
 
         virtual std::string str() const;
 
@@ -28,8 +27,7 @@ class VelocityComponent : public Component
     protected:
 
     private:
-        float vx;
-        float vy;
+        sf::Vector2f velocity;
 };
 
 #endif // VELOCITYCOMPONENT_H

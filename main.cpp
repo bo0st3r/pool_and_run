@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 #include "Game.h"
 
@@ -84,7 +85,7 @@ int main()
     PositionComponent& position = *(new PositionComponent(0, 0));
     GravityComponent& gravity = *(new GravityComponent());
     VelocityComponent& velocity = *(new VelocityComponent());
-    RendererComponent& render = *(new RendererComponent("ball"));
+    RendererComponent& render = *(new RendererComponent("ball", sf::Vector2f(0.1, 0.1)));
 
     Entity e1 = ecs.createNewEntity();
     compManager.addComponentToEntity(position, PositionComponent::ID, e1);

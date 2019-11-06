@@ -491,7 +491,7 @@
 1570708469 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\pool&run\include\level.h
 	<string>
 
-1572959372 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
+1573047137 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
 	<iostream>
 	<chrono>
 	<SFML/Graphics.hpp>
@@ -585,10 +585,11 @@
 
 1572448590 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\component.cpp
 
-1572448582 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\component.h
+1573047046 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\component.h
 	<cstdint>
 	<sstream>
 	<string>
+	<SFML/System.hpp>
 
 1572514237 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\positoncomponent.cpp
 	"PositonComponent.h"
@@ -614,25 +615,25 @@
 	<GravityComponent.h>
 	<RendererComponent.h>
 
-1572603848 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\gravitycomponent.cpp
+1573046741 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\gravitycomponent.cpp
 	"GravityComponent.h"
 
 1572854708 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\gravitycomponent.h
 	<Component.h>
 
-1572603848 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\velocitycomponent.cpp
+1573046486 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\velocitycomponent.cpp
 	"VelocityComponent.h"
 
-1572603996 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\velocitycomponent.h
+1573046329 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\velocitycomponent.h
 	<Component.h>
 
-1572604434 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\positioncomponent.h
+1573045949 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\positioncomponent.h
 	<Component.h>
 
-1572603848 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\positioncomponent.cpp
+1573047241 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\positioncomponent.cpp
 	"PositionComponent.h"
 
-1572630354 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\physicsystem.cpp
+1573047322 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\physicsystem.cpp
 	"PhysicSystem.h"
 	<iostream>
 
@@ -1716,10 +1717,10 @@
 	"Game.h"
 	<iostream>
 
-1572951098 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\renderercomponent.cpp
+1573047464 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\renderercomponent.cpp
 	"RendererComponent.h"
 
-1572950823 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\renderercomponent.h
+1573045944 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\renderercomponent.h
 	<SFML/Graphics.hpp>
 	<Component.h>
 
@@ -1728,6 +1729,6 @@
 	<System.h>
 	<AssetManager.h>
 
-1572958949 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\rendersystem.cpp
+1573047413 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\rendersystem.cpp
 	"RenderSystem.h"
 

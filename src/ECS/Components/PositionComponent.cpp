@@ -1,20 +1,19 @@
 #include "PositionComponent.h"
 
 PositionComponent::PositionComponent(float x, float y)
-:x(x), y(y)
+:PositionComponent(sf::Vector2(x, y))
+{}
+
+PositionComponent::PositionComponent(sf::Vector2f position)
+:position(position)
 {}
 
 PositionComponent::~PositionComponent()
 {}
 
-float PositionComponent::getX() const
+sf::Vector2f PositionComponent::getPosition()const
 {
-    return x;
-}
-
-float PositionComponent::getY() const
-{
-    return y;
+    return position;
 }
 
 ComponentID PositionComponent::getTypeId() const
@@ -22,31 +21,29 @@ ComponentID PositionComponent::getTypeId() const
     return ID;
 }
 
-void PositionComponent::setX(float x)
-{
-    this->x = x;
-}
-
-void PositionComponent::setY(float y)
-{
-    this->y = y;
-}
-
 void PositionComponent::translate(float dx, float dy)
 {
-    x += dx;
-    y += dy;
+    translate(sf::Vector2(dx, dy));
+}
+
+void PositionComponent::translate(sf::Vector2f dp)
+{
+    position += dp;
 }
 
 void PositionComponent::setPosition(float x, float y)
 {
-    setX(x);
-    setY(y);
+    setPosition(sf::Vector2f(x, y));
+}
+
+void PositionComponent::setPosition(sf::Vector2f position)
+{
+    this->position = position;
 }
 
 std::string PositionComponent::str() const
 {
     std::stringstream sstr;
-    sstr << ID << " :(" << x << ", " << y << ")";
+    sstr << ID << " (position) :(" << position.x << ", " << position.y << ")";
     return sstr.str();
 }
