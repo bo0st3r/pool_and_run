@@ -56,10 +56,6 @@ int main()
         window.display();
     }
 
-
-
-
-
     // Getting instances of ECS Coordinator and ComponenManager singletons
     ECSCoordinatorSingleton& ecs = *(ECSCoordinatorSingleton::getInstance());
     ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());

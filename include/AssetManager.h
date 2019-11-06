@@ -23,6 +23,8 @@ namespace pr{
             inline static const string IMG_PATH = RESSOURCES_PATH + "img/";
             inline static const string BALLS_PATH = IMG_PATH + "balls/";
             inline static const string OTHERS_PATH = IMG_PATH + "others/";
+            inline static const string OTHERS_PATH = IMG_PATH + "backgrounds/";
+
 
             AssetManager();
             virtual ~AssetManager();

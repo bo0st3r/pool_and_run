@@ -2,6 +2,11 @@
 #define STATE_H
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
+using sf::Clock;
+using sf::Sprite;
+
 // Represents any state of the game (i.e. menu, game, won, lost, ...)
 namespace pr{
     ////////////////////////////////////////////////////////////////
@@ -23,10 +28,10 @@ namespace pr{
             virtual void draw(float dt) = 0;
 
             // Pauses the state
-            virtual void pause();
+            virtual void pause(){}
 
             // Resumes the state
-            virtual void resume();
+            virtual void resume(){}
     };
 }
 
