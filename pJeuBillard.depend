@@ -1278,7 +1278,31 @@
 1572886222 c:\_pc++\ppoolandrun\include\inputmanager.h
 	<SFML/Graphics.hpp>
 
+<<<<<<< HEAD
+1572892288 source:c:\_pc++\ppoolandrun\src\game.cpp
+	"Game.h"
+
+1572893106 c:\_pc++\ppoolandrun\include\game.h
+	<memory>
+	<string>
+	<SFML/Graphics.hpp>
+	"StateMachine.h"
+	"AssetManager.h"
+	"InputManager.h"
+
+1572952443 source:c:\_c++\_ppoolandrun\main.cpp
+	<iostream>
+	<chrono>
+	<SFML/Graphics.hpp>
+	"Game.h"
+	"ECSCoordinatorSingleton.h"
+	"AssetManager.h"
+	"InputManager.h"
+
+1525812018 c:\_c++\_ppoolandrun\sfml-2.5.1\include\sfml\graphics.hpp
+=======
 1572945019 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\sfml-2.5.1\include\sfml\graphics.hpp
+>>>>>>> 7f33d0599ccf2abde99de2a1a65c0360096ba75a
 	<SFML/Window.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/CircleShape.hpp>
@@ -1687,7 +1711,27 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
+<<<<<<< HEAD
+1572893106 c:\_c++\_ppoolandrun\include\game.h
+	<memory>
+	<string>
+	<SFML/Graphics.hpp>
+	"StateMachine.h"
+	"AssetManager.h"
+	"InputManager.h"
+
+1572893009 c:\_c++\_ppoolandrun\include\statemachine.h
+	<memory>
+	<stack>
+	"State.h"
+
+1572954706 c:\_c++\_ppoolandrun\include\state.h
+	<SFML/Graphics.hpp>
+
+1572888218 c:\_c++\_ppoolandrun\include\assetmanager.h
+=======
 1572945020 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\assetmanager.h
+>>>>>>> 7f33d0599ccf2abde99de2a1a65c0360096ba75a
 	<map>
 	<SFML/Graphics.hpp>
 
@@ -1731,7 +1775,11 @@
 	"AssetManager.h"
 	"InputManager.h"
 
+<<<<<<< HEAD
+1572949234 source:c:\_c++\_ppoolandrun\src\game.cpp
+=======
 1572947067 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\game.cpp
+>>>>>>> 7f33d0599ccf2abde99de2a1a65c0360096ba75a
 	"Game.h"
 	<iostream>
 
@@ -1799,4 +1847,10 @@
 
 1573136340 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\charactercomponent.cpp
 	"CharacterComponent.h"
+
+1572953022 source:c:\_c++\_ppoolandrun\src\states\menustate.cpp
+	"MenuState.h"
+
+1572953010 c:\_c++\_ppoolandrun\include\menustate.h
+	<State.h>
 

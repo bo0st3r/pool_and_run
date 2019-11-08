@@ -86,9 +86,13 @@
 		<Unit filename="include/ECS/Systems/RenderSystem.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/InputManager.h" />
-		<Unit filename="include/State.h" />
+		<Unit filename="include/MenuState.h" />
 		<Unit filename="include/StateMachine.h" />
+<<<<<<< HEAD
 		<Unit filename="include/Vector2fMath.h" />
+=======
+		<Unit filename="include/States/MenuState.h" />
+>>>>>>> 8805f586fe02ec0a2cc07bcbf920f33a48a0d829
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AssetManager.cpp" />
 		<Unit filename="src/Collision.cpp" />
@@ -111,7 +115,11 @@
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/InputManager.cpp" />
 		<Unit filename="src/StateMachine.cpp" />
+<<<<<<< HEAD
 		<Unit filename="src/Vector2fMath.cpp" />
+=======
+		<Unit filename="src/States/MenuState.cpp" />
+>>>>>>> 8805f586fe02ec0a2cc07bcbf920f33a48a0d829
 		<Extensions>
 			<code_completion />
 			<envvars />
