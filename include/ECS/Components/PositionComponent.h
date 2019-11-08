@@ -15,7 +15,6 @@ class PositionComponent : public Component
 
         sf::Vector2f getPosition() const;
         virtual ComponentID getTypeId() const;
-        static ComponentID getId(){return ID;};
 
         void translate(float dx, float dy);
         void translate(sf::Vector2f dp);

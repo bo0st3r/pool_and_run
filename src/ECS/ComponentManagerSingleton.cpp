@@ -47,6 +47,30 @@ void ComponentManagerSingleton::addComponentToEntity(Component& component, Compo
                 entityRenderers.insert(std::pair<Entity, RendererComponent&>(entity, casted));
                 break;
         }
+
+        case ColliderComponent::ID :{
+                ColliderComponent& casted = dynamic_cast<ColliderComponent&>(component);
+                entityColliders.insert(std::pair<Entity, ColliderComponent&>(entity, casted));
+                break;
+        }
+
+        case TriggerComponent::ID :{
+                TriggerComponent& casted = dynamic_cast<TriggerComponent&>(component);
+                entityTriggers.insert(std::pair<Entity, TriggerComponent&>(entity, casted));
+                break;
+        }
+
+        case CharacterComponent::ID :{
+                CharacterComponent& casted = dynamic_cast<CharacterComponent&>(component);
+                entityCharacters.insert(std::pair<Entity, CharacterComponent&>(entity, casted));
+                break;
+        }
+
+        case ConstraintComponent::ID :{
+                ConstraintComponent& casted = dynamic_cast<ConstraintComponent&>(component);
+                entityConstraints.insert(std::pair<Entity, ConstraintComponent&>(entity, casted));
+                break;
+        }
     }
 }
 
@@ -58,6 +82,10 @@ void ComponentManagerSingleton::removeComponentFromEntity(ComponentID component,
         case VelocityComponent::ID : {entityVelocities.erase(entity);}break;
         case GravityComponent::ID : {entityGravities.erase(entity);}break;
         case RendererComponent::ID : {entityRenderers.erase(entity);}break;
+        case ColliderComponent::ID : {entityColliders.erase(entity);}break;
+        case TriggerComponent::ID : {entityTriggers.erase(entity);}break;
+        case CharacterComponent::ID : {entityCharacters.erase(entity);}break;
+        case ConstraintComponent::ID : {entityConstraints.erase(entity);}break;
     }
 }
 
@@ -67,6 +95,10 @@ void ComponentManagerSingleton::removeAllFromEntity(Entity entity)
     removeComponentFromEntity(VelocityComponent::ID, entity);
     removeComponentFromEntity(GravityComponent::ID, entity);
     removeComponentFromEntity(RendererComponent::ID, entity);
+    removeComponentFromEntity(ColliderComponent::ID, entity);
+    removeComponentFromEntity(TriggerComponent::ID, entity);
+    removeComponentFromEntity(CharacterComponent::ID, entity);
+    removeComponentFromEntity(ConstraintComponent::ID, entity);
 }
 
 EntityComponentMap<PositionComponent>& ComponentManagerSingleton::getEntityPositionMap()
@@ -87,5 +119,25 @@ EntityComponentMap<GravityComponent>& ComponentManagerSingleton::getEntityGravit
 EntityComponentMap<RendererComponent>& ComponentManagerSingleton::getEntityRendererMap()
 {
     return entityRenderers;
+}
+
+EntityComponentMap<ColliderComponent>& ComponentManagerSingleton::getEntityColliderMap()
+{
+    return entityColliders;
+}
+
+EntityComponentMap<TriggerComponent>& ComponentManagerSingleton::getEntityTriggerMap()
+{
+    return entityTriggers;
+}
+
+EntityComponentMap<CharacterComponent>& ComponentManagerSingleton::getEntityCharacterMap()
+{
+    return entityCharacters;
+}
+
+EntityComponentMap<ConstraintComponent>& ComponentManagerSingleton::getEntityConstraintMap()
+{
+    return entityConstraints;
 }
 

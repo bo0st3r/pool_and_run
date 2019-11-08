@@ -12,7 +12,6 @@ class RendererComponent : public Component
         RendererComponent(std::string textureName = "", sf::Vector2f scale = sf::Vector2f(1, 1));
         virtual ~RendererComponent();
         virtual ComponentID getTypeId() const;
-        static ComponentID getId(){return ID;};
 
         static inline const ComponentID ID = 3;
 
@@ -20,9 +19,6 @@ class RendererComponent : public Component
         sf::Vector2f getScale() const;
         sf::Sprite& getSpriteRef();
         bool hasSpriteTextured() const;
-
-        //changer la position
-        //dessiner
 
         virtual std::string str()const;
 

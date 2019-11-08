@@ -1,4 +1,5 @@
 #include "RenderSystem.h"
+#include <iostream>
 
 RenderSystem::RenderSystem(Positions& p, Renderers& r, sf::RenderWindow& v, pr::AssetManager& am)
 {
@@ -12,13 +13,24 @@ RenderSystem::~RenderSystem()
 {
     delete positions;
     delete renderers;
+    delete view;
+    delete asset;
 }
 
+
+///Le renderSystem va permettre l'affichage des sprites des différentes entités sur la vue
+///Il va commencer chaque update en nettoyant la vue
+///ensuite charger la texture sur le sprite si celui ci ne la possède pas déjà
+///puis il va ajuster l'echelle du sprite
+///avant de finalement le dessiner sur la vue
+///et pour finir il va afficher la vue dans la fenêtre
 void RenderSystem::update(float dt)
 {
+
+    view->clear();
+
     for(Renderers::iterator it = renderers->begin(); it != renderers->cend(); it++)
     {
-        view->clear();
 
         Entity entity = it->first;
         RendererComponent& render = it->second;
@@ -40,6 +52,7 @@ void RenderSystem::update(float dt)
         }
 
         view->draw(sprite);
+        std::cout << entity << " : " << render.getSpriteRef().getPosition().x << ", " << render.getSpriteRef().getPosition().y << std::endl;
     }
 
     view->display();

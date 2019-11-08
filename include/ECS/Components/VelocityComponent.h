@@ -14,7 +14,6 @@ class VelocityComponent : public Component
 
         sf::Vector2f getVelocity() const;
         virtual ComponentID getTypeId() const;
-        static ComponentID getId(){return ID;};
 
         void addVelocity(float dvx = 0, float dvy = 0);
         void addVelocity(sf::Vector2f dv);

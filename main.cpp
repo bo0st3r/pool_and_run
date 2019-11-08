@@ -69,7 +69,8 @@ int main()
     PhysicSystem physicSystem = PhysicSystem(
                                         compManager.getEntityPositionMap(),
                                         compManager.getEntityVelocityMap(),
-                                        compManager.getEntityGravityMap()
+                                        compManager.getEntityGravityMap(),
+                                        compManager.getEntityConstraintMap()
                                        );
 
     RenderSystem renderSystem = RenderSystem(
@@ -78,26 +79,57 @@ int main()
                                        window,
                                        am
                                        );
+
+    CollisionSystem collisionSystem = CollisionSystem(
+                                        compManager.getEntityCharacterMap(),
+                                        compManager.getEntityRendererMap(),
+                                        compManager.getEntityPositionMap(),
+                                        compManager.getEntityVelocityMap(),
+                                        compManager.getEntityColliderMap(),
+                                        compManager.getEntityTriggerMap(),
+                                        compManager.getEntityConstraintMap()
+                                        );
+    ecs.addSystem(collisionSystem);
     ecs.addSystem(physicSystem);
     ecs.addSystem(renderSystem);
 
 
-    PositionComponent& position = *(new PositionComponent(0, 0));
-    GravityComponent& gravity = *(new GravityComponent());
-    VelocityComponent& velocity = *(new VelocityComponent());
-    RendererComponent& render = *(new RendererComponent("ball", sf::Vector2f(0.1, 0.1)));
+    //composants de test entité 1
+    CharacterComponent& character1 = *(new CharacterComponent("Hero", "Joueur"));
+    ColliderComponent& collider1 = *(new ColliderComponent(ColliderTypeEnum::PixelPerfect, false));
+    ConstraintComponent& constraint1 = *(new ConstraintComponent());
+    PositionComponent& position1 = *(new PositionComponent(0, 0));
+    GravityComponent& gravity1 = *(new GravityComponent());
+    VelocityComponent& velocity1 = *(new VelocityComponent());
+    RendererComponent& render1 = *(new RendererComponent("ball", sf::Vector2f(0.1, 0.1)));
+
+    //composant de test entité 2
+    ColliderComponent& collider2 = *(new ColliderComponent(ColliderTypeEnum::Box, false));
+    PositionComponent& position2 = *(new PositionComponent(30, 200));
+    RendererComponent& render2 = *(new RendererComponent("ball", sf::Vector2f(0.1, 0.1)));
+
 
     Entity e1 = ecs.createNewEntity();
-    compManager.addComponentToEntity(position, PositionComponent::ID, e1);
-    compManager.addComponentToEntity(gravity, GravityComponent::ID, e1);
-    compManager.addComponentToEntity(velocity, VelocityComponent::ID, e1);
-    compManager.addComponentToEntity(render, RendererComponent::ID, e1);
+    compManager.addComponentToEntity(position1, PositionComponent::ID, e1);
+    compManager.addComponentToEntity(gravity1, GravityComponent::ID, e1);
+    compManager.addComponentToEntity(velocity1, VelocityComponent::ID, e1);
+    compManager.addComponentToEntity(render1, RendererComponent::ID, e1);
+    compManager.addComponentToEntity(character1, CharacterComponent::ID, e1);
+    compManager.addComponentToEntity(collider1, ColliderComponent::ID, e1);
+    compManager.addComponentToEntity(constraint1, ConstraintComponent::ID, e1);
+
+    Entity e2 = ecs.createNewEntity();
+    compManager.addComponentToEntity(position2, PositionComponent::ID, e2);
+    compManager.addComponentToEntity(collider2, ColliderComponent::ID, e2);
+    compManager.addComponentToEntity(render2, RendererComponent::ID, e2);
 
     float dt = 0.0f;
     float time = 0.0f;
 
-	while (time < 20)
+	while (window.isOpen())
 	{
+	    sf::Event event;
+	    while(window.pollEvent(event)){}
 		auto startTime = std::chrono::high_resolution_clock::now();
 
 		ecs.updateSystems(dt);
@@ -110,6 +142,9 @@ int main()
 		cout << time << endl << endl;
 	}
 
-    delete &position, &gravity, &velocity, &render;
+    delete &position1;
+    delete &gravity1;
+    delete &velocity1;
+    delete &render1;
     return 0;
 }
