@@ -9,10 +9,11 @@ class TriggerComponent : public Component
         TriggerComponent();
         virtual ~TriggerComponent();
         virtual ComponentID getTypeId() const;
+        virtual ComponentID getTriggerId() const = 0;
 
         static inline const ComponentID ID = 5;
 
-        virtual void onTrigger(Entity entity) = 0;
+        virtual void onTrigger(Entity entity, std::string tag) = 0;
 
         virtual std::string str() const;
 

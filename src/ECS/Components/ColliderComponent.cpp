@@ -1,7 +1,7 @@
 #include "ColliderComponent.h"
 
-ColliderComponent::ColliderComponent(ColliderTypeEnum colliderType, bool crossable)
-:colliderType(colliderType), crossable(crossable)
+ColliderComponent::ColliderComponent(ColliderTypeEnum colliderType, bool crossable, float impactAbsorption)
+:colliderType(colliderType), crossable(crossable), impactAbsorption(impactAbsorption)
 {}
 
 ColliderComponent::~ColliderComponent()
@@ -20,6 +20,11 @@ ColliderTypeEnum ColliderComponent::getColliderType() const
 bool ColliderComponent::isCrossable() const
 {
     return crossable;
+}
+
+float ColliderComponent::getImpactAbsorption()const
+{
+    return impactAbsorption;
 }
 
 std::string ColliderComponent::str() const

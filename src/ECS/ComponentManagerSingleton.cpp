@@ -71,6 +71,12 @@ void ComponentManagerSingleton::addComponentToEntity(Component& component, Compo
                 entityConstraints.insert(std::pair<Entity, ConstraintComponent&>(entity, casted));
                 break;
         }
+
+        case RespawnComponent::ID:{
+                RespawnComponent& casted = dynamic_cast<RespawnComponent&>(component);
+                entityRespawn.insert(std::pair<Entity, RespawnComponent&>(entity, casted));
+                break;
+        }
     }
 }
 
@@ -86,6 +92,7 @@ void ComponentManagerSingleton::removeComponentFromEntity(ComponentID component,
         case TriggerComponent::ID : {entityTriggers.erase(entity);}break;
         case CharacterComponent::ID : {entityCharacters.erase(entity);}break;
         case ConstraintComponent::ID : {entityConstraints.erase(entity);}break;
+        case RespawnComponent::ID : {entityRespawn.erase(entity);}break;
     }
 }
 
@@ -99,6 +106,7 @@ void ComponentManagerSingleton::removeAllFromEntity(Entity entity)
     removeComponentFromEntity(TriggerComponent::ID, entity);
     removeComponentFromEntity(CharacterComponent::ID, entity);
     removeComponentFromEntity(ConstraintComponent::ID, entity);
+    removeComponentFromEntity(RespawnComponent::ID, entity);
 }
 
 EntityComponentMap<PositionComponent>& ComponentManagerSingleton::getEntityPositionMap()
@@ -139,5 +147,10 @@ EntityComponentMap<CharacterComponent>& ComponentManagerSingleton::getEntityChar
 EntityComponentMap<ConstraintComponent>& ComponentManagerSingleton::getEntityConstraintMap()
 {
     return entityConstraints;
+}
+
+EntityComponentMap<RespawnComponent>& ComponentManagerSingleton::getEntityRespawnMap()
+{
+    return entityRespawn;
 }
 

@@ -52,7 +52,6 @@ void RenderSystem::update(float dt)
         }
 
         view->draw(sprite);
-        std::cout << entity << " : " << render.getSpriteRef().getPosition().x << ", " << render.getSpriteRef().getPosition().y << std::endl;
     }
 
     view->display();

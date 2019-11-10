@@ -7,12 +7,16 @@
 class CharacterComponent : public Component
 {
     public:
-        CharacterComponent(std::string myName, std::string tag);
+        CharacterComponent(std::string myName = "", std::string tag = "unknown", int live = 0, float speed = 0);
         virtual ~CharacterComponent();
 
         virtual ComponentID getTypeId() const;
         std::string getMyName() const;
         std::string getTag() const;
+        int getLive() const;
+        float getSpeed() const;
+
+        void addLive(int amount);
 
         virtual std::string str() const;
 
@@ -24,6 +28,8 @@ class CharacterComponent : public Component
     private:
         std::string myName;
         std::string tag;
+        int live;
+        float speed;
 };
 
 #endif // CHARACTERCOMPONENT_H

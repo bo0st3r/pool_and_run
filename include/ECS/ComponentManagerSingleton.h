@@ -14,8 +14,10 @@
 #include <RendererComponent.h>
 #include <ColliderComponent.h>
 #include <TriggerComponent.h>
+#include <CheckPointTriggerComponent.h>
 #include <CharacterComponent.h>
 #include <ConstraintComponent.h>
+#include <RespawnComponent.h>
 
 //template pour les association Entité<->Component
 template <typename T>
@@ -40,6 +42,7 @@ class ComponentManagerSingleton
         EntityComponentMap<TriggerComponent>& getEntityTriggerMap();
         EntityComponentMap<CharacterComponent>& getEntityCharacterMap();
         EntityComponentMap<ConstraintComponent>& getEntityConstraintMap();
+        EntityComponentMap<RespawnComponent>& getEntityRespawnMap();
 
     protected:
 
@@ -56,6 +59,7 @@ class ComponentManagerSingleton
         EntityComponentMap<TriggerComponent> entityTriggers;
         EntityComponentMap<CharacterComponent> entityCharacters;
         EntityComponentMap<ConstraintComponent> entityConstraints;
+        EntityComponentMap<RespawnComponent> entityRespawn;
 };
 
 #endif // COMPONENTMANAGERSINGLETON_H

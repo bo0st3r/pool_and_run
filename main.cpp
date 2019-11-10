@@ -27,7 +27,7 @@ int main()
 
     pr::InputManager im;
 
-    sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(600, 1000), "SFML works!");
     /*while(window.isOpen()){
 
         sf::Event event;
@@ -83,30 +83,44 @@ int main()
                                         compManager.getEntityVelocityMap(),
                                         compManager.getEntityColliderMap(),
                                         compManager.getEntityTriggerMap(),
-                                        compManager.getEntityConstraintMap()
+                                        compManager.getEntityConstraintMap(),
+                                        window.getSize()
                                         );
+
+    RespawnSystem respawnSystem = RespawnSystem(
+                                                 compManager.getEntityRespawnMap(),
+                                                 compManager.getEntityCharacterMap(),
+                                                 compManager.getEntityPositionMap(),
+                                                 compManager.getEntityVelocityMap(),
+                                                 compManager.getEntityTriggerMap()
+                                                 );
     ecs.addSystem(collisionSystem);
     ecs.addSystem(physicSystem);
     ecs.addSystem(renderSystem);
+    ecs.addSystem(respawnSystem);
+
 
 
     //composants de test entité 1
-    CharacterComponent& character1 = *(new CharacterComponent("Hero", "Joueur"));
-    ColliderComponent& collider1 = *(new ColliderComponent(ColliderTypeEnum::PixelPerfect, false));
+    CharacterComponent& character1 = *(new CharacterComponent("Hero", "Joueur", 8, 5.));
+    ColliderComponent& collider1 = *(new ColliderComponent(ColliderTypeEnum::PixelPerfect, false, 0.5));
     ConstraintComponent& constraint1 = *(new ConstraintComponent());
-    PositionComponent& position1 = *(new PositionComponent(0, 0));
+   // PositionComponent& position1 = *(new PositionComponent(300, 0));
     GravityComponent& gravity1 = *(new GravityComponent());
     VelocityComponent& velocity1 = *(new VelocityComponent());
     RendererComponent& render1 = *(new RendererComponent("ball", sf::Vector2f(0.1, 0.1)));
 
     //composant de test entité 2
-    ColliderComponent& collider2 = *(new ColliderComponent(ColliderTypeEnum::Box, false));
-    PositionComponent& position2 = *(new PositionComponent(30, 200));
+    CharacterComponent& character2 = *(new CharacterComponent("Test", "Test"));
+    ColliderComponent& collider2 = *(new ColliderComponent(ColliderTypeEnum::PixelPerfect, false, 0));
+    PositionComponent& position2 = *(new PositionComponent(270, 200));
     RendererComponent& render2 = *(new RendererComponent("ball", sf::Vector2f(0.1, 0.1)));
+    VelocityComponent& velocity2 = *(new VelocityComponent());
+
 
 
     Entity e1 = ecs.createNewEntity();
-    compManager.addComponentToEntity(position1, PositionComponent::ID, e1);
+    compManager.addComponentToEntity(*(new PositionComponent(270, 0)), PositionComponent::ID, e1);
     compManager.addComponentToEntity(gravity1, GravityComponent::ID, e1);
     compManager.addComponentToEntity(velocity1, VelocityComponent::ID, e1);
     compManager.addComponentToEntity(render1, RendererComponent::ID, e1);
@@ -117,7 +131,11 @@ int main()
     Entity e2 = ecs.createNewEntity();
     compManager.addComponentToEntity(position2, PositionComponent::ID, e2);
     compManager.addComponentToEntity(collider2, ColliderComponent::ID, e2);
+    //compManager.addComponentToEntity(*(new CheckPointTriggerComponent()), TriggerComponent::ID, e2);
+    //compManager.addComponentToEntity(character2, CharacterComponent::ID, e2);
+    //compManager.addComponentToEntity(velocity2, VelocityComponent::ID, e2);
     compManager.addComponentToEntity(render2, RendererComponent::ID, e2);
+    //compManager.addComponentToEntity(*(new ConstraintComponent()), ConstraintComponent::ID, e2);
 
     float dt = 0.0f;
     float time = 0.0f;
@@ -125,7 +143,13 @@ int main()
 	while (window.isOpen())
 	{
 	    sf::Event event;
-	    while(window.pollEvent(event)){}
+	    while(window.pollEvent(event)){
+            switch(event.type){
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+            }
+	    }
 		auto startTime = std::chrono::high_resolution_clock::now();
 
 		ecs.updateSystems(dt);
@@ -138,7 +162,7 @@ int main()
 		cout << time << endl << endl;
 	}
 
-    delete &position1;
+//delete &position1;
     delete &gravity1;
     delete &velocity1;
     delete &render1;

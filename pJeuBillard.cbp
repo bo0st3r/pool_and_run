@@ -74,6 +74,7 @@
 		<Unit filename="include/ECS/Components/GravityComponent.h" />
 		<Unit filename="include/ECS/Components/PositionComponent.h" />
 		<Unit filename="include/ECS/Components/RendererComponent.h" />
+		<Unit filename="include/ECS/Components/RespawnComponent.h" />
 		<Unit filename="include/ECS/Components/TriggerComponent.h" />
 		<Unit filename="include/ECS/Components/Triggers/CheckPointTriggerComponent.h" />
 		<Unit filename="include/ECS/Components/VelocityComponent.h" />
@@ -84,9 +85,9 @@
 		<Unit filename="include/ECS/Systems/CollisionSystem.h" />
 		<Unit filename="include/ECS/Systems/PhysicSystem.h" />
 		<Unit filename="include/ECS/Systems/RenderSystem.h" />
+		<Unit filename="include/ECS/Systems/RespawnSystem.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/InputManager.h" />
-		<Unit filename="include/MenuState.h" />
 		<Unit filename="include/SplashState.h" />
 		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
@@ -94,9 +95,7 @@
 		<Unit filename="include/Vector2fMath.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AssetManager.cpp" />
-		<Unit filename="src/ColliderTypeEnum.cpp" />
 		<Unit filename="src/Collision.cpp" />
-		<Unit filename="src/ConstraintEnum.cpp" />
 		<Unit filename="src/ECS/ComponentManagerSingleton.cpp" />
 		<Unit filename="src/ECS/Components/CharacterComponent.cpp" />
 		<Unit filename="src/ECS/Components/ColliderComponent.cpp" />
@@ -104,6 +103,7 @@
 		<Unit filename="src/ECS/Components/GravityComponent.cpp" />
 		<Unit filename="src/ECS/Components/PositionComponent.cpp" />
 		<Unit filename="src/ECS/Components/RendererComponent.cpp" />
+		<Unit filename="src/ECS/Components/RespawnComponent.cpp" />
 		<Unit filename="src/ECS/Components/TriggerComponent.cpp" />
 		<Unit filename="src/ECS/Components/Triggers/CheckPointTriggerComponent.cpp" />
 		<Unit filename="src/ECS/Components/VelocityComponent.cpp" />
@@ -113,9 +113,9 @@
 		<Unit filename="src/ECS/Systems/CollisionSystem.cpp" />
 		<Unit filename="src/ECS/Systems/PhysicSystem.cpp" />
 		<Unit filename="src/ECS/Systems/RenderSystem.cpp" />
+		<Unit filename="src/ECS/Systems/RespawnSystem.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/InputManager.cpp" />
-		<Unit filename="src/MenuState.cpp" />
 		<Unit filename="src/SplashState.cpp" />
 		<Unit filename="src/StateMachine.cpp" />
 		<Unit filename="src/States/MenuState.cpp" />

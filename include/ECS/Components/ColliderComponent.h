@@ -6,12 +6,14 @@
 class ColliderComponent : public Component
 {
     public:
-        ColliderComponent(ColliderTypeEnum colliderType = ColliderTypeEnum::Box, bool crossable = false);
+        ColliderComponent(ColliderTypeEnum colliderType = ColliderTypeEnum::Box, bool crossable = false, float impactAbsorption = 0);
         virtual ~ColliderComponent();
 
         virtual ComponentID getTypeId() const;
         ColliderTypeEnum getColliderType() const;
+
         bool isCrossable() const;
+        float getImpactAbsorption() const;
 
         static inline const ComponentID ID = 4;
 
@@ -21,7 +23,8 @@ class ColliderComponent : public Component
 
     private:
         ColliderTypeEnum colliderType;
-        bool crossable;
+        float impactAbsorption; //proportion de vélocité reçue en cas d'impact
+        bool crossable; //possibilité de passer au travers du collider
 };
 
 #endif // COLLIDERCOMPONENT_H

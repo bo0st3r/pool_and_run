@@ -1,5 +1,5 @@
 #include "SplashState.h"
-
+/*
 namespace pr{
     SplashState::SplashState(GameDataRef data):_data(data){}
 
@@ -7,3 +7,4 @@ namespace pr{
         _data->assets.loadFont("SplashBackground",)
     }
 }
+*/

@@ -27,6 +27,7 @@ using Colliders = EntityComponentMap<ColliderComponent>;
 using Triggers = EntityComponentMap<TriggerComponent>;
 using Characters = EntityComponentMap<CharacterComponent>;
 using Constraints = EntityComponentMap<ConstraintComponent>;
+using Respawns = EntityComponentMap<RespawnComponent>;
 
 class System
 {

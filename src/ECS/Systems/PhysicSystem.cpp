@@ -33,6 +33,7 @@ void PhysicSystem::update(float dt)
             {
                 addGravityToVelocity(entity, dt);
             }
+            applyFriction(entity, dt);
             if(constraints->find(entity) != constraints->cend())
             {
                 applyConstraints(entity);
@@ -51,7 +52,7 @@ void PhysicSystem::addGravityToVelocity(Entity entity, float dt)
 void PhysicSystem::addVelocityToPosition(Entity entity, float dt)
 {
     positions->at(entity).translate(velocities->at(entity).getVelocity() * dt);
-    std::cout << "debug position PhysicSystem Ligne 43 : " << positions->at(entity).str() << std::endl;
+
 }
 
 void PhysicSystem::applyConstraints(Entity entity)
@@ -65,7 +66,7 @@ void PhysicSystem::applyConstraints(Entity entity)
     {
         switch (constraint){
             case ConstraintEnum::Down:{
-                if(vy < 0)
+                if(vy > 0)
                 {
                     velocities->at(entity).addVelocity(0, -vy);
                 }
@@ -78,7 +79,7 @@ void PhysicSystem::applyConstraints(Entity entity)
                 }
                 break;
             }case ConstraintEnum::Up:{
-                if(vy > 0)
+                if(vy < 0)
                 {
                     velocities->at(entity).addVelocity(0, -vy);
                 }
@@ -92,4 +93,12 @@ void PhysicSystem::applyConstraints(Entity entity)
             }
         }
     }
+}
+
+void PhysicSystem::applyFriction(Entity entity, float dt)
+{
+    sf::Vector2 friction = velocities->at(entity).getVelocity();
+    friction = sf::Vector2(friction.x * -frictionCoefficient, friction.y * -frictionCoefficient);
+
+    velocities->at(entity).addVelocity(friction.x * dt, friction.y * dt);
 }
