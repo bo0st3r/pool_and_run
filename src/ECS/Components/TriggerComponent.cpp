@@ -2,7 +2,7 @@
 
 TriggerComponent::TriggerComponent()
 {
-    //ctor
+    triggered = false;
 }
 
 TriggerComponent::~TriggerComponent()
@@ -13,6 +13,16 @@ TriggerComponent::~TriggerComponent()
 ComponentID TriggerComponent::getTypeId() const
 {
     return ID;
+}
+
+bool TriggerComponent::isTriggered()const
+{
+    return triggered;
+}
+
+void TriggerComponent::setTriggered(bool triggered)
+{
+    this->triggered = triggered;
 }
 
 std::string TriggerComponent::str() const

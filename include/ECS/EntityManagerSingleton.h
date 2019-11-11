@@ -9,6 +9,8 @@ using Entity = uint32_t; //une entité n'étant représentée que par un ID, on crée
 class EntityManagerSingleton
 {
     public:
+        static const Entity MAX_ENTITY = 5000; //nombre maximum d'entités qui pourront être créées
+
         static EntityManagerSingleton* getInstance(); //renvois l'instance du singleton
         virtual ~EntityManagerSingleton(); //destructeur
 
@@ -21,7 +23,6 @@ class EntityManagerSingleton
         EntityManagerSingleton(); //crée l'instance du singleton si besoin
         static inline EntityManagerSingleton* instance = 0; //instance du singleton
 
-        const Entity MAX_ENTITY = 5000; //nombre maximum d'entités qui pourront être créées
         static inline Entity nextEntity = 0; //identifiant de la prochaine entité qui sera créée.
         std::vector<Entity> entities; //liste des entités existantes
 };

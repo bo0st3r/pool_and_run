@@ -15,9 +15,15 @@
 #include <GravityComponent.h>
 #include <RendererComponent.h>
 #include <ColliderComponent.h>
-#include <TriggerComponent.h>
 #include <CharacterComponent.h>
 #include <ConstraintComponent.h>
+
+#include <TriggerComponent.h>
+#include <CheckPointTriggerComponent.h>
+#include <CueAttackTriggerComponent.h>
+#include <EndLevelTriggerComponent.h>
+#include <HoleTriggerComponent.h>
+#include <WarpTriggerComponent.h>
 
 using Positions = EntityComponentMap<PositionComponent>;
 using Velocities = EntityComponentMap<VelocityComponent>;

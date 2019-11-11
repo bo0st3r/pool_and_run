@@ -491,7 +491,7 @@
 1570708469 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\pool&run\include\level.h
 	<string>
 
-1573387057 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
+1573487595 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
 	<iostream>
 	<chrono>
 	<SFML/Graphics.hpp>
@@ -562,11 +562,11 @@
 1572350183 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\entitymanagersingleton.cpp
 	"EntityManagerSingleton.h"
 
-1572357968 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\entitymanagersingleton.h
+1573479814 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\entitymanagersingleton.h
 	<cstdint>
 	<vector>
 
-1572355138 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\entitymanagersingleton.cpp
+1573412204 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\entitymanagersingleton.cpp
 	"EntityManagerSingleton.h"
 
 1573386103 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
@@ -612,14 +612,15 @@
 1572629692 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systemmanagersingleton.cpp
 	"SystemManagerSingleton.h"
 
-1573386796 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systemmanagersingleton.h
+1573412053 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systemmanagersingleton.h
 	<vector>
 	<PhysicSystem.h>
 	<RenderSystem.h>
 	<CollisionSystem.h>
 	<RespawnSystem.h>
+	<TriggerSystem.h>
 
-1573387357 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\system.h
+1573412314 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\system.h
 	<unordered_map>
 	<vector>
 	<EntityManagerSingleton.h>
@@ -632,9 +633,14 @@
 	<GravityComponent.h>
 	<RendererComponent.h>
 	<ColliderComponent.h>
-	<TriggerComponent.h>
 	<CharacterComponent.h>
 	<ConstraintComponent.h>
+	<TriggerComponent.h>
+	<CheckPointTriggerComponent.h>
+	<CueAttackTriggerComponent.h>
+	<EndLevelTriggerComponent.h>
+	<HoleTriggerComponent.h>
+	<WarpTriggerComponent.h>
 
 1573046741 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\gravitycomponent.cpp
 	"GravityComponent.h"
@@ -1809,13 +1815,13 @@
 1573300541 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\collidercomponent.h
 	<Component.h>
 
-1573124188 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggercomponent.cpp
+1573486133 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggercomponent.cpp
 	"TriggerComponent.h"
 
-1573385231 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggercomponent.h
+1573486137 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggercomponent.h
 	<Component.h>
 
-1573386892 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\collisionsystem.cpp
+1573487319 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\collisionsystem.cpp
 	"CollisionSystem.h"
 	<iostream>
 
@@ -1823,14 +1829,14 @@
 	<System.h>
 	<Collision.h>
 
-1573387057 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\checkpointtriggercomponent.cpp
+1573486402 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\checkpointtriggercomponent.cpp
 	"CheckPointTriggerComponent.h"
 	<iostream>
 
-1573386052 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\checkpointtriggercomponent.h
+1573395243 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\checkpointtriggercomponent.h
 	<TriggerComponent.h>
 
-1573317079 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\vector2fmath.h
+1573478460 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\vector2fmath.h
 	<cmath>
 	<SFML/System.hpp>
 
@@ -1841,7 +1847,7 @@
 1573385871 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\charactercomponent.h
 	<Component.h>
 
-1573317122 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\vector2fmath.cpp
+1573479915 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\vector2fmath.cpp
 	"Vector2fMath.h"
 
 1573133765 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\constraintcomponent.cpp
@@ -1879,9 +1885,42 @@
 1573385846 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\respawncomponent.cpp
 	"RespawnComponent.h"
 
-1573386708 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\respawnsystem.h
+1573403490 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\respawnsystem.h
 	<System.h>
 
-1573387399 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\respawnsystem.cpp
+1573479479 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\respawnsystem.cpp
 	"RespawnSystem.h"
+
+1573486447 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\cueattacktriggercomponent.cpp
+	"CueAttackTriggerComponent.h"
+
+1573487753 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\cueattacktriggercomponent.h
+	<TriggerComponent.h>
+
+1573486471 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\holetriggercomponent.cpp
+	"HoleTriggerComponent.h"
+
+1573479775 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\holetriggercomponent.h
+	<TriggerComponent.h>
+
+1573486529 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\warptriggercomponent.cpp
+	"WarpTriggerComponent.h"
+	<iostream>
+
+1573479775 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\warptriggercomponent.h
+	<TriggerComponent.h>
+
+1573486423 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\endleveltriggercomponent.cpp
+	"EndLevelTriggerComponent.h"
+	<iostream>
+
+1573395502 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\endleveltriggercomponent.h
+	<TriggerComponent.h>
+
+1573487825 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\triggersystem.cpp
+	"TriggerSystem.h"
+
+1573480151 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\triggersystem.h
+	<System.h>
+	<iostream>
 

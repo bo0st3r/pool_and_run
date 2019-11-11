@@ -45,6 +45,7 @@ void CollisionSystem::update(float dt)
 {
     for(Characters::iterator it1 = characters->begin(); it1 != characters->cend(); it1++)
     {
+
         Entity e1 = it1->first;
         CharacterComponent& ch1 = it1->second;
         PositionComponent& p1 = positions->at(e1);
@@ -71,6 +72,7 @@ void CollisionSystem::update(float dt)
             ColliderComponent& c2 = it2->second;
             PositionComponent& p2 = positions->at(e2);
             RendererComponent& r2 = renderers->at(e2);
+
 
             if(e1 == e2)
             {
@@ -103,9 +105,14 @@ void CollisionSystem::update(float dt)
             // en cas de collision...
             if(collideWith)
             {
+
                 //declenche le trigger de la deuxieme entité si il existe
                 if(triggers->find(e2) != triggers->cend())
                 {
+                    if(e1 == 0 && e2 == 4)
+                    {
+                        std::cout << "test" << std::endl;
+                    }
                     triggers->at(e2).onTrigger(e1, ch1.getTag());
                 }
                 //si on ne passe pas au travers de l'autre objet
@@ -127,13 +134,15 @@ void CollisionSystem::update(float dt)
             }
         }
 
-        if(!colliding) //si il n'y a pas eu de collision, on retire les contraintes
+        if(!colliding && constraints->find(e1) != constraints->cend()) //si il n'y a pas eu de collision, on retire les contraintes
         {
                 removeCollisionConstraints(e1);
         }
 
         //on remet le sprite a sa position d'origine
         r1.getSpriteRef().move(-v1.getVelocity() * dt);
+
+
     }
 }
 
@@ -150,7 +159,7 @@ bool CollisionSystem::addViewBorderConstraints(sf::Sprite s, Entity entity)
         c.addConstraint(ConstraintEnum::Right);
         colliding = true;
     }
-    if(p.y + gb.height > viewSize.y) //collision en bas
+    if(p.y > viewSize.y) //collision en bas
     {
         ComponentManagerSingleton::getInstance()->addComponentToEntity(*(new RespawnComponent()), RespawnComponent::ID, entity);
         colliding = true;
@@ -218,8 +227,8 @@ void CollisionSystem::transfertVelocity(Entity e1, Entity e2, float absorption)
     float angle21 = Vector2fMath::angleBetween(s2.getPosition(), s1.getPosition());
     float speed = Vector2fMath::magnitude(v1.getVelocity());
 
-    sf::Vector2 dv2 = sf::Vector2(speed * std::sin(angle12) * absorption, speed * std::cos(angle12) * absorption);
-    sf::Vector2 dv1 = sf::Vector2(speed * std::sin(angle21) * (1-absorption), speed * std::cos(angle21) * (1-absorption));
+    sf::Vector2f dv2 = sf::Vector2f(speed * std::sin(angle12) * absorption, speed * std::cos(angle12) * absorption);
+    sf::Vector2f dv1 = sf::Vector2f(speed * std::sin(angle21) * (1-absorption), speed * std::cos(angle21) * (1-absorption));
     v2.addVelocity(dv2);
     v1.addVelocity(dv1);
 }

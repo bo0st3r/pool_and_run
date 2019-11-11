@@ -44,7 +44,7 @@ void RespawnSystem::update(float dt)
                     Entity triggerEntity = tcIt->first;
                     TriggerComponent& trigger = tcIt->second;
                     CheckPointTriggerComponent& checkPoint = dynamic_cast<CheckPointTriggerComponent&> (trigger);
-                    if(checkPoint.isTriggered()){
+                    if(checkPoint.isLastTriggered()){
                         positions->at(entity).setPosition(positions->at(triggerEntity).getPosition());
                         velocities->at(entity).setVelocity(0, 0);
                     }
@@ -52,8 +52,16 @@ void RespawnSystem::update(float dt)
             }
         }else
         {
-            ///GAME OVER
-            //ECSCoordinatorSingleton::getInstance()->removeEntity(entity);
+            //si le personnage est un joueur
+            if(ch.getTag() == "Joueur")
+            {
+                ///GAME OVER
+
+            }else if(ch.getTag() == "Ennemi")
+            {
+                ComponentManagerSingleton::getInstance()->removeAllFromEntity(entity);
+                EntityManagerSingleton::getInstance()->deleteEntity(entity);
+            }
         }
     }
 }

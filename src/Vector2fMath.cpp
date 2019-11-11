@@ -26,3 +26,8 @@ float Vector2fMath::angleBetween(sf::Vector2f v1, sf::Vector2f v2)
 {
     return std::atan2(v2.x - v1.x, v2.y- v1.y);
 }
+
+sf::Vector2f Vector2fMath::directionBetween(sf::Vector2f v1, sf::Vector2f v2)
+{
+    return sf::Vector2f(v2.x - v1.x, v2.y - v1.y);
+}

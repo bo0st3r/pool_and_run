@@ -12,6 +12,9 @@ class TriggerComponent : public Component
         virtual ComponentID getTriggerId() const = 0;
 
         static inline const ComponentID ID = 5;
+        bool isTriggered() const;
+
+        void setTriggered(bool triggered);
 
         virtual void onTrigger(Entity entity, std::string tag) = 0;
 
@@ -20,6 +23,7 @@ class TriggerComponent : public Component
     protected:
 
     private:
+        bool triggered;
 };
 
 #endif // TRIGGERCOMPONENT_H

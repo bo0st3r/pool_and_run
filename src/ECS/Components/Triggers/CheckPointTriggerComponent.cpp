@@ -2,8 +2,8 @@
 #include <iostream>
 
 CheckPointTriggerComponent::CheckPointTriggerComponent()
+:TriggerComponent()
 {
-    //ctor
 }
 
 CheckPointTriggerComponent::~CheckPointTriggerComponent()
@@ -21,28 +21,16 @@ bool CheckPointTriggerComponent::isLastTriggered()const
     return lastTriggered;
 }
 
-bool CheckPointTriggerComponent::isTriggered()const
-{
-    return triggered;
-}
-
 void CheckPointTriggerComponent::setLastTriggered(bool lastTriggered)
 {
     this->lastTriggered = lastTriggered;
 }
 
-void CheckPointTriggerComponent::setTriggered(bool triggered)
-{
-    this->triggered = triggered;
-}
-
 void CheckPointTriggerComponent::onTrigger(Entity entity, std::string tag)
 {
-    if(tag == "Joueur" && !lastTriggered && !triggered)
+    if(tag == "Joueur" && !lastTriggered && !isTriggered())
     {
-        std::cout << "triggered" << std::endl;
         setTriggered(true);
-        //setLastTriggered(true);
     }
 }
 

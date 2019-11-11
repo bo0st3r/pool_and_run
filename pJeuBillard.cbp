@@ -77,6 +77,10 @@
 		<Unit filename="include/ECS/Components/RespawnComponent.h" />
 		<Unit filename="include/ECS/Components/TriggerComponent.h" />
 		<Unit filename="include/ECS/Components/Triggers/CheckPointTriggerComponent.h" />
+		<Unit filename="include/ECS/Components/Triggers/CueAttackTriggerComponent.h" />
+		<Unit filename="include/ECS/Components/Triggers/EndLevelTriggerComponent.h" />
+		<Unit filename="include/ECS/Components/Triggers/HoleTriggerComponent.h" />
+		<Unit filename="include/ECS/Components/Triggers/WarpTriggerComponent.h" />
 		<Unit filename="include/ECS/Components/VelocityComponent.h" />
 		<Unit filename="include/ECS/ECSCoordinatorSingleton.h" />
 		<Unit filename="include/ECS/EntityManagerSingleton.h" />
@@ -86,6 +90,7 @@
 		<Unit filename="include/ECS/Systems/PhysicSystem.h" />
 		<Unit filename="include/ECS/Systems/RenderSystem.h" />
 		<Unit filename="include/ECS/Systems/RespawnSystem.h" />
+		<Unit filename="include/ECS/Systems/TriggerSystem.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/InputManager.h" />
 		<Unit filename="include/SplashState.h" />
@@ -106,6 +111,10 @@
 		<Unit filename="src/ECS/Components/RespawnComponent.cpp" />
 		<Unit filename="src/ECS/Components/TriggerComponent.cpp" />
 		<Unit filename="src/ECS/Components/Triggers/CheckPointTriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/Triggers/CueAttackTriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/Triggers/EndLevelTriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/Triggers/HoleTriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/Triggers/WarpTriggerComponent.cpp" />
 		<Unit filename="src/ECS/Components/VelocityComponent.cpp" />
 		<Unit filename="src/ECS/ECSCoordinatorSingleton.cpp" />
 		<Unit filename="src/ECS/EntityManagerSingleton.cpp" />
@@ -114,6 +123,7 @@
 		<Unit filename="src/ECS/Systems/PhysicSystem.cpp" />
 		<Unit filename="src/ECS/Systems/RenderSystem.cpp" />
 		<Unit filename="src/ECS/Systems/RespawnSystem.cpp" />
+		<Unit filename="src/ECS/Systems/TriggerSystem.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/InputManager.cpp" />
 		<Unit filename="src/SplashState.cpp" />

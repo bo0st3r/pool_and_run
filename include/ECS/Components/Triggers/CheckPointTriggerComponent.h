@@ -13,10 +13,7 @@ class CheckPointTriggerComponent : public TriggerComponent
 
         virtual ComponentID getTriggerId() const;
         bool isLastTriggered() const;
-        bool isTriggered() const;
-
         void setLastTriggered(bool lastTriggered);
-        void setTriggered(bool triggered);
 
         virtual void onTrigger(Entity , std::string tag);
 
@@ -24,7 +21,6 @@ class CheckPointTriggerComponent : public TriggerComponent
 
     private:
         bool lastTriggered;
-        bool triggered;
 };
 
 #endif // CHECKPOINTTRIGGERCOMPONENT_H
