@@ -31,7 +31,6 @@ void RenderSystem::update(float dt)
 
     for(Renderers::iterator it = renderers->begin(); it != renderers->cend(); it++)
     {
-
         Entity entity = it->first;
         RendererComponent& render = it->second;
         sf::Sprite& sprite = render.getSpriteRef();
