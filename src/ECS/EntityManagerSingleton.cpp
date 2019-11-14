@@ -67,7 +67,7 @@ void EntityManagerSingleton::deleteEntity(Entity entity)
     if(index > -1)
     {
         //si l'entité est la dernière ajoutée, on décrémente nextEntity
-        if(index = (entities.size()-1))
+        if(index == (entities.size()-1))
         {
             entities.pop_back();
             nextEntity--;

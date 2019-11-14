@@ -5,6 +5,9 @@
 
 #include <PhysicSystem.h>
 #include <RenderSystem.h>
+#include <CollisionSystem.h>
+#include <RespawnSystem.h>
+#include <TriggerSystem.h>
 
 class SystemManagerSingleton
 {

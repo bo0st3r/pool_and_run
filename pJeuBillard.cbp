@@ -18,7 +18,12 @@
 					<Add directory="include/ECS" />
 					<Add directory="include/ECS/Components" />
 					<Add directory="include/ECS/Systems" />
+<<<<<<< HEAD
 					<Add directory="include/State" />
+=======
+					<Add directory="obj/Debug/src/ECS/Systems" />
+					<Add directory="include/ECS/Components/Triggers" />
+>>>>>>> dbe0e35d515dc66fee0c11f620c557628016b73e
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-d" />
@@ -39,7 +44,12 @@
 					<Add directory="include/ECS" />
 					<Add directory="include/ECS/Components" />
 					<Add directory="include/ECS/Systems" />
+<<<<<<< HEAD
 					<Add directory="include/State" />
+=======
+					<Add directory="obj/Debug/src/ECS/Systems" />
+					<Add directory="include/ECS/Components/Triggers" />
+>>>>>>> dbe0e35d515dc66fee0c11f620c557628016b73e
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -61,48 +71,95 @@
 			<Add directory="SFML-2.5.1/lib" />
 		</Linker>
 		<Unit filename="include/AssetManager.h" />
+		<Unit filename="include/ColliderTypeEnum.h" />
 		<Unit filename="include/Collision.h" />
+<<<<<<< HEAD
 		<Unit filename="include/Configuration/Configuration.h" />
+=======
+		<Unit filename="include/ConstraintEnum.h" />
+>>>>>>> dbe0e35d515dc66fee0c11f620c557628016b73e
 		<Unit filename="include/ECS/Component.h" />
 		<Unit filename="include/ECS/ComponentManagerSingleton.h" />
+		<Unit filename="include/ECS/Components/CharacterComponent.h" />
+		<Unit filename="include/ECS/Components/ColliderComponent.h" />
+		<Unit filename="include/ECS/Components/ConstraintComponent.h" />
 		<Unit filename="include/ECS/Components/GravityComponent.h" />
 		<Unit filename="include/ECS/Components/PositionComponent.h" />
 		<Unit filename="include/ECS/Components/RendererComponent.h" />
+		<Unit filename="include/ECS/Components/RespawnComponent.h" />
+		<Unit filename="include/ECS/Components/TriggerComponent.h" />
+		<Unit filename="include/ECS/Components/Triggers/CheckPointTriggerComponent.h" />
+		<Unit filename="include/ECS/Components/Triggers/CueAttackTriggerComponent.h" />
+		<Unit filename="include/ECS/Components/Triggers/EndLevelTriggerComponent.h" />
+		<Unit filename="include/ECS/Components/Triggers/HoleTriggerComponent.h" />
+		<Unit filename="include/ECS/Components/Triggers/WarpTriggerComponent.h" />
 		<Unit filename="include/ECS/Components/VelocityComponent.h" />
 		<Unit filename="include/ECS/ECSCoordinatorSingleton.h" />
 		<Unit filename="include/ECS/EntityManagerSingleton.h" />
 		<Unit filename="include/ECS/System.h" />
 		<Unit filename="include/ECS/SystemManagerSingleton.h" />
+		<Unit filename="include/ECS/Systems/CollisionSystem.h" />
 		<Unit filename="include/ECS/Systems/PhysicSystem.h" />
 		<Unit filename="include/ECS/Systems/RenderSystem.h" />
+		<Unit filename="include/ECS/Systems/RespawnSystem.h" />
+		<Unit filename="include/ECS/Systems/TriggerSystem.h" />
+		<Unit filename="include/EntityCreator.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/InputManager.h" />
+<<<<<<< HEAD
 		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
 		<Unit filename="include/State/GameState.h" />
 		<Unit filename="include/State/MainMenuState.h" />
 		<Unit filename="include/State/SplashState.h" />
 		<Unit filename="include/TileMap.h" />
+=======
+		<Unit filename="include/SplashState.h" />
+		<Unit filename="include/State.h" />
+		<Unit filename="include/StateMachine.h" />
+		<Unit filename="include/States/MenuState.h" />
+		<Unit filename="include/Vector2fMath.h" />
+>>>>>>> dbe0e35d515dc66fee0c11f620c557628016b73e
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AssetManager.cpp" />
 		<Unit filename="src/Collision.cpp" />
 		<Unit filename="src/ECS/ComponentManagerSingleton.cpp" />
+		<Unit filename="src/ECS/Components/CharacterComponent.cpp" />
+		<Unit filename="src/ECS/Components/ColliderComponent.cpp" />
+		<Unit filename="src/ECS/Components/ConstraintComponent.cpp" />
 		<Unit filename="src/ECS/Components/GravityComponent.cpp" />
 		<Unit filename="src/ECS/Components/PositionComponent.cpp" />
 		<Unit filename="src/ECS/Components/RendererComponent.cpp" />
+		<Unit filename="src/ECS/Components/RespawnComponent.cpp" />
+		<Unit filename="src/ECS/Components/TriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/Triggers/CheckPointTriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/Triggers/CueAttackTriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/Triggers/EndLevelTriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/Triggers/HoleTriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/Triggers/WarpTriggerComponent.cpp" />
 		<Unit filename="src/ECS/Components/VelocityComponent.cpp" />
 		<Unit filename="src/ECS/ECSCoordinatorSingleton.cpp" />
 		<Unit filename="src/ECS/EntityManagerSingleton.cpp" />
 		<Unit filename="src/ECS/SystemManagerSingleton.cpp" />
+		<Unit filename="src/ECS/Systems/CollisionSystem.cpp" />
 		<Unit filename="src/ECS/Systems/PhysicSystem.cpp" />
 		<Unit filename="src/ECS/Systems/RenderSystem.cpp" />
+		<Unit filename="src/ECS/Systems/RespawnSystem.cpp" />
+		<Unit filename="src/ECS/Systems/TriggerSystem.cpp" />
+		<Unit filename="src/EntityCreator.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/InputManager.cpp" />
+		<Unit filename="src/SplashState.cpp" />
 		<Unit filename="src/StateMachine.cpp" />
+<<<<<<< HEAD
 		<Unit filename="src/State/GameState.cpp" />
 		<Unit filename="src/State/MainMenuState.cpp" />
 		<Unit filename="src/State/SplashState.cpp" />
 		<Unit filename="src/TileMap.cpp" />
+=======
+		<Unit filename="src/States/MenuState.cpp" />
+		<Unit filename="src/Vector2fMath.cpp" />
+>>>>>>> dbe0e35d515dc66fee0c11f620c557628016b73e
 		<Extensions>
 			<code_completion />
 			<envvars />

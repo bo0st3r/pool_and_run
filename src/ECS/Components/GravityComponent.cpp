@@ -18,7 +18,7 @@ ComponentID GravityComponent::getTypeId() const
 std::string GravityComponent::str() const
 {
     std::stringstream sstr;
-    sstr << ID << " : gravity strength = " << G;
+    sstr << ID << " (gravity) : gravity strength = " << G;
     return sstr.str();
 }
 

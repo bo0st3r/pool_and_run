@@ -12,10 +12,16 @@
 #include <VelocityComponent.h>
 #include <GravityComponent.h>
 #include <RendererComponent.h>
+#include <ColliderComponent.h>
+#include <TriggerComponent.h>
+#include <CheckPointTriggerComponent.h>
+#include <CharacterComponent.h>
+#include <ConstraintComponent.h>
+#include <RespawnComponent.h>
 
 //template pour les association Entité<->Component
 template <typename T>
-using EntityComponentMap = std::unordered_map<Entity, T&>;
+using EntityComponentMap = std::unordered_map<Entity, std::unique_ptr<T>>;
 
 class ComponentManagerSingleton
 {
@@ -32,6 +38,11 @@ class ComponentManagerSingleton
         EntityComponentMap<VelocityComponent>& getEntityVelocityMap();
         EntityComponentMap<GravityComponent>& getEntityGravityMap();
         EntityComponentMap<RendererComponent>& getEntityRendererMap();
+        EntityComponentMap<ColliderComponent>& getEntityColliderMap();
+        EntityComponentMap<TriggerComponent>& getEntityTriggerMap();
+        EntityComponentMap<CharacterComponent>& getEntityCharacterMap();
+        EntityComponentMap<ConstraintComponent>& getEntityConstraintMap();
+        EntityComponentMap<RespawnComponent>& getEntityRespawnMap();
 
     protected:
 
@@ -44,6 +55,11 @@ class ComponentManagerSingleton
         EntityComponentMap<VelocityComponent> entityVelocities;
         EntityComponentMap<GravityComponent> entityGravities;
         EntityComponentMap<RendererComponent> entityRenderers;
+        EntityComponentMap<ColliderComponent> entityColliders;
+        EntityComponentMap<TriggerComponent> entityTriggers;
+        EntityComponentMap<CharacterComponent> entityCharacters;
+        EntityComponentMap<ConstraintComponent> entityConstraints;
+        EntityComponentMap<RespawnComponent> entityRespawn;
 };
 
 #endif // COMPONENTMANAGERSINGLETON_H

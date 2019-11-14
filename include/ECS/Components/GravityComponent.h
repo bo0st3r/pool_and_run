@@ -14,14 +14,13 @@ class GravityComponent : public Component
 
         static float getG(){return G;};
         virtual ComponentID getTypeId() const;
-        static ComponentID getId(){return ID;};
 
         virtual std::string str() const;
 
     protected:
 
     private:
-        static inline const float G = 9.81;
+        static inline const float G = 60.0;
 };
 
 #endif // GRAVITYCOMPONENT_H

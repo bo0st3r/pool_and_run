@@ -9,28 +9,27 @@
 class RendererComponent : public Component
 {
     public:
-        RendererComponent(std::string textureName = "");
+        RendererComponent(std::string textureName = "", sf::Vector2f scale = sf::Vector2f(1, 1), int layer = -1);
         virtual ~RendererComponent();
         virtual ComponentID getTypeId() const;
-        static ComponentID getId(){return ID;};
 
         static inline const ComponentID ID = 3;
 
         std::string getTextureName() const;
+        sf::Vector2f getScale() const;
         sf::Sprite& getSpriteRef();
         bool hasSpriteTextured() const;
-
-        //changer la position
-        //dessiner
+        int getLayer() const;
 
         virtual std::string str()const;
 
     protected:
 
     private:
-        sf::Sprite sprite;
-        bool spriteSetted;
+        int layer;
         std::string textureName;
+        sf::Sprite sprite;
+        sf::Vector2f scale;
 };
 
 #endif // RENDERERCOMPONENT_H
