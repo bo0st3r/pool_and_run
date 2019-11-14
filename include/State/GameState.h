@@ -30,6 +30,9 @@ namespace pr{
             /// \brief Inits the game's tile map.
             ///////////////////////
             void initTileMap();
+            ///////////////////////
+            /// \brief Inits the game'characters.
+            ///////////////////////
 
 
             ///////////////////////

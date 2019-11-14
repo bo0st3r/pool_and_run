@@ -1,9 +1,9 @@
-#include "MainMenuState.h"
+#include "State/MainMenuState.h"
 #include "Configuration/Configuration.h"
 
 #include <iostream>
 
-#include "GameState.h"
+#include "State/GameState.h"
 
 namespace pr{
     MainMenuState::MainMenuState(GameDataRef data):_data(data){

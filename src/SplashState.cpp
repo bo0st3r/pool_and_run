@@ -7,4 +7,3 @@ namespace pr{
         _data->assets.loadFont("SplashBackground",)
     }
 }
-*/
