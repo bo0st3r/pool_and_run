@@ -491,7 +491,7 @@
 1570708469 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\pool&run\include\level.h
 	<string>
 
-1573651865 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
+1573723731 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
 	<iostream>
 	<chrono>
 	<SFML/Graphics.hpp>
@@ -500,6 +500,7 @@
 	"ECSCoordinatorSingleton.h"
 	"AssetManager.h"
 	"InputManager.h"
+	"EntityCreator.h"
 
 1572187983 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ball.cpp
 	"Ball.h"
@@ -1804,7 +1805,7 @@
 	<System.h>
 	<AssetManager.h>
 
-1573652079 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\rendersystem.cpp
+1573723720 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\rendersystem.cpp
 	"RenderSystem.h"
 
 1573300780 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\collidercomponent.cpp
@@ -1819,7 +1820,7 @@
 1573486137 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggercomponent.h
 	<Component.h>
 
-1573652144 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\collisionsystem.cpp
+1573653198 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\collisionsystem.cpp
 	"CollisionSystem.h"
 
 1573653029 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\collisionsystem.h
@@ -2628,6 +2629,24 @@
 	"ComponentManagerSingleton.h"
 
 1573568934 source:c:\projetc++\src\entitycreator.cpp
+	"EntityCreator.h"
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	"ECSCoordinatorSingleton.h"
+	"AssetManager.h"
+	"InputManager.h"
+	"ComponentManagerSingleton.h"
+	<iostream>
+
+1573723474 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\entitycreator.h
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	"ECSCoordinatorSingleton.h"
+	"AssetManager.h"
+	"InputManager.h"
+	"ComponentManagerSingleton.h"
+
+1573723474 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\entitycreator.cpp
 	"EntityCreator.h"
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>

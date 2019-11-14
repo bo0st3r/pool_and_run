@@ -91,6 +91,7 @@
 		<Unit filename="include/ECS/Systems/RenderSystem.h" />
 		<Unit filename="include/ECS/Systems/RespawnSystem.h" />
 		<Unit filename="include/ECS/Systems/TriggerSystem.h" />
+		<Unit filename="include/EntityCreator.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/InputManager.h" />
 		<Unit filename="include/SplashState.h" />
@@ -124,6 +125,7 @@
 		<Unit filename="src/ECS/Systems/RenderSystem.cpp" />
 		<Unit filename="src/ECS/Systems/RespawnSystem.cpp" />
 		<Unit filename="src/ECS/Systems/TriggerSystem.cpp" />
+		<Unit filename="src/EntityCreator.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/InputManager.cpp" />
 		<Unit filename="src/SplashState.cpp" />

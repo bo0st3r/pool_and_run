@@ -39,18 +39,12 @@ void RenderSystem::update(float dt)
 
     for(int layer = -1; layer < 6; layer++)
     {
-<<<<<<< HEAD
         for(Renderers::iterator it = renderers->begin(); it != renderers->cend(); it++)
         {
 
             Entity entity = it->first;
             RendererComponent& render = *(it->second);
             sf::Sprite& sprite = render.getSpriteRef();
-=======
-        Entity entity = it->first;
-        RendererComponent& render = it->second;
-        sf::Sprite& sprite = render.getSpriteRef();
->>>>>>> f036d28b0899a9b01aac85a75fcd24809cc89245
 
             //saute l'entité pour cette boucle
             if (render.getLayer() != layer)
