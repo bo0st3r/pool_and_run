@@ -8,6 +8,7 @@
 #include "ECSCoordinatorSingleton.h"
 #include "AssetManager.h"
 #include "InputManager.h"
+#include "EntityCreator.h"
 
 using std::cout;
 using std::endl;
@@ -108,6 +109,7 @@ int main()
     ecs.addSystem(respawnSystem);
 
     //représentation du joueur
+<<<<<<< HEAD
     Entity player = ecs.createNewEntity();
     compManager.addComponentToEntity(*(new CharacterComponent("Héro", "Joueur", 8, 10.0)), CharacterComponent::ID, player);
     compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 4)), RendererComponent::ID, player);
@@ -127,9 +129,19 @@ int main()
     compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), -1)), RendererComponent::ID, enemyPlatform);
     compManager.addComponentToEntity(*(new PositionComponent(300,500)), PositionComponent::ID, enemyPlatform);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, false, 0.5)), ColliderComponent::ID, enemyPlatform);
+=======
+    EntityCreator::createPlayer(200,0, "ball",compManager, ecs);
+    EntityCreator::createPlayer(300,50, "ball",compManager, ecs);
 
+
+>>>>>>> f036d28b0899a9b01aac85a75fcd24809cc89245
+
+    //représentation des plateforme
+    EntityCreator::createTile(200,300, "ball",compManager, ecs);
+    EntityCreator::createTile(300,500, "ball",compManager, ecs);
 
     //représentation d'un ennemis (boule)
+<<<<<<< HEAD
 
     Entity ball = ecs.createNewEntity();
     compManager.addComponentToEntity(*(new CharacterComponent("Boule", "Ennemi", 0, 10.0)), CharacterComponent::ID, ball);
@@ -189,6 +201,25 @@ int main()
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, endLevel);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, endLevel);
     compManager.addComponentToEntity(*(new EndLevelTriggerComponent()), TriggerComponent::ID, endLevel);
+=======
+    EntityCreator::createEnnemyBall(210,250, "ball",compManager, ecs);
+
+    //représentation d'un ennemis (queue) + test trigger attaque
+    EntityCreator::createEnnemyCue(330, 450, compManager, ecs );
+
+    //test trigger checkPoint
+    EntityCreator::createCheckPoint(200, 50, compManager, ecs);
+    EntityCreator::createCheckPoint(300, 400, compManager, ecs);
+
+    //test trigger warp
+    EntityCreator::createWarp(100, 350, 260, 0, compManager, ecs);
+
+    //test trigger hole
+    EntityCreator::createHole(300, 350, compManager, ecs);
+
+    //test trigger fin de niveau
+    EntityCreator::createEndLevel(150, 300, compManager, ecs);
+>>>>>>> f036d28b0899a9b01aac85a75fcd24809cc89245
 
 
     float dt = 0.0f;
