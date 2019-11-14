@@ -1,10 +1,11 @@
 #include "TriggerSystem.h"
 
-TriggerSystem::TriggerSystem(Triggers& t, Positions& p, Velocities& v)
+TriggerSystem::TriggerSystem(Triggers& t, Positions& p, Velocities& v, Renderers& r)
 {
     triggers = &t;
     positions = &p;
     velocities = &v;
+    renderers = &r;
 }
 
 TriggerSystem::~TriggerSystem()
@@ -12,6 +13,7 @@ TriggerSystem::~TriggerSystem()
     delete triggers;
     delete positions;
     delete velocities;
+    delete renderers;
 }
 
 void TriggerSystem::update(float dt)
@@ -21,7 +23,7 @@ void TriggerSystem::update(float dt)
     for(Triggers::iterator it = triggers->begin(); it != triggers->cend(); it++)
     {
         Entity entity = it->first;
-        TriggerComponent& trigger = it->second;
+        TriggerComponent& trigger = *(it->second);
 
         if(trigger.isTriggered())
         {
@@ -62,10 +64,10 @@ void TriggerSystem::checkPointTriggered(Entity entity, CheckPointTriggerComponen
 {
     for(Triggers::iterator cp = triggers->begin(); cp != triggers->cend(); cp++)
     {
-        if(cp->first != entity && cp->second.getTriggerId() == CheckPointTriggerComponent::TRIGGER_ID)
+        if(cp->first != entity && cp->second->getTriggerId() == CheckPointTriggerComponent::TRIGGER_ID)
         {
-            CheckPointTriggerComponent& checkPoint2 = dynamic_cast<CheckPointTriggerComponent&>(cp->second);
-            checkPoint2.setTriggered(false);
+            CheckPointTriggerComponent& checkPoint2 = dynamic_cast<CheckPointTriggerComponent&>(*(cp->second));
+            checkPoint2.setLastTriggered(false);
         }
     }
 
@@ -76,12 +78,10 @@ void TriggerSystem::checkPointTriggered(Entity entity, CheckPointTriggerComponen
 
 void TriggerSystem::CueAttackTriggered(Entity entity, CueAttackTriggerComponent& cueAttack)
 {
-    std::cout << "Cue attack (trigger system L98)" << std::endl;
-
     ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());
 
     Entity other = cueAttack.getTargetEntity();
-    float otherSpeed = Vector2fMath::magnitude(velocities->at(other).getVelocity());
+    float otherSpeed = Vector2fMath::magnitude(velocities->at(other)->getVelocity());
 
     //si le joueur arrive trop vite (vitesse atteignable uniquement via un dash), tue l'ennemis
     if(otherSpeed > CueAttackTriggerComponent::SPEED_CAP)
@@ -89,11 +89,11 @@ void TriggerSystem::CueAttackTriggered(Entity entity, CueAttackTriggerComponent&
         compManager.addComponentToEntity(*(new RespawnComponent()), RespawnComponent::ID, entity);
     }else //pousse violemment le joueur dans la direction opposée
     {
-        float angle = Vector2fMath::angleBetween(positions->at(entity).getPosition(), positions->at(other).getPosition());
+        float angle = Vector2fMath::angleBetween(positions->at(entity)->getPosition(), positions->at(other)->getPosition());
         float bumpSpeed = CueAttackTriggerComponent::BUMP_SPEED;
         sf::Vector2f newVelocity = sf::Vector2f(bumpSpeed * std::sin(angle), bumpSpeed * std::cos(angle));
 
-        velocities->at(other).setVelocity(newVelocity);
+        velocities->at(other)->setVelocity(newVelocity);
     }
 
     cueAttack.setTriggered(false);
@@ -102,8 +102,6 @@ void TriggerSystem::CueAttackTriggered(Entity entity, CueAttackTriggerComponent&
 
 void TriggerSystem::EndLevelTriggered(Entity entity, EndLevelTriggerComponent& endLevel)
 {
-    std::cout << "Level Cleared (trigger system L104)" << std::endl;
-
     endLevel.setTriggered(false);
 }
 
@@ -122,11 +120,18 @@ void TriggerSystem::HoleTriggered(Entity entity, HoleTriggerComponent& hole)
 void TriggerSystem::WarpTriggered(Entity entity, WarpTriggerComponent& warp)
 {
     sf::Vector2 exit = warp.getDestination();
-
+    float warpWidth = renderers->at(entity)->getSpriteRef().getGlobalBounds().width;
     Entity other = warp.getTargetEntity();
+    float otherWidth = renderers->at(other)->getSpriteRef().getGlobalBounds().width;
 
-    positions->at(other).setPosition(exit);
-    velocities->at(other).setVelocity(0, 0);
+    if(warp.isExitToRight())
+    {
+        positions->at(other)->setPosition(exit + sf::Vector2f(warpWidth, 0));
+    }else
+    {
+        positions->at(other)->setPosition(exit - sf::Vector2f(otherWidth, 0));
+    }
+    velocities->at(other)->setVelocity(0, 0);
 
     warp.setTriggered(false);
     warp.setTargetEntity(EntityManagerSingleton::MAX_ENTITY);

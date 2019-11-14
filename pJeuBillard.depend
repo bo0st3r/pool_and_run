@@ -491,7 +491,7 @@
 1570708469 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\pool&run\include\level.h
 	<string>
 
-1573487595 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
+1573651865 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\main.cpp
 	<iostream>
 	<chrono>
 	<SFML/Graphics.hpp>
@@ -569,11 +569,11 @@
 1573412204 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\entitymanagersingleton.cpp
 	"EntityManagerSingleton.h"
 
-1573386103 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
+1573553647 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
 	"ComponentManagerSingleton.h"
 	<iostream>
 
-1573384484 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\componentmanagersingleton.h
+1573553647 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\componentmanagersingleton.h
 	<unordered_map>
 	<cstdint>
 	<vector>
@@ -660,9 +660,8 @@
 1573047241 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\positioncomponent.cpp
 	"PositionComponent.h"
 
-1573383554 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\physicsystem.cpp
+1573652124 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\physicsystem.cpp
 	"PhysicSystem.h"
-	<iostream>
 
 1573315512 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\physicsystem.h
 	<System.h>
@@ -1793,10 +1792,10 @@
 
 1572947067 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\game.cpp
 
-1573047464 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\renderercomponent.cpp
+1573651245 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\renderercomponent.cpp
 	"RendererComponent.h"
 
-1573123934 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\renderercomponent.h
+1573651222 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\renderercomponent.h
 	<SFML/Graphics.hpp>
 	<Component.h>
 
@@ -1805,9 +1804,8 @@
 	<System.h>
 	<AssetManager.h>
 
-1573377101 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\rendersystem.cpp
+1573652079 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\rendersystem.cpp
 	"RenderSystem.h"
-	<iostream>
 
 1573300780 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\collidercomponent.cpp
 	"ColliderComponent.h"
@@ -1821,15 +1819,14 @@
 1573486137 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggercomponent.h
 	<Component.h>
 
-1573487319 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\collisionsystem.cpp
+1573652144 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\collisionsystem.cpp
 	"CollisionSystem.h"
-	<iostream>
 
-1573381717 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\collisionsystem.h
+1573653029 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\collisionsystem.h
 	<System.h>
 	<Collision.h>
 
-1573486402 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\checkpointtriggercomponent.cpp
+1573553256 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\checkpointtriggercomponent.cpp
 	"CheckPointTriggerComponent.h"
 	<iostream>
 
@@ -1888,13 +1885,13 @@
 1573403490 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\respawnsystem.h
 	<System.h>
 
-1573479479 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\respawnsystem.cpp
+1573552392 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\respawnsystem.cpp
 	"RespawnSystem.h"
 
 1573486447 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\cueattacktriggercomponent.cpp
 	"CueAttackTriggerComponent.h"
 
-1573487753 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\cueattacktriggercomponent.h
+1573549655 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\cueattacktriggercomponent.h
 	<TriggerComponent.h>
 
 1573486471 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\holetriggercomponent.cpp
@@ -1917,10 +1914,9 @@
 1573395502 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\endleveltriggercomponent.h
 	<TriggerComponent.h>
 
-1573487825 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\triggersystem.cpp
+1573652619 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\triggersystem.cpp
 	"TriggerSystem.h"
 
-1573480151 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\triggersystem.h
+1573652073 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\triggersystem.h
 	<System.h>
-	<iostream>
 

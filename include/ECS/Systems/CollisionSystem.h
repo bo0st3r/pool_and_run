@@ -1,6 +1,8 @@
 #ifndef COLLISIONSYSTEM_H
 #define COLLISIONSYSTEM_H
 
+#define M_PI  3.14159265358979323846
+
 #include <System.h>
 #include <Collision.h>
 
@@ -14,7 +16,7 @@ class CollisionSystem : public System
                         Colliders& col,
                         Triggers& t,
                         Constraints& con,
-                        sf::Vector2u viewSize
+                        sf::View v
                         );
         virtual ~CollisionSystem();
 
@@ -23,6 +25,7 @@ class CollisionSystem : public System
         bool addViewBorderConstraints(sf::Sprite s, Entity entity);
         void removeCollisionConstraints(Entity entity);
         void transfertVelocity(Entity e1, Entity e2, float absorption);
+        void floorBouncing(Entity character, Entity platform, float absorption);
 
     protected:
 
@@ -34,7 +37,7 @@ class CollisionSystem : public System
         Colliders* colliders;
         Triggers* triggers;
         Constraints* constraints;
-        sf::Vector2u viewSize;
+        sf::View view;
 
         static inline float maxCollidingDistance = 100;
 };

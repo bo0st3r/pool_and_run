@@ -30,7 +30,7 @@ void RespawnSystem::update(float dt)
     for(Respawns::iterator it = respawns->begin(); it != respawns->cend(); it++)
     {
         Entity entity = it->first;
-        CharacterComponent& ch = characters->at(entity);
+        CharacterComponent& ch = *(characters->at(entity));
         ch.addLive(-1);
         ComponentManagerSingleton::getInstance()->removeComponentFromEntity(RespawnComponent::ID, entity);
 
@@ -39,14 +39,14 @@ void RespawnSystem::update(float dt)
 
             for(Triggers::iterator tcIt = triggers->begin(); tcIt != triggers->cend(); tcIt++)
             {
-                if(tcIt->second.getTriggerId() == CheckPointTriggerComponent::TRIGGER_ID)
+                if(tcIt->second->getTriggerId() == CheckPointTriggerComponent::TRIGGER_ID)
                 {
                     Entity triggerEntity = tcIt->first;
-                    TriggerComponent& trigger = tcIt->second;
+                    TriggerComponent& trigger = *(tcIt->second);
                     CheckPointTriggerComponent& checkPoint = dynamic_cast<CheckPointTriggerComponent&> (trigger);
                     if(checkPoint.isLastTriggered()){
-                        positions->at(entity).setPosition(positions->at(triggerEntity).getPosition());
-                        velocities->at(entity).setVelocity(0, 0);
+                        positions->at(entity)->setPosition(positions->at(triggerEntity)->getPosition());
+                        velocities->at(entity)->setVelocity(0, 0);
                     }
                 }
             }

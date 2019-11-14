@@ -84,7 +84,7 @@ int main()
                                         compManager.getEntityColliderMap(),
                                         compManager.getEntityTriggerMap(),
                                         compManager.getEntityConstraintMap(),
-                                        window.getSize()
+                                        window.getView()
                                         );
 
     RespawnSystem respawnSystem = RespawnSystem(
@@ -98,7 +98,8 @@ int main()
     TriggerSystem triggerSystem = TriggerSystem(
                                                 compManager.getEntityTriggerMap(),
                                                 compManager.getEntityPositionMap(),
-                                                compManager.getEntityVelocityMap()
+                                                compManager.getEntityVelocityMap(),
+                                                compManager.getEntityRendererMap()
                                                 );
     ecs.addSystem(collisionSystem);
     ecs.addSystem(triggerSystem);
@@ -109,7 +110,7 @@ int main()
     //représentation du joueur
     Entity player = ecs.createNewEntity();
     compManager.addComponentToEntity(*(new CharacterComponent("Héro", "Joueur", 8, 10.0)), CharacterComponent::ID, player);
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, player);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 4)), RendererComponent::ID, player);
     compManager.addComponentToEntity(*(new PositionComponent(200, 0)), PositionComponent::ID, player);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, player);
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, player);
@@ -118,20 +119,21 @@ int main()
 
     //représentation des plateforme
     Entity platform = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, platform);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), -1)), RendererComponent::ID, platform);
     compManager.addComponentToEntity(*(new PositionComponent(200,300)), PositionComponent::ID, platform);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, false, 0.5)), ColliderComponent::ID, platform);
 
     Entity enemyPlatform = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, enemyPlatform);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), -1)), RendererComponent::ID, enemyPlatform);
     compManager.addComponentToEntity(*(new PositionComponent(300,500)), PositionComponent::ID, enemyPlatform);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, false, 0.5)), ColliderComponent::ID, enemyPlatform);
 
 
     //représentation d'un ennemis (boule)
+
     Entity ball = ecs.createNewEntity();
     compManager.addComponentToEntity(*(new CharacterComponent("Boule", "Ennemi", 0, 10.0)), CharacterComponent::ID, ball);
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, ball);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, ball);
     compManager.addComponentToEntity(*(new PositionComponent(210, 250)), PositionComponent::ID, ball);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, ball);
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, ball);
@@ -141,7 +143,7 @@ int main()
     //représentation d'un ennemis (queue) + test trigger attaque
     Entity cue = ecs.createNewEntity();
     compManager.addComponentToEntity(*(new CharacterComponent("Queue", "Ennemi", 0, 10.0)), CharacterComponent::ID, cue);
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, cue);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, cue);
     compManager.addComponentToEntity(*(new PositionComponent(330, 450)), PositionComponent::ID, cue);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, cue);
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, cue);
@@ -151,14 +153,14 @@ int main()
 
     //test trigger checkPoint
     Entity start = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, start);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, start);
     compManager.addComponentToEntity(*(new PositionComponent(200, 50)), PositionComponent::ID, start);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, start);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, start);
     compManager.addComponentToEntity(*(new CheckPointTriggerComponent()), TriggerComponent::ID, start);
 
     Entity checkPoint = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, checkPoint);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, checkPoint);
     compManager.addComponentToEntity(*(new PositionComponent(300, 400)), PositionComponent::ID, checkPoint);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, checkPoint);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, checkPoint);
@@ -166,7 +168,7 @@ int main()
 
     //test trigger warp
     Entity warp = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, warp);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, warp);
     compManager.addComponentToEntity(*(new PositionComponent(100, 350)), PositionComponent::ID, warp);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, warp);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, warp);
@@ -174,7 +176,7 @@ int main()
 
     //test trigger hole
     Entity hole = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, hole);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, hole);
     compManager.addComponentToEntity(*(new PositionComponent(300, 350)), PositionComponent::ID, hole);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, hole);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, hole);
@@ -182,7 +184,7 @@ int main()
 
     //test trigger fin de niveau
     Entity endLevel = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1))), RendererComponent::ID, endLevel);
+    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, endLevel);
     compManager.addComponentToEntity(*(new PositionComponent(150, 350)), PositionComponent::ID, endLevel);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, endLevel);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, endLevel);

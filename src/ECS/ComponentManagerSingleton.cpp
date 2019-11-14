@@ -6,6 +6,8 @@ ComponentManagerSingleton::ComponentManagerSingleton()
 
 ComponentManagerSingleton::~ComponentManagerSingleton()
 {
+
+
     delete instance;
 }
 
@@ -26,55 +28,55 @@ void ComponentManagerSingleton::addComponentToEntity(Component& component, Compo
     {
         case PositionComponent::ID :{
                 PositionComponent& casted = dynamic_cast<PositionComponent&>(component);
-                entityPositions.insert(std::pair<Entity, PositionComponent&>(entity, casted));
+                entityPositions.insert(std::pair<Entity, std::unique_ptr<PositionComponent>>(entity, std::unique_ptr<PositionComponent>(&casted)));
                 break;
         }
 
         case VelocityComponent::ID :{
                 VelocityComponent& casted = dynamic_cast<VelocityComponent&>(component);
-                entityVelocities.insert(std::pair<Entity, VelocityComponent&>(entity, casted));
+                entityVelocities.insert(std::pair<Entity, std::unique_ptr<VelocityComponent>>(entity, std::unique_ptr<VelocityComponent>(&casted)));
                 break;
         }
 
         case GravityComponent::ID :{
                 GravityComponent& casted = dynamic_cast<GravityComponent&>(component);
-                entityGravities.insert(std::pair<Entity, GravityComponent&>(entity, casted));
+                entityGravities.insert(std::pair<Entity, std::unique_ptr<GravityComponent>>(entity, std::unique_ptr<GravityComponent>(&casted)));
                 break;
         }
 
         case RendererComponent::ID :{
                 RendererComponent& casted = dynamic_cast<RendererComponent&>(component);
-                entityRenderers.insert(std::pair<Entity, RendererComponent&>(entity, casted));
+                entityRenderers.insert(std::pair<Entity, std::unique_ptr<RendererComponent>>(entity, std::unique_ptr<RendererComponent>(&casted)));
                 break;
         }
 
         case ColliderComponent::ID :{
                 ColliderComponent& casted = dynamic_cast<ColliderComponent&>(component);
-                entityColliders.insert(std::pair<Entity, ColliderComponent&>(entity, casted));
+                entityColliders.insert(std::pair<Entity, std::unique_ptr<ColliderComponent>>(entity, std::unique_ptr<ColliderComponent>(&casted)));
                 break;
         }
 
         case TriggerComponent::ID :{
                 TriggerComponent& casted = dynamic_cast<TriggerComponent&>(component);
-                entityTriggers.insert(std::pair<Entity, TriggerComponent&>(entity, casted));
+                entityTriggers.insert(std::pair<Entity, std::unique_ptr<TriggerComponent>>(entity, std::unique_ptr<TriggerComponent>(&casted)));
                 break;
         }
 
         case CharacterComponent::ID :{
                 CharacterComponent& casted = dynamic_cast<CharacterComponent&>(component);
-                entityCharacters.insert(std::pair<Entity, CharacterComponent&>(entity, casted));
+                entityCharacters.insert(std::pair<Entity, std::unique_ptr<CharacterComponent>>(entity, std::unique_ptr<CharacterComponent>(&casted)));
                 break;
         }
 
         case ConstraintComponent::ID :{
                 ConstraintComponent& casted = dynamic_cast<ConstraintComponent&>(component);
-                entityConstraints.insert(std::pair<Entity, ConstraintComponent&>(entity, casted));
+                entityConstraints.insert(std::pair<Entity, std::unique_ptr<ConstraintComponent>>(entity, std::unique_ptr<ConstraintComponent>(&casted)));
                 break;
         }
 
         case RespawnComponent::ID:{
                 RespawnComponent& casted = dynamic_cast<RespawnComponent&>(component);
-                entityRespawn.insert(std::pair<Entity, RespawnComponent&>(entity, casted));
+                entityRespawn.insert(std::pair<Entity, std::unique_ptr<RespawnComponent>>(entity, std::unique_ptr<RespawnComponent>(&casted)));
                 break;
         }
     }
@@ -153,4 +155,5 @@ EntityComponentMap<RespawnComponent>& ComponentManagerSingleton::getEntityRespaw
 {
     return entityRespawn;
 }
+
 

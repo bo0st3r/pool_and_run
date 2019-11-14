@@ -2,13 +2,12 @@
 #define TRIGGERSYSTEM_H
 
 #include <System.h>
-#include <iostream>
 
 
 class TriggerSystem : public System
 {
     public:
-        TriggerSystem(Triggers& t, Positions& p, Velocities& v);
+        TriggerSystem(Triggers& t, Positions& p, Velocities& v, Renderers& r);
         virtual ~TriggerSystem();
 
         virtual void update(float dt);
@@ -25,6 +24,7 @@ class TriggerSystem : public System
         Triggers* triggers;
         Positions* positions;
         Velocities* velocities;
+        Renderers* renderers;
 };
 
 #endif // TRIGGERSYSTEM_H

@@ -21,7 +21,7 @@
 
 //template pour les association Entité<->Component
 template <typename T>
-using EntityComponentMap = std::unordered_map<Entity, T&>;
+using EntityComponentMap = std::unordered_map<Entity, std::unique_ptr<T>>;
 
 class ComponentManagerSingleton
 {
