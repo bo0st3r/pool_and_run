@@ -1,20 +1,26 @@
 #include "Game.h"
 #include <iostream>
+#include <windows.h>
+
+#include "State/SplashState.h"
 
 namespace pr{
     Game::Game(int screenWidth, int screenHeight, string screenTitle)
     {
         _data->window.create(sf::VideoMode(screenWidth, screenHeight), screenTitle);
-
+//        _data->window.create(sf::VideoMode(screenWidth, screenHeight), screenTitle, sf::Style::Fullscreen);
+//        _data->window.setPosition(sf::Vector2i(0 - GetSystemMetrics(SM_CXSIZEFRAME), 0));
         run();
     }
 
     Game::~Game()
     {
-        //dtor
+
     }
 
     void Game::run(){
+        _data->machine.addState(pr::StateRef(new pr::SplashState(_data)));
+
         float newTime, frameTime, interpolation;
 
         float currentTime = _clock.getElapsedTime().asSeconds();
@@ -38,14 +44,20 @@ namespace pr{
             accumulator += frameTime;
 
             while(accumulator >= _dt){
-                _data->machine.getActiveState()->handleInput();
+                Event event;
+                _data->window.pollEvent(event);
+                _data->machine.getActiveState()->handleInput(event);
+
                 _data->machine.getActiveState()->update(_dt);
 
                 accumulator -= _dt;
             }
 
             interpolation = accumulator / _dt;
+
+            _data->window.clear();
             _data->machine.getActiveState()->draw(interpolation);
+            _data->window.display();
         }
     }
 

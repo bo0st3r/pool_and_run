@@ -23,13 +23,17 @@ namespace pr{
             inline static const string IMG_PATH = RESSOURCES_PATH + "img/";
             inline static const string BALLS_PATH = IMG_PATH + "balls/";
             inline static const string OTHERS_PATH = IMG_PATH + "others/";
-            inline static const string OTHERS_PATH = IMG_PATH + "backgrounds/";
 
 
             AssetManager();
             virtual ~AssetManager();
 
-
+            ////////////////////////////////////////////////////////////
+            //////////////////////// SPRITE ////////////////////////////
+            ////////////////////////////////////////////////////////////
+            /// \brief Set the sprite origin at it's center.
+            ////////////////////////////////////////////////////////////
+            void centerSpriteOrigin(Sprite& sprite, const string& name);
 
             ////////////////////////////////////////////////////////////
             /////////////////////// TEXTURES ///////////////////////////
@@ -53,8 +57,6 @@ namespace pr{
             /// \brief Returns if _textures has a Texture for the given name.
             ////////////////////////////////////////////////////////////
             bool hasTexture(const string& name);
-            bool test(const string& name);
-            bool test2(const string& name);
 
             ////////////////////////////////////////////////////////////            /// \brief Returns the Texture, if existing, that corresponds to the given name.
             ////////////////////////////////////////////////////////////

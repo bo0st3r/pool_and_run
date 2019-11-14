@@ -11,6 +11,11 @@ namespace pr{
 
 
     bool InputManager::isSpriteClicked(Sprite target, Mouse::Button btn, RenderWindow& window){
+        return Mouse::isButtonPressed(btn) &&
+                    target.getGlobalBounds().contains((Vector2f) Mouse::getPosition(window));
+    }
+
+    bool InputManager::isSpriteClickedPixelPerfect(Sprite target, Mouse::Button btn, RenderWindow& window){
         sf::Texture tex;
         tex.loadFromFile(pr::AssetManager::OTHERS_PATH + "dot.png");
         Sprite mouse(tex);

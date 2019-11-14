@@ -18,6 +18,7 @@ namespace pr{
             virtual ~InputManager();
 
             bool isSpriteClicked(Sprite target, Mouse::Button btn, RenderWindow& window);
+            bool isSpriteClickedPixelPerfect(Sprite target, Mouse::Button btn, RenderWindow& window);
             Vector2i getMousePosition(RenderWindow &window);
 
 

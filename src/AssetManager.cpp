@@ -15,6 +15,12 @@ namespace pr{
         //dtor
     }
 
+    ///////////////////////////// SPRITE ///////////////////////////////////
+    void AssetManager::centerSpriteOrigin(Sprite& sprite, const string& name){
+        sf::Vector2f texSize = (sf::Vector2f) getTexture(name).getSize();
+        sprite.setOrigin(texSize.x * 0.5, texSize.y * 0.5);
+    }
+
 
     //////////////////////////// TEXTURES //////////////////////////////////
     bool AssetManager::setSpriteTexture(Sprite& sprite, const string& name){
@@ -42,14 +48,6 @@ namespace pr{
             res = true;
         }
         return res;
-    }
-
-    bool AssetManager::test(const string& name){
-        return true;
-    }
-
-    bool AssetManager::test2(const string& name){
-        return false;
     }
 
     Texture& AssetManager::getTexture(const string& name){
@@ -80,6 +78,8 @@ namespace pr{
         }catch(std::out_of_range const& e){
             std::cerr << e.what() << std::endl;
         }
+
+        return _fonts.at(name);
     }
 
 

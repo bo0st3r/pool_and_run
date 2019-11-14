@@ -18,6 +18,7 @@
 					<Add directory="include/ECS" />
 					<Add directory="include/ECS/Components" />
 					<Add directory="include/ECS/Systems" />
+					<Add directory="include/State" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-d" />
@@ -38,6 +39,7 @@
 					<Add directory="include/ECS" />
 					<Add directory="include/ECS/Components" />
 					<Add directory="include/ECS/Systems" />
+					<Add directory="include/State" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -60,6 +62,7 @@
 		</Linker>
 		<Unit filename="include/AssetManager.h" />
 		<Unit filename="include/Collision.h" />
+		<Unit filename="include/Configuration/Configuration.h" />
 		<Unit filename="include/ECS/Component.h" />
 		<Unit filename="include/ECS/ComponentManagerSingleton.h" />
 		<Unit filename="include/ECS/Components/GravityComponent.h" />
@@ -74,9 +77,12 @@
 		<Unit filename="include/ECS/Systems/RenderSystem.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/InputManager.h" />
-		<Unit filename="include/MenuState.h" />
+		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
-		<Unit filename="include/States/MenuState.h" />
+		<Unit filename="include/State/GameState.h" />
+		<Unit filename="include/State/MainMenuState.h" />
+		<Unit filename="include/State/SplashState.h" />
+		<Unit filename="include/TileMap.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AssetManager.cpp" />
 		<Unit filename="src/Collision.cpp" />
@@ -93,7 +99,10 @@
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/InputManager.cpp" />
 		<Unit filename="src/StateMachine.cpp" />
-		<Unit filename="src/States/MenuState.cpp" />
+		<Unit filename="src/State/GameState.cpp" />
+		<Unit filename="src/State/MainMenuState.cpp" />
+		<Unit filename="src/State/SplashState.cpp" />
+		<Unit filename="src/TileMap.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
