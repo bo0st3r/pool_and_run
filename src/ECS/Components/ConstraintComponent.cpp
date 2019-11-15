@@ -17,6 +17,19 @@ std::vector<ConstraintEnum> ConstraintComponent::getConstraints() const
     return constraints;
 }
 
+bool ConstraintComponent::hasConstraint(ConstraintEnum constraint) const
+{
+    for(int i = 0; i < constraints.size(); i++)
+    {
+        if(constraints[i] == constraint)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void ConstraintComponent::addConstraint(ConstraintEnum constraint)
 {
     if(std::find(constraints.begin(), constraints.end(), constraint) == constraints.end())

@@ -17,6 +17,7 @@
 #include <ColliderComponent.h>
 #include <CharacterComponent.h>
 #include <ConstraintComponent.h>
+#include <ControllerComponent.h>
 
 #include <TriggerComponent.h>
 #include <CheckPointTriggerComponent.h>
@@ -34,6 +35,7 @@ using Triggers = EntityComponentMap<TriggerComponent>;
 using Characters = EntityComponentMap<CharacterComponent>;
 using Constraints = EntityComponentMap<ConstraintComponent>;
 using Respawns = EntityComponentMap<RespawnComponent>;
+using Controllers = EntityComponentMap<ControllerComponent>;
 
 class System
 {

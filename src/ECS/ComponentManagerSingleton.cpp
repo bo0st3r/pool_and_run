@@ -79,6 +79,11 @@ void ComponentManagerSingleton::addComponentToEntity(Component& component, Compo
                 entityRespawn.insert(std::pair<Entity, std::unique_ptr<RespawnComponent>>(entity, std::unique_ptr<RespawnComponent>(&casted)));
                 break;
         }
+        case ControllerComponent::ID:{
+                ControllerComponent& casted = dynamic_cast<ControllerComponent&>(component);
+                entityController.insert(std::pair<Entity, std::unique_ptr<ControllerComponent>>(entity, std::unique_ptr<ControllerComponent>(&casted)));
+                break;
+        }
     }
 }
 
@@ -95,6 +100,7 @@ void ComponentManagerSingleton::removeComponentFromEntity(ComponentID component,
         case CharacterComponent::ID : {entityCharacters.erase(entity);}break;
         case ConstraintComponent::ID : {entityConstraints.erase(entity);}break;
         case RespawnComponent::ID : {entityRespawn.erase(entity);}break;
+        case ControllerComponent::ID : {entityController.erase(entity);}break;
     }
 }
 
@@ -109,6 +115,7 @@ void ComponentManagerSingleton::removeAllFromEntity(Entity entity)
     removeComponentFromEntity(CharacterComponent::ID, entity);
     removeComponentFromEntity(ConstraintComponent::ID, entity);
     removeComponentFromEntity(RespawnComponent::ID, entity);
+    removeComponentFromEntity(ControllerComponent::ID, entity);
 }
 
 EntityComponentMap<PositionComponent>& ComponentManagerSingleton::getEntityPositionMap()
@@ -156,4 +163,7 @@ EntityComponentMap<RespawnComponent>& ComponentManagerSingleton::getEntityRespaw
     return entityRespawn;
 }
 
-
+EntityComponentMap<ControllerComponent>& ComponentManagerSingleton::getEntityControllerMap()
+{
+    return entityController;
+}

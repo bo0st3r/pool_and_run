@@ -72,6 +72,7 @@
 		<Unit filename="include/ECS/Components/CharacterComponent.h" />
 		<Unit filename="include/ECS/Components/ColliderComponent.h" />
 		<Unit filename="include/ECS/Components/ConstraintComponent.h" />
+		<Unit filename="include/ECS/Components/ControllerComponent.h" />
 		<Unit filename="include/ECS/Components/GravityComponent.h" />
 		<Unit filename="include/ECS/Components/PositionComponent.h" />
 		<Unit filename="include/ECS/Components/RendererComponent.h" />
@@ -88,6 +89,7 @@
 		<Unit filename="include/ECS/System.h" />
 		<Unit filename="include/ECS/SystemManagerSingleton.h" />
 		<Unit filename="include/ECS/Systems/CollisionSystem.h" />
+		<Unit filename="include/ECS/Systems/ControllerSystem.h" />
 		<Unit filename="include/ECS/Systems/PhysicSystem.h" />
 		<Unit filename="include/ECS/Systems/RenderSystem.h" />
 		<Unit filename="include/ECS/Systems/RespawnSystem.h" />
@@ -109,6 +111,7 @@
 		<Unit filename="src/ECS/Components/CharacterComponent.cpp" />
 		<Unit filename="src/ECS/Components/ColliderComponent.cpp" />
 		<Unit filename="src/ECS/Components/ConstraintComponent.cpp" />
+		<Unit filename="src/ECS/Components/ControllerComponent.cpp" />
 		<Unit filename="src/ECS/Components/GravityComponent.cpp" />
 		<Unit filename="src/ECS/Components/PositionComponent.cpp" />
 		<Unit filename="src/ECS/Components/RendererComponent.cpp" />
@@ -124,6 +127,7 @@
 		<Unit filename="src/ECS/EntityManagerSingleton.cpp" />
 		<Unit filename="src/ECS/SystemManagerSingleton.cpp" />
 		<Unit filename="src/ECS/Systems/CollisionSystem.cpp" />
+		<Unit filename="src/ECS/Systems/ControllerSystem.cpp" />
 		<Unit filename="src/ECS/Systems/PhysicSystem.cpp" />
 		<Unit filename="src/ECS/Systems/RenderSystem.cpp" />
 		<Unit filename="src/ECS/Systems/RespawnSystem.cpp" />

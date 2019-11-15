@@ -24,14 +24,14 @@ Entity EntityCreator::createPlayer(float x, float y, std::string name, Component
 
     Entity player = ecs.createNewEntity();
 
-    compManager.addComponentToEntity(*(new CharacterComponent("Héro", "Joueur", 8, 10.0)), CharacterComponent::ID, player);
+    compManager.addComponentToEntity(*(new CharacterComponent("Héro", "Joueur", 8)), CharacterComponent::ID, player);
     compManager.addComponentToEntity(*(new RendererComponent(name, sf::Vector2f(0.1, 0.1), 4)), RendererComponent::ID, player);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, player);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, player);
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, player);
     compManager.addComponentToEntity(*(new ConstraintComponent()), ConstraintComponent::ID, player);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::PixelPerfect, false, 0.8)), ColliderComponent::ID, player);
-
+    compManager.addComponentToEntity(*(new ControllerComponent(10, 100, 100, 5)), ControllerComponent::ID, player);
     return player;
 }
 
@@ -47,7 +47,7 @@ Entity EntityCreator::createTile(float x, float y, std::string name, ComponentMa
 Entity EntityCreator::createEnnemyBall(float x, float y, std::string name, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
 
     Entity ball = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new CharacterComponent("Boule", "Ennemi", 0, 10.0)), CharacterComponent::ID, ball);
+    compManager.addComponentToEntity(*(new CharacterComponent("Boule", "Ennemi", 0)), CharacterComponent::ID, ball);
     compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, ball);
     compManager.addComponentToEntity(*(new PositionComponent(210, 250)), PositionComponent::ID, ball);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, ball);
@@ -61,7 +61,7 @@ Entity EntityCreator::createEnnemyBall(float x, float y, std::string name, Compo
 //création d'un ennemi queue
 Entity EntityCreator::createEnnemyCue(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs) {
     Entity cue = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new CharacterComponent("Queue", "Ennemi", 0, 10.0)), CharacterComponent::ID, cue);
+    compManager.addComponentToEntity(*(new CharacterComponent("Queue", "Ennemi", 0)), CharacterComponent::ID, cue);
     compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, cue);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, cue);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, cue);

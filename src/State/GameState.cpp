@@ -1,6 +1,10 @@
 #include "Configuration/Configuration.h"
 #include "State/GameState.h"
 
+#include "ECSCoordinatorSingleton.h"
+#include "ComponentManagerSingleton.h"
+
+
 using sf::Vector2f;
 
 namespace pr{
@@ -26,6 +30,25 @@ namespace pr{
     }
 
     void GameState::initTileMap(){
+
+        ECSCoordinatorSingleton& ecs = *(ECSCoordinatorSingleton::getInstance());
+        ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());
+
+        CollisionSystem collision = CollisionSystem(
+                                                    compManager.getEntityCharacterMap(),
+                                                    compManager.getEntityRendererMap(),
+                                                    compManager.getEntityPositionMap(),
+                                                    compManager.getEntityVelocityMap(),
+                                                    compManager.getEntityColliderMap(),
+                                                    compManager.getEntityTriggerMap(),
+                                                    compManager.getEntityConstraintMap(),
+                                                    _data->window
+                                                    );
+
+
+
+
+
         const int level[] = {
             24,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
             24,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
@@ -50,6 +73,8 @@ namespace pr{
         };
 
         _tileMap.loadMap(GAME_TILE_SET_FILEPATH, sf::Vector2u(TILE_WIDTH, TILE_HEIGHT), level, MAP_WIDTH, MAP_HEIGHT);
+
+        EntityCreator::createPlayer(100, 0, "ball", ecs, compManager);
     }
 
     void GameState::handleInput(Event event){
