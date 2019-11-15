@@ -1,6 +1,8 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include <vector>
+
 #include "State.h"
 #include "Game.h"
 #include "TileMap.h"
@@ -50,6 +52,8 @@ namespace pr{
             TileMap _tileMap;
 
             ViewRef _view;
+
+
     };
 }
 

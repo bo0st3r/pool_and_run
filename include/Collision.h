@@ -58,6 +58,7 @@ namespace Collision {
     /// The function returns false if the file could not be opened for some reason
     //////
     bool CreateTextureAndBitmask(sf::Texture &LoadInto, const std::string& Filename);
+    bool CreateTextureAndBitmaskFromTileMap(sf::Texture &LoadInto, const std::string& Filename, sf::IntRect);
 
     //////
     /// Test for collision using circle collision dection

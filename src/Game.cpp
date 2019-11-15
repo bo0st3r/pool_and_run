@@ -45,8 +45,10 @@ namespace pr{
 
             while(accumulator >= _dt){
                 Event event;
-                _data->window.pollEvent(event);
-                _data->machine.getActiveState()->handleInput(event);
+                while(_data->window.pollEvent(event))
+                {
+                    _data->machine.getActiveState()->handleInput(event);
+                }
 
                 _data->machine.getActiveState()->update(_dt);
 

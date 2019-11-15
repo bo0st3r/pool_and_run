@@ -38,6 +38,10 @@ namespace pr{
         return Collision::CreateTextureAndBitmask(_textures[name], filePath);
     }
 
+    bool AssetManager::loadTextureFromTileMap(const string& name, const string& filePath, sf::IntRect rect){
+        return Collision::CreateTextureAndBitmaskFromTileMap(_textures[name], filePath, rect);
+    }
+
     void AssetManager::unloadTexture(const string& name){
         _textures.erase(name);
     }

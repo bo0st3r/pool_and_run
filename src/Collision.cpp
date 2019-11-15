@@ -101,6 +101,18 @@ namespace Collision
         return true;
     }
 
+    bool CreateTextureAndBitmaskFromTileMap(sf::Texture &LoadInto, const std::string& Filename, sf::IntRect rect)
+    {
+        sf::Image img;
+        if (!img.loadFromFile(Filename))
+            return false;
+        if (!LoadInto.loadFromImage(img, rect))
+            return false;
+
+        Bitmasks.CreateMask(&LoadInto, img);
+        return true;
+    }
+
     sf::Vector2f GetSpriteCenter (const sf::Sprite& Object)
     {
         sf::FloatRect AABB = Object.getGlobalBounds();
