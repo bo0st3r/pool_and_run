@@ -18,6 +18,7 @@
 #include <CharacterComponent.h>
 #include <ConstraintComponent.h>
 #include <RespawnComponent.h>
+#include <ControllerComponent.h>
 
 //template pour les association Entité<->Component
 template <typename T>
@@ -43,6 +44,7 @@ class ComponentManagerSingleton
         EntityComponentMap<CharacterComponent>& getEntityCharacterMap();
         EntityComponentMap<ConstraintComponent>& getEntityConstraintMap();
         EntityComponentMap<RespawnComponent>& getEntityRespawnMap();
+        EntityComponentMap<ControllerComponent>& getEntityControllerMap();
 
     protected:
 
@@ -60,6 +62,7 @@ class ComponentManagerSingleton
         EntityComponentMap<CharacterComponent> entityCharacters;
         EntityComponentMap<ConstraintComponent> entityConstraints;
         EntityComponentMap<RespawnComponent> entityRespawn;
+        EntityComponentMap<ControllerComponent> entityController;
 };
 
 #endif // COMPONENTMANAGERSINGLETON_H

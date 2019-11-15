@@ -1,7 +1,7 @@
 #include "CharacterComponent.h"
 
-CharacterComponent::CharacterComponent(std::string myName, std::string tag, int live, float speed)
-:myName(myName), tag(tag), live(live), speed(speed)
+CharacterComponent::CharacterComponent(std::string myName, std::string tag, int live)
+:myName(myName), tag(tag), live(live)
 {}
 
 CharacterComponent::~CharacterComponent()
@@ -27,11 +27,6 @@ std::string CharacterComponent::getTag() const
 int CharacterComponent::getLive()const
 {
     return live;
-}
-
-float CharacterComponent::getSpeed()const
-{
-    return speed;
 }
 
 void CharacterComponent::addLive(int amount)

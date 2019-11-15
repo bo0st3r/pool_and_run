@@ -12,6 +12,7 @@ class ConstraintComponent : public Component
 
         virtual ComponentID getTypeId() const;
         std::vector<ConstraintEnum> getConstraints() const;
+        bool hasConstraint(ConstraintEnum constraint) const;
 
         void addConstraint(ConstraintEnum constraint);
         void removeConstraint(ConstraintEnum constraint);

@@ -6,6 +6,7 @@
 #include "State.h"
 #include "Game.h"
 #include "TileMap.h"
+#include "EntityCreator.h"
 
 using sf::View;
 using std::unique_ptr;

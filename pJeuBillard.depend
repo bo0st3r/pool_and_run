@@ -2180,16 +2180,8 @@
 1573652073 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\triggersystem.h
 	<System.h>
 
-1573569264 source:c:\projetc++\main.cpp
-	<iostream>
-	<chrono>
-	<SFML/Graphics.hpp>
-	<SFML/System.hpp>
+1573744816 source:c:\projetc++\main.cpp
 	"Game.h"
-	"ECSCoordinatorSingleton.h"
-	"AssetManager.h"
-	"InputManager.h"
-	"EntityCreator.h"
 
 1573054824 c:\projetc++\sfml-2.5.1\include\sfml\graphics.hpp
 
@@ -2585,7 +2577,13 @@
 
 1573559355 c:\_c++\ppoolandrun\include\game.h
 
-1573054825 c:\projetc++\include\game.h
+1573744816 c:\projetc++\include\game.h
+	<memory>
+	<string>
+	<SFML/Graphics.hpp>
+	"StateMachine.h"
+	"AssetManager.h"
+	"InputManager.h"
 
 1573397085 c:\_c++\ppoolandrun\include\statemachine.h
 
@@ -2603,14 +2601,14 @@
 
 1573123512 c:\_c++\ppoolandrun\include\ecs\ecscoordinatorsingleton.h
 
-1573213254 c:\projetc++\include\state.h
+1573744816 c:\projetc++\include\state.h
 	<SFML/Graphics.hpp>
 
-1573548806 c:\projetc++\include\assetmanager.h
+1573744816 c:\projetc++\include\assetmanager.h
 	<map>
 	<SFML/Graphics.hpp>
 
-1573054825 c:\projetc++\include\inputmanager.h
+1573744816 c:\projetc++\include\inputmanager.h
 	<SFML/Graphics.hpp>
 
 1573054825 c:\projetc++\include\ecs\ecscoordinatorsingleton.h
@@ -2625,7 +2623,23 @@
 	<cstdint>
 	<vector>
 
-1573548806 c:\projetc++\include\ecs\componentmanagersingleton.h
+1573747014 c:\projetc++\include\ecs\componentmanagersingleton.h
+	<unordered_map>
+	<cstdint>
+	<vector>
+	<EntityManagerSingleton.h>
+	<Component.h>
+	<PositionComponent.h>
+	<VelocityComponent.h>
+	<GravityComponent.h>
+	<RendererComponent.h>
+	<ColliderComponent.h>
+	<TriggerComponent.h>
+	<CheckPointTriggerComponent.h>
+	<CharacterComponent.h>
+	<ConstraintComponent.h>
+	<RespawnComponent.h>
+	<ControllerComponent.h>
 
 1573123512 c:\_c++\ppoolandrun\include\ecs\component.h
 	<cstdint>
@@ -2690,7 +2704,7 @@
 1573557359 c:\projetc++\include\ecs\components\gravitycomponent.h
 	<Component.h>
 
-1573213254 c:\projetc++\include\ecs\components\renderercomponent.h
+1573744816 c:\projetc++\include\ecs\components\renderercomponent.h
 	<SFML/Graphics.hpp>
 	<Component.h>
 
@@ -2703,10 +2717,10 @@
 1573548806 c:\projetc++\include\ecs\components\triggers\checkpointtriggercomponent.h
 	<TriggerComponent.h>
 
-1573548806 c:\projetc++\include\ecs\components\charactercomponent.h
+1573747919 c:\projetc++\include\ecs\components\charactercomponent.h
 	<Component.h>
 
-1573213254 c:\projetc++\include\ecs\components\constraintcomponent.h
+1573750317 c:\projetc++\include\ecs\components\constraintcomponent.h
 	<Component.h>
 	<ConstraintEnum.h>
 
@@ -2724,13 +2738,28 @@
 1573548806 c:\projetc++\include\ecs\systems\physicsystem.h
 	<System.h>
 
-1573548806 c:\projetc++\include\ecs\system.h
+1573747171 c:\projetc++\include\ecs\system.h
 	<unordered_map>
 	<vector>
 	<EntityManagerSingleton.h>
 	<ComponentManagerSingleton.h>
 	<Vector2fMath.h>
 	<ConstraintEnum.h>
+	<Component.h>
+	<PositionComponent.h>
+	<VelocityComponent.h>
+	<GravityComponent.h>
+	<RendererComponent.h>
+	<ColliderComponent.h>
+	<CharacterComponent.h>
+	<ConstraintComponent.h>
+	<ControllerComponent.h>
+	<TriggerComponent.h>
+	<CheckPointTriggerComponent.h>
+	<CueAttackTriggerComponent.h>
+	<EndLevelTriggerComponent.h>
+	<HoleTriggerComponent.h>
+	<WarpTriggerComponent.h>
 
 1573123512 c:\_c++\ppoolandrun\include\ecs\systems\rendersystem.h
 	<ColliderComponent.h>
@@ -2747,7 +2776,7 @@
 	<cmath>
 	<SFML/System.hpp>
 
-1573557359 c:\projetc++\include\ecs\components\triggers\cueattacktriggercomponent.h
+1573744816 c:\projetc++\include\ecs\components\triggers\cueattacktriggercomponent.h
 	<TriggerComponent.h>
 
 1573548806 c:\projetc++\include\ecs\components\triggers\endleveltriggercomponent.h
@@ -2763,7 +2792,7 @@
 
 1573397853 source:c:\_c++\ppoolandrun\src\assetmanager.cpp
 
-1573548806 c:\projetc++\include\ecs\systems\collisionsystem.h
+1573744816 c:\projetc++\include\ecs\systems\collisionsystem.h
 	<System.h>
 	<Collision.h>
 
@@ -2773,11 +2802,14 @@
 1573548806 c:\projetc++\include\ecs\systems\respawnsystem.h
 	<System.h>
 
-1573548806 c:\projetc++\include\ecs\systems\triggersystem.h
+1573744816 c:\projetc++\include\ecs\systems\triggersystem.h
 	<System.h>
-	<iostream>
 
-1573054825 source:c:\projetc++\src\assetmanager.cpp
+1573744816 source:c:\projetc++\src\assetmanager.cpp
+	<iostream>
+	<stdexcept>
+	"Collision.h"
+	"AssetManager.h"
 
 1573123512 c:\_c++\ppoolandrun\include\collision.h
 	<SFML/Graphics.hpp>
@@ -2949,17 +2981,17 @@
 	<map>
 	"Collision.h"
 
-1573548806 source:c:\projetc++\src\ecs\componentmanagersingleton.cpp
+1573747121 source:c:\projetc++\src\ecs\componentmanagersingleton.cpp
 	"ComponentManagerSingleton.h"
 	<iostream>
 
-1573548806 source:c:\projetc++\src\ecs\components\charactercomponent.cpp
+1573747937 source:c:\projetc++\src\ecs\components\charactercomponent.cpp
 	"CharacterComponent.h"
 
 1573548806 source:c:\projetc++\src\ecs\components\collidercomponent.cpp
 	"ColliderComponent.h"
 
-1573213255 source:c:\projetc++\src\ecs\components\constraintcomponent.cpp
+1573750536 source:c:\projetc++\src\ecs\components\constraintcomponent.cpp
 	"ConstraintComponent.h"
 
 1573213255 source:c:\projetc++\src\ecs\components\gravitycomponent.cpp
@@ -2968,7 +3000,7 @@
 1573213255 source:c:\projetc++\src\ecs\components\positioncomponent.cpp
 	"PositionComponent.h"
 
-1573213255 source:c:\projetc++\src\ecs\components\renderercomponent.cpp
+1573744816 source:c:\projetc++\src\ecs\components\renderercomponent.cpp
 	"RendererComponent.h"
 
 1573548806 source:c:\projetc++\src\ecs\components\respawncomponent.cpp
@@ -2977,7 +3009,7 @@
 1573548806 source:c:\projetc++\src\ecs\components\triggercomponent.cpp
 	"TriggerComponent.h"
 
-1573548806 source:c:\projetc++\src\ecs\components\triggers\checkpointtriggercomponent.cpp
+1573744816 source:c:\projetc++\src\ecs\components\triggers\checkpointtriggercomponent.cpp
 	"CheckPointTriggerComponent.h"
 	<iostream>
 
@@ -3007,29 +3039,28 @@
 1573054825 source:c:\projetc++\src\ecs\systemmanagersingleton.cpp
 	"SystemManagerSingleton.h"
 
-1573548806 source:c:\projetc++\src\ecs\systems\collisionsystem.cpp
+1573744816 source:c:\projetc++\src\ecs\systems\collisionsystem.cpp
 	"CollisionSystem.h"
-	<iostream>
 
-1573548806 source:c:\projetc++\src\ecs\systems\physicsystem.cpp
+1573744816 source:c:\projetc++\src\ecs\systems\physicsystem.cpp
 	"PhysicSystem.h"
-	<iostream>
 
-1573558846 source:c:\projetc++\src\ecs\systems\rendersystem.cpp
+1573744816 source:c:\projetc++\src\ecs\systems\rendersystem.cpp
 	"RenderSystem.h"
-	<iostream>
 
-1573548806 source:c:\projetc++\src\ecs\systems\respawnsystem.cpp
+1573744816 source:c:\projetc++\src\ecs\systems\respawnsystem.cpp
 	"RespawnSystem.h"
 
-1573548806 source:c:\projetc++\src\ecs\systems\triggersystem.cpp
+1573744816 source:c:\projetc++\src\ecs\systems\triggersystem.cpp
 	"TriggerSystem.h"
 
-1573054825 source:c:\projetc++\src\game.cpp
+1573744816 source:c:\projetc++\src\game.cpp
 	"Game.h"
 	<iostream>
+	<windows.h>
+	"State/SplashState.h"
 
-1573054825 source:c:\projetc++\src\inputmanager.cpp
+1573744816 source:c:\projetc++\src\inputmanager.cpp
 	<iostream>
 	"Collision.h"
 	"InputManager.h"
@@ -3062,7 +3093,7 @@
 	"InputManager.h"
 	"ComponentManagerSingleton.h"
 
-1573568934 source:c:\projetc++\src\entitycreator.cpp
+1573744816 source:c:\projetc++\src\entitycreator.cpp
 	"EntityCreator.h"
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
@@ -3128,4 +3159,55 @@
 	"State.h"
 	"Game.h"
 	"TileMap.h"
+
+1573744816 c:\projetc++\include\state\splashstate.h
+	"State.h"
+	"Game.h"
+
+1573744816 source:c:\projetc++\src\state\gamestate.cpp
+	"Configuration/Configuration.h"
+	"State/GameState.h"
+
+1573744816 c:\projetc++\include\configuration\configuration.h
+
+1573744816 c:\projetc++\include\state\gamestate.h
+	"State.h"
+	"Game.h"
+	"TileMap.h"
+
+1573744816 c:\projetc++\include\tilemap.h
+	<SFML/Graphics.hpp>
+
+1573744816 source:c:\projetc++\src\state\mainmenustate.cpp
+	"State/MainMenuState.h"
+	"Configuration/Configuration.h"
+	<iostream>
+	"State/GameState.h"
+
+1573744816 c:\projetc++\include\state\mainmenustate.h
+	"State.h"
+	"Game.h"
+
+1573744816 source:c:\projetc++\src\state\splashstate.cpp
+	"Configuration/Configuration.h"
+	"State/SplashState.h"
+	"State/MainMenuState.h"
+	<iostream>
+
+1573744816 source:c:\projetc++\src\tilemap.cpp
+	"Collision.h"
+	"TileMap.h"
+	<iostream>
+
+1573749605 c:\projetc++\include\ecs\components\controllercomponent.h
+	<Component.h>
+
+1573750810 source:c:\projetc++\src\ecs\components\controllercomponent.cpp
+	"ControllerComponent.h"
+
+1573750616 source:c:\projetc++\src\ecs\systems\controllersystem.cpp
+	"ControllerSystem.h"
+
+1573750775 c:\projetc++\include\ecs\systems\controllersystem.h
+	<System.h>
 
