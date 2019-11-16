@@ -36,12 +36,22 @@ void ECSCoordinatorSingleton::removeComponentFromEntity(ComponentID component, E
     componentManager->removeComponentFromEntity(component, entity);
 }
 
-void ECSCoordinatorSingleton::addSystem(System& system)
+void ECSCoordinatorSingleton::addSystem(System* system)
 {
-    systemManager->addSystem(&system);
+    systemManager->addSystem(system);
+}
+
+void ECSCoordinatorSingleton::addSystem(RenderSystem* render)
+{
+    systemManager->addSystem(render);
 }
 
 void ECSCoordinatorSingleton::updateSystems(float dt)
 {
     systemManager->updateSystems(dt);
+}
+
+void ECSCoordinatorSingleton::updateRender(float dt, sf::RenderWindow& view)
+{
+    systemManager->updateRender(dt, view);
 }

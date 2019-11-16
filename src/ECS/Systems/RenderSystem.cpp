@@ -1,10 +1,10 @@
 #include "RenderSystem.h"
+#include <iostream>
 
-RenderSystem::RenderSystem(Positions& p, Renderers& r, sf::RenderWindow& v, pr::AssetManager& am)
+RenderSystem::RenderSystem(Positions& p, Renderers& r, pr::AssetManager& am)
 {
     positions = &p;
     renderers = &r;
-    view = &v;
     asset = &am;
 }
 
@@ -12,8 +12,12 @@ RenderSystem::~RenderSystem()
 {
     delete positions;
     delete renderers;
-    delete view;
     delete asset;
+}
+
+void RenderSystem::update(float dt)
+{
+
 }
 
 
@@ -32,16 +36,12 @@ RenderSystem::~RenderSystem()
 ///avant de finalement le dessiner sur la vue
 ///(par soucis d'optimisation, le draw des tiles individuelles est remplacer par le draw du niveau mais leur existence reste nécéssaire pour les collision)
 ///et pour finir il va afficher la vue dans la fenêtre
-void RenderSystem::update(float dt)
+void RenderSystem::updateRender(float dt, sf::RenderWindow& view)
 {
-
-    view->clear();
-
     for(int layer = -1; layer < 6; layer++)
     {
         for(Renderers::iterator it = renderers->begin(); it != renderers->cend(); it++)
         {
-
             Entity entity = it->first;
             RendererComponent& render = *(it->second);
             sf::Sprite& sprite = render.getSpriteRef();
@@ -68,9 +68,8 @@ void RenderSystem::update(float dt)
             }
 
             //dessinne le sprite
-            if(layer >= 0){view->draw(sprite);}
+            if(layer >= 0){view.draw(sprite);}
 
         }
     }
-    view->display();
 }

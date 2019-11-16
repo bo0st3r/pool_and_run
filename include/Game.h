@@ -35,11 +35,13 @@ namespace pr{
             Game(int screenWidth = SCREEN_WIDTH, int screenHeight = SCREEN_HEIGHT, string screenTitle = "Pool and Run");
             virtual ~Game();
 
+            void initTextures();
+
         protected:
 
         private:
             /// Game's max framerate
-            const float _dt = 1.0 / 120.0;
+            const float _dt = 1.0 / 50.0;
             Clock _clock;
             /// Represents the window, state machine, asset manager and input manager
             GameDataRef _data = std::make_shared<GameData>();

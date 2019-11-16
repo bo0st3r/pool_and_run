@@ -10,17 +10,17 @@
 class RenderSystem : public System
 {
     public:
-        RenderSystem(Positions& p, Renderers& r, sf::RenderWindow& v, pr::AssetManager& am);
+        RenderSystem(Positions& p, Renderers& r, pr::AssetManager& am);
         virtual ~RenderSystem();
 
         virtual void update(float dt);
+        void updateRender(float dt, sf::RenderWindow& view);
 
     protected:
 
     private:
         Positions* positions;
         Renderers* renderers;
-        sf::RenderWindow* view;
         pr::AssetManager* asset;
 };
 

@@ -22,7 +22,6 @@ namespace pr{
         // Tries to load file
         if(!Collision::CreateTextureAndBitmask(_tileSet, tileSet))
             return false;
-
         // Resizes the vertex array so it can contain the whole level
         _vertices.setPrimitiveType(sf::Quads);
         _vertices.resize(width * height * 4);

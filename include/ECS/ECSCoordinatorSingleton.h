@@ -16,9 +16,10 @@ class ECSCoordinatorSingleton
 
         void removeComponentFromEntity(ComponentID component, Entity entity); //retire le component de l'entité
 
-        void addSystem(System& system); //ajoute un systeme à executé lors de l'execution /!\ ajouter dans l'ordre d'execution voulu /!\//
+        void addSystem(System* system); //ajoute un systeme à executé lors de l'execution /!\ ajouter dans l'ordre d'execution voulu /!\//
+        void addSystem(RenderSystem* render);
         void updateSystems(float dt); //met à jour les systeme en leur disant le temps ecouler depuis la dernière update
-
+        void updateRender(float dt, sf::RenderWindow& view); //permet de mettre a jour le render séparement des autres systèmes
     protected:
 
     private:

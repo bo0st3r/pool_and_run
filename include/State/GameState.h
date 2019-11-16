@@ -8,6 +8,9 @@
 #include "TileMap.h"
 #include "EntityCreator.h"
 
+#include "ECSCoordinatorSingleton.h"
+#include "ComponentManagerSingleton.h"
+
 using sf::View;
 using std::unique_ptr;
 
@@ -34,8 +37,11 @@ namespace pr{
             ///////////////////////
             void initTileMap();
             ///////////////////////
-            /// \brief Inits the game'characters.
+            /// \brief Inits the ECS
             ///////////////////////
+            void initECS();
+
+            void initEntities();
 
 
             ///////////////////////
@@ -53,6 +59,10 @@ namespace pr{
             TileMap _tileMap;
 
             ViewRef _view;
+
+            ECSCoordinatorSingleton* ecs;
+            ComponentManagerSingleton* compManager;
+
 
 
     };

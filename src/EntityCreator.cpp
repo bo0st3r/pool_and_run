@@ -20,12 +20,12 @@ EntityCreator::~EntityCreator()
 }
 
 //methode pour la creation d'un joueur
-Entity EntityCreator::createPlayer(float x, float y, std::string name, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
+Entity EntityCreator::createPlayer(float x, float y, std::string textureName, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
 
     Entity player = ecs.createNewEntity();
 
     compManager.addComponentToEntity(*(new CharacterComponent("Héro", "Joueur", 8)), CharacterComponent::ID, player);
-    compManager.addComponentToEntity(*(new RendererComponent(name, sf::Vector2f(0.1, 0.1), 4)), RendererComponent::ID, player);
+    compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.1, 0.1), 4)), RendererComponent::ID, player);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, player);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, player);
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, player);
@@ -35,20 +35,20 @@ Entity EntityCreator::createPlayer(float x, float y, std::string name, Component
     return player;
 }
 
-Entity EntityCreator::createTile(float x, float y, std::string name, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
+Entity EntityCreator::createTile(float x, float y, std::string textureName, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
     Entity platform = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent(name, sf::Vector2f(0.1, 0.1), -1)), RendererComponent::ID, platform);
+    compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.1, 0.1), -1)), RendererComponent::ID, platform);
     compManager.addComponentToEntity(*(new PositionComponent(x,y)), PositionComponent::ID, platform);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, false, 0.5)), ColliderComponent::ID, platform);
 
     return platform;
 }
 //création d'un ennemi boule
-Entity EntityCreator::createEnnemyBall(float x, float y, std::string name, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
+Entity EntityCreator::createEnnemyBall(float x, float y, std::string textureName, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
 
     Entity ball = ecs.createNewEntity();
     compManager.addComponentToEntity(*(new CharacterComponent("Boule", "Ennemi", 0)), CharacterComponent::ID, ball);
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, ball);
+    compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, ball);
     compManager.addComponentToEntity(*(new PositionComponent(210, 250)), PositionComponent::ID, ball);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, ball);
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, ball);
@@ -62,7 +62,7 @@ Entity EntityCreator::createEnnemyBall(float x, float y, std::string name, Compo
 Entity EntityCreator::createEnnemyCue(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs) {
     Entity cue = ecs.createNewEntity();
     compManager.addComponentToEntity(*(new CharacterComponent("Queue", "Ennemi", 0)), CharacterComponent::ID, cue);
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, cue);
+    compManager.addComponentToEntity(*(new RendererComponent("ball2", sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, cue);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, cue);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, cue);
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, cue);
@@ -77,7 +77,7 @@ Entity EntityCreator::createEnnemyCue(float x, float y, ComponentManagerSingleto
 Entity EntityCreator::createCheckPoint(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
 
     Entity checkPoint = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, checkPoint);
+    compManager.addComponentToEntity(*(new RendererComponent("ball12", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, checkPoint);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, checkPoint);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, checkPoint);
     compManager.addComponentToEntity(*(new CheckPointTriggerComponent()), TriggerComponent::ID, checkPoint);
@@ -90,33 +90,33 @@ Entity EntityCreator::createCheckPoint(float x, float y, ComponentManagerSinglet
 void EntityCreator::createWarp(float x1, float y1,float x2, float y2,  ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
 
     Entity warp1 = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1),2)), RendererComponent::ID, warp1);
+    compManager.addComponentToEntity(*(new RendererComponent("ball7", sf::Vector2f(0.1, 0.1),2)), RendererComponent::ID, warp1);
     compManager.addComponentToEntity(*(new PositionComponent(x1, y1)), PositionComponent::ID, warp1);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, warp1);
-    compManager.addComponentToEntity(*(new WarpTriggerComponent(sf::Vector2f(x2+50, y2), true)), TriggerComponent::ID, warp1);
+    compManager.addComponentToEntity(*(new WarpTriggerComponent(sf::Vector2f(x2, y2), true)), TriggerComponent::ID, warp1);
 
     Entity warp2 = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, warp2);
+    compManager.addComponentToEntity(*(new RendererComponent("ball7", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, warp2);
     compManager.addComponentToEntity(*(new PositionComponent(x2, y2)), PositionComponent::ID, warp2);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, warp2);
-    compManager.addComponentToEntity(*(new WarpTriggerComponent(sf::Vector2f(x1-50, y1), false)), TriggerComponent::ID, warp2);
+    compManager.addComponentToEntity(*(new WarpTriggerComponent(sf::Vector2f(x1, y1), false)), TriggerComponent::ID, warp2);
 
 }
 //creation des trous
-Entity EntityCreator::createHole(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton ecs){
+Entity EntityCreator::createHole(float x, float y, std::string targetTag, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton ecs){
 
     Entity hole = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, hole);
+    compManager.addComponentToEntity(*(new RendererComponent("ball9", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, hole);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, hole);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, hole);
-    compManager.addComponentToEntity(*(new HoleTriggerComponent("Ennemi")), TriggerComponent::ID, hole);
+    compManager.addComponentToEntity(*(new HoleTriggerComponent(targetTag)), TriggerComponent::ID, hole);
 }
 
 //creation de la fin du niveau
 Entity EntityCreator::createEndLevel(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton ecs){
 
     Entity endLevel = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent("ball", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, endLevel);
+    compManager.addComponentToEntity(*(new RendererComponent("ball8", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, endLevel);
     compManager.addComponentToEntity(*(new PositionComponent(150, 350)), PositionComponent::ID, endLevel);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, true, 0)), ColliderComponent::ID, endLevel);
     compManager.addComponentToEntity(*(new EndLevelTriggerComponent()), TriggerComponent::ID, endLevel);

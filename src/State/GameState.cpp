@@ -1,23 +1,27 @@
 #include "Configuration/Configuration.h"
 #include "State/GameState.h"
 
-#include "ECSCoordinatorSingleton.h"
-#include "ComponentManagerSingleton.h"
-
+#include <iostream>
 
 using sf::Vector2f;
 
 namespace pr{
     GameState::GameState(GameDataRef data):_data(data){
         _view = ViewRef(new View(Vector2f(0.0f, 0.0f), Vector2f(float(Game::VIEW_WIDTH), float(Game::VIEW_HEIGHT))));
+
+        ecs = ECSCoordinatorSingleton::getInstance();
+        compManager = ComponentManagerSingleton::getInstance();
     }
 
     GameState::~GameState()
     {
-        //dtor
+        delete ecs;
+        delete compManager;
     }
 
     void GameState::init(){
+        initECS();
+        initEntities();
         initTileMap();
 
         // Loads and sets the background
@@ -27,27 +31,10 @@ namespace pr{
 
         // Scales the background to fit the window size
         scaleBackgroundToWindow(_background, _data);
+
     }
 
     void GameState::initTileMap(){
-
-        ECSCoordinatorSingleton& ecs = *(ECSCoordinatorSingleton::getInstance());
-        ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());
-
-        CollisionSystem collision = CollisionSystem(
-                                                    compManager.getEntityCharacterMap(),
-                                                    compManager.getEntityRendererMap(),
-                                                    compManager.getEntityPositionMap(),
-                                                    compManager.getEntityVelocityMap(),
-                                                    compManager.getEntityColliderMap(),
-                                                    compManager.getEntityTriggerMap(),
-                                                    compManager.getEntityConstraintMap(),
-                                                    _data->window
-                                                    );
-
-
-
-
 
         const int level[] = {
             24,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
@@ -74,7 +61,66 @@ namespace pr{
 
         _tileMap.loadMap(GAME_TILE_SET_FILEPATH, sf::Vector2u(TILE_WIDTH, TILE_HEIGHT), level, MAP_WIDTH, MAP_HEIGHT);
 
-        EntityCreator::createPlayer(100, 0, "ball", ecs, compManager);
+    }
+
+    void GameState::initECS()
+    {
+        CollisionSystem* collision = new CollisionSystem(
+                                                    compManager->getEntityCharacterMap(),
+                                                    compManager->getEntityRendererMap(),
+                                                    compManager->getEntityPositionMap(),
+                                                    compManager->getEntityVelocityMap(),
+                                                    compManager->getEntityColliderMap(),
+                                                    compManager->getEntityTriggerMap(),
+                                                    compManager->getEntityConstraintMap(),
+                                                    *_view
+                                                    );
+
+        ControllerSystem* controller = new ControllerSystem(
+                                                       compManager->getEntityVelocityMap(),
+                                                       compManager->getEntityConstraintMap(),
+                                                       compManager->getEntityControllerMap()
+                                                       );
+
+        PhysicSystem* physic = new PhysicSystem(
+                                           compManager->getEntityPositionMap(),
+                                           compManager->getEntityVelocityMap(),
+                                           compManager->getEntityGravityMap(),
+                                           compManager->getEntityConstraintMap()
+                                           );
+
+        RenderSystem* render = new RenderSystem(
+                                           compManager->getEntityPositionMap(),
+                                           compManager->getEntityRendererMap(),
+                                           _data->assets
+                                           );
+
+        RespawnSystem* respawn = new RespawnSystem(
+                                              compManager->getEntityRespawnMap(),
+                                              compManager->getEntityCharacterMap(),
+                                              compManager->getEntityPositionMap(),
+                                              compManager->getEntityVelocityMap(),
+                                              compManager->getEntityTriggerMap()
+                                              );
+
+        TriggerSystem* trigger = new TriggerSystem(
+                                              compManager->getEntityTriggerMap(),
+                                              compManager->getEntityPositionMap(),
+                                              compManager->getEntityVelocityMap(),
+                                              compManager->getEntityRendererMap()
+                                              );
+
+        ecs->addSystem(controller);
+        ecs->addSystem(collision);
+        ecs->addSystem(trigger);
+        ecs->addSystem(respawn);
+        ecs->addSystem(physic);
+        ecs->addSystem(render);
+    }
+
+    void GameState::initEntities()
+    {
+        EntityCreator::createPlayer(300, 0, "ball0", *compManager, *ecs);
     }
 
     void GameState::handleInput(Event event){
@@ -89,8 +135,9 @@ namespace pr{
     }
 
     void GameState::update(float dt){
+        ecs->updateSystems(dt);
 
-        // Put that one line below after entities updates to avoid stuttering
+            // Put that one line below after entities updates to avoid stuttering
         _view->setCenter(Vector2f(336.0f, 380.0f));
 //        if(_view->getCenter)
 /*
@@ -108,12 +155,14 @@ ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
     */
         resizeView();
-        _data->window.setView(*_view);
-    }
+        //_data->window.setView(*_view);
+    }
 
     void GameState::draw(float dt){
+
         _data->window.draw(_background);
         _data->window.draw(_tileMap);
+        ecs->updateRender(dt, _data->window);
     }
 
     void GameState::resizeView(){

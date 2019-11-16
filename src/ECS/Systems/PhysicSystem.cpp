@@ -21,6 +21,7 @@ PhysicSystem::~PhysicSystem()
 ///en particulier l'application de forces sur les entités ainsi que leurs calculs de déplacement
 void PhysicSystem::update(float dt)
 {
+
     for(Positions::iterator it = positions->begin(); it != positions->cend(); it++)
     {
         Entity entity = it->first;

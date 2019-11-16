@@ -21,7 +21,7 @@ namespace pr{
             inline static const string TILESETS_PATH = RESSOURCES_PATH + "tilesets/";
 
             inline static const string IMG_PATH = RESSOURCES_PATH + "img/";
-            inline static const string BALLS_PATH = IMG_PATH + "balls/";
+            inline static const string BALLS_PATH = IMG_PATH + "game/balls/";
             inline static const string OTHERS_PATH = IMG_PATH + "others/";
 
             AssetManager();
@@ -46,7 +46,7 @@ namespace pr{
             /// \brief Loads a Texture from a file path into _textures and assigns it to the given name.
             ////////////////////////////////////////////////////////////
             bool loadTexture(const string& name, const string& filePath);
-
+            bool loadTextureFromTileMap(const string& name, const string& filePath, sf::IntRect rect);
             ////////////////////////////////////////////////////////////
             /// \brief Unloads from _textures the Texture, if existing, that corresponds to the given name.
             ////////////////////////////////////////////////////////////

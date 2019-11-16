@@ -3,11 +3,12 @@
 
 #include <vector>
 
-#include <PhysicSystem.h>
-#include <RenderSystem.h>
-#include <CollisionSystem.h>
-#include <RespawnSystem.h>
-#include <TriggerSystem.h>
+#include "PhysicSystem.h"
+#include "RenderSystem.h"
+#include "CollisionSystem.h"
+#include "RespawnSystem.h"
+#include "TriggerSystem.h"
+#include "ControllerSystem.h"
 
 class SystemManagerSingleton
 {
@@ -16,7 +17,9 @@ class SystemManagerSingleton
         virtual ~SystemManagerSingleton();
 
         void addSystem(System* system);
+        void addSystem(RenderSystem* system);
         void updateSystems(float dt);
+        void updateRender(float dt, sf::RenderWindow& view);
 
     protected:
 
@@ -25,6 +28,7 @@ class SystemManagerSingleton
         static inline SystemManagerSingleton* instance = 0;
 
         std::vector<System*> systems;
+        RenderSystem* render = 0;
 
 };
 
