@@ -25,19 +25,19 @@ Entity EntityCreator::createPlayer(float x, float y, std::string textureName, Co
     Entity player = ecs.createNewEntity();
 
     compManager.addComponentToEntity(*(new CharacterComponent("Héro", "Joueur", 8)), CharacterComponent::ID, player);
-    compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.1, 0.1), 4)), RendererComponent::ID, player);
+    compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.075, 0.075), 4)), RendererComponent::ID, player);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, player);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, player);
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, player);
     compManager.addComponentToEntity(*(new ConstraintComponent()), ConstraintComponent::ID, player);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::PixelPerfect, false, 0.8)), ColliderComponent::ID, player);
-    compManager.addComponentToEntity(*(new ControllerComponent(10, 100, 100, 5)), ControllerComponent::ID, player);
+    compManager.addComponentToEntity(*(new ControllerComponent(100, 100, 200, 5)), ControllerComponent::ID, player);
     return player;
 }
 
-Entity EntityCreator::createTile(float x, float y, std::string textureName, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
+Entity EntityCreator::createTile(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
     Entity platform = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.1, 0.1), -1)), RendererComponent::ID, platform);
+    compManager.addComponentToEntity(*(new RendererComponent("tile", sf::Vector2f(1, 1), 1)), RendererComponent::ID, platform);
     compManager.addComponentToEntity(*(new PositionComponent(x,y)), PositionComponent::ID, platform);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::Box, false, 0.5)), ColliderComponent::ID, platform);
 
@@ -48,10 +48,10 @@ Entity EntityCreator::createEnnemyBall(float x, float y, std::string textureName
 
     Entity ball = ecs.createNewEntity();
     compManager.addComponentToEntity(*(new CharacterComponent("Boule", "Ennemi", 0)), CharacterComponent::ID, ball);
-    compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, ball);
-    compManager.addComponentToEntity(*(new PositionComponent(210, 250)), PositionComponent::ID, ball);
+    compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.075, 0.075), 3)), RendererComponent::ID, ball);
+    compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, ball);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, ball);
-    compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, ball);
+    //compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, ball);
     compManager.addComponentToEntity(*(new ConstraintComponent()), ConstraintComponent::ID, ball);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::PixelPerfect, false, 0.8)), ColliderComponent::ID, ball);
 

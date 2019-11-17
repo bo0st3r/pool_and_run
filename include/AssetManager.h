@@ -21,7 +21,8 @@ namespace pr{
             inline static const string TILESETS_PATH = RESSOURCES_PATH + "tilesets/";
 
             inline static const string IMG_PATH = RESSOURCES_PATH + "img/";
-            inline static const string BALLS_PATH = IMG_PATH + "game/balls/";
+            inline static const string GAME_PATH = IMG_PATH + "game/";
+            inline static const string BALLS_PATH = GAME_PATH + "balls/";
             inline static const string OTHERS_PATH = IMG_PATH + "others/";
 
             AssetManager();

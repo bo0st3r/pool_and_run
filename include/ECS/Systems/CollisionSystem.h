@@ -5,6 +5,7 @@
 
 #include <System.h>
 #include <Collision.h>
+#include "Configuration/Configuration.h"
 
 class CollisionSystem : public System
 {
@@ -16,12 +17,13 @@ class CollisionSystem : public System
                         Colliders& col,
                         Triggers& t,
                         Constraints& con,
-                        sf::View v
+                        sf::View& v
                         );
         virtual ~CollisionSystem();
 
         virtual void update(float dt);
         void addCollisionConstraints(sf::Sprite s1, sf::Sprite s2, Entity entity);
+        void viewClamping();
         bool addViewBorderConstraints(sf::Sprite s, Entity entity);
         void removeCollisionConstraints(Entity entity);
         void transfertVelocity(Entity e1, Entity e2, float absorption);
@@ -37,9 +39,10 @@ class CollisionSystem : public System
         Colliders* colliders;
         Triggers* triggers;
         Constraints* constraints;
-        sf::View view;
+        sf::View* view;
 
-        static inline float maxCollidingDistance = 100;
+        static inline float maxCollidingDistance = 45;
+        static inline float minBouncingSpeed = 20;
 };
 
 #endif // COLLISIONSYSTEM_H

@@ -3,6 +3,9 @@
 
 
 #include <SFML/Graphics.hpp>
+#include <ECSCoordinatorSingleton.h>
+#include <ComponentManagerSingleton.h>
+#include <EntityCreator.h>
 
 using std::string;
 using sf::Vector2u;
@@ -17,7 +20,7 @@ namespace pr{
             ///////////////
             /// \brief Loads the map as an VertexArray into _vertices and an Texture into _tileSet.
             ///////////////
-            loadMap(const string& tileSet, Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height);
+            loadMap(const string& tileSet, Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height, ECSCoordinatorSingleton* ecs, ComponentManagerSingleton* compManager);
 
         protected:
 

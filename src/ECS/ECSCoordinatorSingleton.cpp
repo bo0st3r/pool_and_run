@@ -51,7 +51,7 @@ void ECSCoordinatorSingleton::updateSystems(float dt)
     systemManager->updateSystems(dt);
 }
 
-void ECSCoordinatorSingleton::updateRender(float dt, sf::RenderWindow& view)
+void ECSCoordinatorSingleton::updateRender(float dt, sf::RenderWindow& window, sf::View& view)
 {
-    systemManager->updateRender(dt, view);
+    systemManager->updateRender(dt, window, view);
 }

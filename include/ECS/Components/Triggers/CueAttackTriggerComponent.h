@@ -11,7 +11,7 @@ class CueAttackTriggerComponent : public TriggerComponent
         virtual ~CueAttackTriggerComponent();
         static inline const ComponentID TRIGGER_ID = 504;
         static inline const float SPEED_CAP = 200;
-        static inline const float BUMP_SPEED = 3000;
+        static inline const float BUMP_SPEED = 300;
 
         virtual ComponentID getTriggerId() const;
         Entity getTargetEntity() const;

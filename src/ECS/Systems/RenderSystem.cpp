@@ -36,7 +36,7 @@ void RenderSystem::update(float dt)
 ///avant de finalement le dessiner sur la vue
 ///(par soucis d'optimisation, le draw des tiles individuelles est remplacer par le draw du niveau mais leur existence reste nécéssaire pour les collision)
 ///et pour finir il va afficher la vue dans la fenêtre
-void RenderSystem::updateRender(float dt, sf::RenderWindow& view)
+void RenderSystem::updateRender(float dt, sf::RenderWindow& window, sf::View& view)
 {
     for(int layer = -1; layer < 6; layer++)
     {
@@ -68,7 +68,7 @@ void RenderSystem::updateRender(float dt, sf::RenderWindow& view)
             }
 
             //dessinne le sprite
-            if(layer >= 0){view.draw(sprite);}
+            if(layer >= 0){window.draw(sprite);}
 
         }
     }

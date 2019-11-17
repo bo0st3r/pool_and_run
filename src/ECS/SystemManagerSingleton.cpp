@@ -48,9 +48,9 @@ void SystemManagerSingleton::updateSystems(float dt)
     }
 }
 
-void SystemManagerSingleton::updateRender(float dt, sf::RenderWindow& view)
+void SystemManagerSingleton::updateRender(float dt, sf::RenderWindow& window, sf::View& view)
 {
-    render->updateRender(dt, view);
+    render->updateRender(dt, window, view);
 }
 
 

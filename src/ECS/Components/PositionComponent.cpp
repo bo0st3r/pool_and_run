@@ -1,7 +1,7 @@
 #include "PositionComponent.h"
 
 PositionComponent::PositionComponent(float x, float y)
-:PositionComponent(sf::Vector2(x, y))
+:PositionComponent(sf::Vector2f(x, y))
 {}
 
 PositionComponent::PositionComponent(sf::Vector2f position)

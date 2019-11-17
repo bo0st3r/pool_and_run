@@ -1,4 +1,5 @@
 #include "CollisionSystem.h"
+#include <iostream>
 
 CollisionSystem::CollisionSystem(Characters& cha,
                         Renderers& r,
@@ -7,7 +8,7 @@ CollisionSystem::CollisionSystem(Characters& cha,
                         Colliders& col,
                         Triggers& t,
                         Constraints& con,
-                        sf::View v
+                        sf::View& v
                         )
 {
     characters = &cha;
@@ -17,7 +18,7 @@ CollisionSystem::CollisionSystem(Characters& cha,
     colliders = &col;
     triggers = &t;
     constraints = &con;
-    view = v;
+    view = &v;
 
 }
 
@@ -51,15 +52,19 @@ void CollisionSystem::update(float dt)
         RendererComponent& r1 = *(renderers->at(e1));
         ColliderComponent& co1 = *(colliders->at(e1));
 
-        //on bouge le sprite pour la durée du test de collision
+       //on bouge le sprite pour la durée du test de collision
         r1.getSpriteRef().move(v1.getVelocity() * dt);
 
+        //y a-t-il eu un rebond sur une plateforme
+        bool floorBounce = false;
         //y a-t-il eu une collision?
         bool colliding = false;
 
-        //test de collision avec les bords de la vue (pour le joueur uniquement)
+        //centre la caméra sur le joueur et test de collision avec les bords de la vue (pour le joueur uniquement)
         if(ch1.getTag() == "Joueur")
         {
+            view->setCenter(p1.getPosition());
+            viewClamping();
             colliding = addViewBorderConstraints(r1.getSpriteRef(), e1);
         }
 
@@ -120,13 +125,9 @@ void CollisionSystem::update(float dt)
                     //sinon evalue la vitesse pour soit rebondir, soit appliquer des contraintes
                     else
                     {
-                        if(Vector2fMath::magnitude(v1.getVelocity()) < 5)
-                        {
                             addCollisionConstraints(r1.getSpriteRef(), r2.getSpriteRef(), e1);
-                        }else
-                        {
-                            floorBouncing(e1, e2, 0.4);
-                        }
+                            //floorBouncing(e1, e2, c2.getImpactAbsorption());
+                            floorBounce;
                     }
                 }
 
@@ -146,14 +147,39 @@ void CollisionSystem::update(float dt)
     }
 }
 
+void CollisionSystem::viewClamping()
+{
+    sf::Vector2f viewSize = view->getSize();
+    sf::Vector2f viewCenter = view->getCenter();
+    sf::Vector2f levelSize = sf::Vector2f(TILE_WIDTH * MAP_WIDTH, TILE_HEIGHT * MAP_HEIGHT);
+
+    if(viewCenter.x - viewSize.x/2 < 0) //trop a gauche
+    {
+        view->setCenter(viewSize.x/2, viewCenter.y);
+    }
+    if(viewCenter.y - viewSize.y/2 < 0) //trop en haut
+    {
+        view->setCenter(view->getCenter().x, viewSize.y/2);
+    }
+    if(viewCenter.x + viewSize.x/2 > levelSize.x) // trop a droite
+    {
+        view->setCenter(levelSize.x - viewSize.x/2, view->getCenter().y);
+
+    }
+    if(viewCenter.y + viewSize.y/2 > levelSize.y) // trop en bas
+    {
+        view->setCenter(view->getCenter().x, levelSize.y - viewSize.y/2);
+    }
+}
+
 bool CollisionSystem::addViewBorderConstraints(sf::Sprite s, Entity entity)
 {
     ConstraintComponent& c = *(constraints->at(entity));
     sf::FloatRect gb = s.getGlobalBounds();
-    sf::Vector2 p = s.getPosition();
+    sf::Vector2f p = s.getPosition();
 
-    sf::Vector2 viewSize = view.getSize();
-    sf::Vector2 viewCenter = view.getCenter();
+    sf::Vector2f viewSize = view->getSize();
+    sf::Vector2f viewCenter = view->getCenter();
 
     bool colliding = false;
 
@@ -230,8 +256,8 @@ void CollisionSystem::transfertVelocity(Entity e1, Entity e2, float absorption)
     float angle21 = Vector2fMath::angleBetween(s2.getPosition(), s1.getPosition());
     float speed = Vector2fMath::magnitude(v1.getVelocity());
 
-    sf::Vector2f dv2 = sf::Vector2f(speed * std::sin(angle12) * absorption, speed * std::cos(angle12) * absorption);
-    sf::Vector2f dv1 = sf::Vector2f(speed * std::sin(angle21) * (1-absorption), speed * std::cos(angle21) * (1-absorption));
+    sf::Vector2f dv2 = sf::Vector2f(v1.getVelocity().x * std::sin(angle12) * absorption, v1.getVelocity().y * std::cos(angle12) * absorption);
+    sf::Vector2f dv1 = sf::Vector2f(speed * std::sin(angle21) * (1+absorption), speed * std::cos(angle21) * (1+absorption));
     v2.addVelocity(dv2);
     v1.addVelocity(dv1);
 }
@@ -241,26 +267,31 @@ void CollisionSystem::floorBouncing(Entity character, Entity platform, float abs
     sf::Sprite& s1 = renderers->at(character)->getSpriteRef();
     sf::Sprite& s2 = renderers->at(platform)->getSpriteRef();
 
+    ConstraintComponent& c = *(constraints->at(character));
+
     VelocityComponent& v = *(velocities->at(character));
+    sf::Vector2f dv = sf::Vector2f(0, 0);
 
     float angle = Vector2fMath::angleBetween(s2.getPosition(), s1.getPosition()) * 180 / M_PI;
     float speed = Vector2fMath::magnitude(v.getVelocity());
 
-    //arrondi l'angle à un des points cardinaux
-    if(angle <= 315 && angle > 225) // viens de la gauche
+    if(c.hasConstraint(ConstraintEnum::Down))
     {
-        angle = 3 * M_PI / 2;
-    }else if(angle > 135) //viens d'en haut
+        dv += sf::Vector2f(0, v.getVelocity().y * -(1 + absorption));
+    }
+    if(c.hasConstraint(ConstraintEnum::Up))
     {
-        angle = 0;
-    }else if(angle > 45) //viens de la droite
+        dv += sf::Vector2f(0, v.getVelocity().y * +(1 + absorption));
+    }
+    if(c.hasConstraint(ConstraintEnum::Left))
     {
-        angle = M_PI / 2;
-    }else{ //vien d'en bas
-        angle = M_PI;
+        dv += sf::Vector2f(v.getVelocity().x * (1 + absorption), 0);
+    }
+    if(c.hasConstraint(ConstraintEnum::Right))
+    {
+        dv += sf::Vector2f(v.getVelocity().x * -(1 + absorption), 0);
     }
 
-    sf::Vector2f dv = sf::Vector2f(speed * std::sin(angle) * (1+1-absorption), -speed * std::cos(angle) * (1+1-absorption));
     v.addVelocity(dv);
 }
 

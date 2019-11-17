@@ -19,7 +19,7 @@ class SystemManagerSingleton
         void addSystem(System* system);
         void addSystem(RenderSystem* system);
         void updateSystems(float dt);
-        void updateRender(float dt, sf::RenderWindow& view);
+        void updateRender(float dt, sf::RenderWindow& window, sf::View& view);
 
     protected:
 

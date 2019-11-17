@@ -14,7 +14,7 @@ class RenderSystem : public System
         virtual ~RenderSystem();
 
         virtual void update(float dt);
-        void updateRender(float dt, sf::RenderWindow& view);
+        void updateRender(float dt, sf::RenderWindow& window, sf::View& view);
 
     protected:
 

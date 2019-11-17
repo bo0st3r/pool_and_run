@@ -1,4 +1,5 @@
 #include "PhysicSystem.h"
+#include <iostream>
 
 PhysicSystem::PhysicSystem(Positions& p, Velocities& v, Gravities& g, Constraints& c)
 {

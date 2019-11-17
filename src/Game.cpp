@@ -46,7 +46,6 @@ namespace pr{
 
             while(accumulator >= _dt){
 
-                std::cout << _dt << std::endl;
                 Event event;
                 while(_data->window.pollEvent(event))
                 {
@@ -81,6 +80,7 @@ namespace pr{
         _data->assets.loadTexture("ball13", AssetManager::BALLS_PATH + "ball13.png");
         _data->assets.loadTexture("ball14", AssetManager::BALLS_PATH + "ball14.png");
         _data->assets.loadTexture("ball15", AssetManager::BALLS_PATH + "ball15.png");
+        _data->assets.loadTexture("tile", AssetManager::GAME_PATH + "tileHitBox.png");
     }
 
 }

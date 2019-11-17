@@ -7,6 +7,7 @@
 #include "Game.h"
 #include "TileMap.h"
 #include "EntityCreator.h"
+#include "Configuration/Configuration.h"
 
 #include "ECSCoordinatorSingleton.h"
 #include "ComponentManagerSingleton.h"

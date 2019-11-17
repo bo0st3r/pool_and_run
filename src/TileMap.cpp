@@ -18,7 +18,7 @@ namespace pr{
         //dtor
     }
 
-    TileMap::loadMap(const string& tileSet, Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height){
+    TileMap::loadMap(const string& tileSet, Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height, ECSCoordinatorSingleton* ecs, ComponentManagerSingleton* compManager){
         // Tries to load file
         if(!Collision::CreateTextureAndBitmask(_tileSet, tileSet))
             return false;
@@ -45,6 +45,10 @@ namespace pr{
                 quad[1].position = Vector2f((i + 1) * tileSize.x, j * tileSize.y);
                 quad[2].position = Vector2f((i + 1) * tileSize.x, (j + 1) * tileSize.y);
                 quad[3].position = Vector2f(i * tileSize.x, (j + 1) * tileSize.y);
+                if(tileNb != -1)
+                {
+                    EntityCreator::createTile((float)i * tileSize.x, (float)j * tileSize.y, *compManager, *ecs);
+                }
 
                 // Defines its 4 texture coordinates
                 quad[0].texCoords = Vector2f(tu * tileSize.x, tv * tileSize.y);
