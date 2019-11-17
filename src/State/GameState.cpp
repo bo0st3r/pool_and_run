@@ -70,6 +70,7 @@ namespace pr{
                                                     compManager->getEntityRendererMap(),
                                                     compManager->getEntityPositionMap(),
                                                     compManager->getEntityVelocityMap(),
+                                                    compManager->getEntityGravityMap(),
                                                     compManager->getEntityColliderMap(),
                                                     compManager->getEntityTriggerMap(),
                                                     compManager->getEntityConstraintMap(),
@@ -121,7 +122,7 @@ namespace pr{
     void GameState::initEntities()
     {
         EntityCreator::createPlayer(0, 0, "ball0", *compManager, *ecs);
-        EntityCreator::createEnnemyBall(0, 100, "ball1", *compManager, *ecs);
+        EntityCreator::createEnnemyBall(150, 250, "ball1", *compManager, *ecs);
     }
 
     void GameState::handleInput(Event event){

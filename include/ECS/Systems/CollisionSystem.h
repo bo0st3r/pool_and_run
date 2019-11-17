@@ -14,6 +14,7 @@ class CollisionSystem : public System
                         Renderers& r,
                         Positions& p,
                         Velocities& ve,
+                        Gravities& g,
                         Colliders& col,
                         Triggers& t,
                         Constraints& con,
@@ -36,6 +37,7 @@ class CollisionSystem : public System
         Renderers* renderers;
         Positions* positions;
         Velocities* velocities;
+        Gravities* gravities;
         Colliders* colliders;
         Triggers* triggers;
         Constraints* constraints;

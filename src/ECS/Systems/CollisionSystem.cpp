@@ -5,6 +5,7 @@ CollisionSystem::CollisionSystem(Characters& cha,
                         Renderers& r,
                         Positions& p,
                         Velocities& ve,
+                        Gravities& g,
                         Colliders& col,
                         Triggers& t,
                         Constraints& con,
@@ -15,6 +16,7 @@ CollisionSystem::CollisionSystem(Characters& cha,
     renderers = &r;
     positions = &p;
     velocities = &ve;
+    gravities = &g;
     colliders = &col;
     triggers = &t;
     constraints = &con;
@@ -49,10 +51,12 @@ void CollisionSystem::update(float dt)
         CharacterComponent& ch1 = *(it1->second);
         PositionComponent& p1 = *(positions->at(e1));
         VelocityComponent v1 = *(velocities->at(e1));
+        GravityComponent& g1 = *(gravities->at(e1));
         RendererComponent& r1 = *(renderers->at(e1));
         ColliderComponent& co1 = *(colliders->at(e1));
 
        //on bouge le sprite pour la durée du test de collision
+        v1.addVelocity(0, g1.getG() * dt);
         r1.getSpriteRef().move(v1.getVelocity() * dt);
 
         //y a-t-il eu un rebond sur une plateforme
@@ -126,8 +130,8 @@ void CollisionSystem::update(float dt)
                     else
                     {
                             addCollisionConstraints(r1.getSpriteRef(), r2.getSpriteRef(), e1);
-                            //floorBouncing(e1, e2, c2.getImpactAbsorption());
-                            floorBounce;
+                            floorBouncing(e1, e2, c2.getImpactAbsorption());
+                            floorBounce = true;
                     }
                 }
 
@@ -211,24 +215,22 @@ bool CollisionSystem::addViewBorderConstraints(sf::Sprite s, Entity entity)
 void CollisionSystem::addCollisionConstraints(sf::Sprite s1, sf::Sprite s2, Entity entity)
 {
     ConstraintComponent& c = *(constraints->at(entity));
-    sf::FloatRect gb1 = s1.getGlobalBounds();
-    sf::FloatRect gb2 = s2.getGlobalBounds();
+
     sf::Vector2 p1 = s1.getPosition();
     sf::Vector2 p2 = s2.getPosition();
 
-    if(p1.x + gb1.width > p2.x && p1.x < p2.x) //collision à droite
-    {
-        c.addConstraint(ConstraintEnum::Right);
-    }
-    if(p1.y + gb1.height > p2.y && p1.y < p2.y) //collision en bas
+    float angle = Vector2fMath::angleBetween(p2, p1) * 180 / M_PI;
+
+    if(angle > 120 || angle <= -120)//collision en bas
     {
         c.addConstraint(ConstraintEnum::Down);
-    }
-    if(p2.x + gb2.width > p1.x && p2.x < p1.x) //collision à gauche
+    }else if(angle <= -30 && angle > -120) // collision a droite
+    {
+        c.addConstraint(ConstraintEnum::Right);
+    }else if(angle <= 120 && angle > 30) // collision à gauche
     {
         c.addConstraint(ConstraintEnum::Left);
-    }
-    if(p2.y + gb2.height > p1.y && p2.y < p1.y) //collision en haut
+    }else //collision en haut
     {
         c.addConstraint(ConstraintEnum::Up);
     }
@@ -264,34 +266,35 @@ void CollisionSystem::transfertVelocity(Entity e1, Entity e2, float absorption)
 
 void CollisionSystem::floorBouncing(Entity character, Entity platform, float absorption)
 {
+    ConstraintComponent& c = *(constraints->at(character));
+
     sf::Sprite& s1 = renderers->at(character)->getSpriteRef();
     sf::Sprite& s2 = renderers->at(platform)->getSpriteRef();
 
-    ConstraintComponent& c = *(constraints->at(character));
-
     VelocityComponent& v = *(velocities->at(character));
-    sf::Vector2f dv = sf::Vector2f(0, 0);
 
-    float angle = Vector2fMath::angleBetween(s2.getPosition(), s1.getPosition()) * 180 / M_PI;
-    float speed = Vector2fMath::magnitude(v.getVelocity());
+    float angle;
+    sf::Vector2f dv = sf::Vector2f(0, 0);
 
     if(c.hasConstraint(ConstraintEnum::Down))
     {
-        dv += sf::Vector2f(0, v.getVelocity().y * -(1 + absorption));
+        dv += sf::Vector2((float)0., -v.getVelocity().y * (1+(1-absorption)));
     }
     if(c.hasConstraint(ConstraintEnum::Up))
     {
-        dv += sf::Vector2f(0, v.getVelocity().y * +(1 + absorption));
+        dv += sf::Vector2((float)0., -v.getVelocity().y * (1+(1-absorption)));
+
     }
     if(c.hasConstraint(ConstraintEnum::Left))
     {
-        dv += sf::Vector2f(v.getVelocity().x * (1 + absorption), 0);
+        dv += sf::Vector2(-v.getVelocity().x * (1+(1-absorption)), (float)0.0);
+
     }
     if(c.hasConstraint(ConstraintEnum::Right))
     {
-        dv += sf::Vector2f(v.getVelocity().x * -(1 + absorption), 0);
-    }
+        dv += sf::Vector2(-v.getVelocity().x * (1+(1-absorption)), (float)0.0);
 
+    }
     v.addVelocity(dv);
 }
 
