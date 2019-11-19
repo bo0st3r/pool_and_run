@@ -18,3 +18,8 @@
 
 // TILE MAP
 #define GAME_TILE_SET_FILEPATH "ressources/tilesets/tileset.png"
+
+// TAGS
+#define TAG_PLAYER "Joueur"
+#define TAG_ENEMY_BALL "EnnemiBoule"
+#define TAG_ENEMY_CUE "EnnemiQueue"

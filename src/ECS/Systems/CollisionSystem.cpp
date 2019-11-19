@@ -59,8 +59,6 @@ void CollisionSystem::update(float dt)
         v1.addVelocity(0, g1.getG() * dt);
         r1.getSpriteRef().move(v1.getVelocity() * dt);
 
-        //y a-t-il eu un rebond sur une plateforme
-        bool floorBounce = false;
         //y a-t-il eu une collision?
         bool colliding = false;
 
@@ -131,7 +129,6 @@ void CollisionSystem::update(float dt)
                     {
                             addCollisionConstraints(r1.getSpriteRef(), r2.getSpriteRef(), e1);
                             floorBouncing(e1, e2, c2.getImpactAbsorption());
-                            floorBounce = true;
                     }
                 }
 
@@ -224,10 +221,10 @@ void CollisionSystem::addCollisionConstraints(sf::Sprite s1, sf::Sprite s2, Enti
     if(angle > 120 || angle <= -120)//collision en bas
     {
         c.addConstraint(ConstraintEnum::Down);
-    }else if(angle <= -30 && angle > -120) // collision a droite
+    }else if(angle <= -45 && angle > -120) // collision a droite
     {
         c.addConstraint(ConstraintEnum::Right);
-    }else if(angle <= 120 && angle > 30) // collision à gauche
+    }else if(angle <= 120 && angle > 45) // collision à gauche
     {
         c.addConstraint(ConstraintEnum::Left);
     }else //collision en haut
@@ -268,12 +265,8 @@ void CollisionSystem::floorBouncing(Entity character, Entity platform, float abs
 {
     ConstraintComponent& c = *(constraints->at(character));
 
-    sf::Sprite& s1 = renderers->at(character)->getSpriteRef();
-    sf::Sprite& s2 = renderers->at(platform)->getSpriteRef();
-
     VelocityComponent& v = *(velocities->at(character));
 
-    float angle;
     sf::Vector2f dv = sf::Vector2f(0, 0);
 
     if(c.hasConstraint(ConstraintEnum::Down))

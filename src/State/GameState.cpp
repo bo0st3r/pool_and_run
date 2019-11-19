@@ -108,7 +108,8 @@ namespace pr{
                                               compManager->getEntityTriggerMap(),
                                               compManager->getEntityPositionMap(),
                                               compManager->getEntityVelocityMap(),
-                                              compManager->getEntityRendererMap()
+                                              compManager->getEntityRendererMap(),
+                                              compManager->getEntityCharacterMap()
                                               );
 
         ecs->addSystem(controller);
@@ -122,7 +123,16 @@ namespace pr{
     void GameState::initEntities()
     {
         EntityCreator::createPlayer(0, 0, "ball0", *compManager, *ecs);
-        EntityCreator::createEnnemyBall(150, 250, "ball1", *compManager, *ecs);
+        EntityCreator::createEnnemyBall(150, 100, "ball9", *compManager, *ecs);
+        EntityCreator::createEnnemyBall(600, 100, "ball10", *compManager, *ecs);
+        EntityCreator::createEnnemyBall(800, 100, "ball11", *compManager, *ecs);
+        EntityCreator::createEnnemyBall(850, 100, "ball12", *compManager, *ecs);
+        EntityCreator::createEnnemyBall(900, 100, "ball13", *compManager, *ecs);
+        EntityCreator::createEnnemyBall(1000, 100, "ball14", *compManager, *ecs);
+        EntityCreator::createEnnemyBall(1150, 100, "ball15", *compManager, *ecs);
+        EntityCreator::createHole(384, 480, "Ennemi", *compManager, *ecs);
+        EntityCreator::createCheckPoint(0, 0, *compManager, *ecs);
+        EntityCreator::createWarp(32, 384, 1150, 0, *compManager, *ecs);
     }
 
     void GameState::handleInput(Event event){

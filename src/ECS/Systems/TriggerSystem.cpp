@@ -1,11 +1,12 @@
 #include "TriggerSystem.h"
 
-TriggerSystem::TriggerSystem(Triggers& t, Positions& p, Velocities& v, Renderers& r)
+TriggerSystem::TriggerSystem(Triggers& t, Positions& p, Velocities& v, Renderers& r, Characters& c)
 {
     triggers = &t;
     positions = &p;
     velocities = &v;
     renderers = &r;
+    characters = &c;
 }
 
 TriggerSystem::~TriggerSystem()
@@ -14,6 +15,7 @@ TriggerSystem::~TriggerSystem()
     delete positions;
     delete velocities;
     delete renderers;
+    delete characters;
 }
 
 void TriggerSystem::update(float dt)
@@ -37,22 +39,22 @@ void TriggerSystem::update(float dt)
                 }
                 case CueAttackTriggerComponent::TRIGGER_ID:{
                     CueAttackTriggerComponent& cueAttack = dynamic_cast<CueAttackTriggerComponent&>(trigger);
-                    CueAttackTriggered(entity, cueAttack);
+                    cueAttackTriggered(entity, cueAttack);
                     break;
                 }
                 case EndLevelTriggerComponent::TRIGGER_ID:{
                     EndLevelTriggerComponent& endLevel = dynamic_cast<EndLevelTriggerComponent&>(trigger);
-                    EndLevelTriggered(entity, endLevel);
+                    endLevelTriggered(entity, endLevel);
                     break;
                 }
                 case HoleTriggerComponent::TRIGGER_ID:{
                     HoleTriggerComponent& hole = dynamic_cast<HoleTriggerComponent&>(trigger);
-                    HoleTriggered(entity, hole);
+                    holeTriggered(entity, hole);
                     break;
                 }
                 case WarpTriggerComponent::TRIGGER_ID:{
                     WarpTriggerComponent& warp = dynamic_cast<WarpTriggerComponent&>(trigger);
-                    WarpTriggered(entity, warp);
+                    warpTriggered(entity, warp);
                     break;
                 }
             }
@@ -76,7 +78,7 @@ void TriggerSystem::checkPointTriggered(Entity entity, CheckPointTriggerComponen
 
 }
 
-void TriggerSystem::CueAttackTriggered(Entity entity, CueAttackTriggerComponent& cueAttack)
+void TriggerSystem::cueAttackTriggered(Entity entity, CueAttackTriggerComponent& cueAttack)
 {
     ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());
 
@@ -100,12 +102,16 @@ void TriggerSystem::CueAttackTriggered(Entity entity, CueAttackTriggerComponent&
     cueAttack.setTargetEntity(EntityManagerSingleton::MAX_ENTITY);
 }
 
-void TriggerSystem::EndLevelTriggered(Entity entity, EndLevelTriggerComponent& endLevel)
+void TriggerSystem::endLevelTriggered(Entity entity, EndLevelTriggerComponent& endLevel)
 {
+    if(remainingBalls() == 0)
+    {
+
+    }
     endLevel.setTriggered(false);
 }
 
-void TriggerSystem::HoleTriggered(Entity entity, HoleTriggerComponent& hole)
+void TriggerSystem::holeTriggered(Entity entity, HoleTriggerComponent& hole)
 {
     ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());
 
@@ -117,7 +123,7 @@ void TriggerSystem::HoleTriggered(Entity entity, HoleTriggerComponent& hole)
     hole.setTargetEntity(EntityManagerSingleton::MAX_ENTITY);
 }
 
-void TriggerSystem::WarpTriggered(Entity entity, WarpTriggerComponent& warp)
+void TriggerSystem::warpTriggered(Entity entity, WarpTriggerComponent& warp)
 {
     sf::Vector2 exit = warp.getDestination();
     float warpWidth = renderers->at(entity)->getSpriteRef().getGlobalBounds().width;
@@ -135,4 +141,20 @@ void TriggerSystem::WarpTriggered(Entity entity, WarpTriggerComponent& warp)
 
     warp.setTriggered(false);
     warp.setTargetEntity(EntityManagerSingleton::MAX_ENTITY);
+}
+
+int TriggerSystem::remainingBalls()
+{
+    int remaining = 0;
+    for(Characters::iterator it = characters->begin(); it != characters->cend(); it++)
+    {
+        Entity entity = it->first;
+        CharacterComponent& character = *(it->second);
+        if(character.getTag() == TAG_ENEMY_BALL)
+        {
+            remaining++;
+        }
+    }
+
+    return remaining;
 }

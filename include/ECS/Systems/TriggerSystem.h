@@ -1,22 +1,26 @@
 #ifndef TRIGGERSYSTEM_H
 #define TRIGGERSYSTEM_H
 
+#include "Configuration/Configuration.h"
+
 #include <System.h>
 
 
 class TriggerSystem : public System
 {
     public:
-        TriggerSystem(Triggers& t, Positions& p, Velocities& v, Renderers& r);
+        TriggerSystem(Triggers& t, Positions& p, Velocities& v, Renderers& r, Characters& c);
         virtual ~TriggerSystem();
 
         virtual void update(float dt);
 
         void checkPointTriggered(Entity entity, CheckPointTriggerComponent& checkPoint);
-        void CueAttackTriggered(Entity entity, CueAttackTriggerComponent& cueAttack);
-        void EndLevelTriggered(Entity entity, EndLevelTriggerComponent& endLevel);
-        void HoleTriggered(Entity entity, HoleTriggerComponent& hole);
-        void WarpTriggered(Entity entity, WarpTriggerComponent& warp);
+        void cueAttackTriggered(Entity entity, CueAttackTriggerComponent& cueAttack);
+        void endLevelTriggered(Entity entity, EndLevelTriggerComponent& endLevel);
+        void holeTriggered(Entity entity, HoleTriggerComponent& hole);
+        void warpTriggered(Entity entity, WarpTriggerComponent& warp);
+
+        int remainingBalls();
 
     protected:
 
@@ -25,6 +29,7 @@ class TriggerSystem : public System
         Positions* positions;
         Velocities* velocities;
         Renderers* renderers;
+        Characters* characters;
 };
 
 #endif // TRIGGERSYSTEM_H

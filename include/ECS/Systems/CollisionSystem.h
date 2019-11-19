@@ -44,7 +44,7 @@ class CollisionSystem : public System
         sf::View* view;
 
         static inline float maxCollidingDistance = 45;
-        static inline float minBouncingSpeed = 20;
+        static inline float minBouncingSpeed = 5;
 };
 
 #endif // COLLISIONSYSTEM_H

@@ -24,7 +24,7 @@ Entity EntityCreator::createPlayer(float x, float y, std::string textureName, Co
 
     Entity player = ecs.createNewEntity();
 
-    compManager.addComponentToEntity(*(new CharacterComponent("Héro", "Joueur", 8)), CharacterComponent::ID, player);
+    compManager.addComponentToEntity(*(new CharacterComponent("Héro", TAG_PLAYER, 8)), CharacterComponent::ID, player);
     compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.075, 0.075), 4)), RendererComponent::ID, player);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, player);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, player);
@@ -47,7 +47,7 @@ Entity EntityCreator::createTile(float x, float y, ComponentManagerSingleton& co
 Entity EntityCreator::createEnnemyBall(float x, float y, std::string textureName, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
 
     Entity ball = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new CharacterComponent("Boule", "Ennemi", 0)), CharacterComponent::ID, ball);
+    compManager.addComponentToEntity(*(new CharacterComponent("Boule", TAG_ENEMY_BALL, 0)), CharacterComponent::ID, ball);
     compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.07, 0.07), 3)), RendererComponent::ID, ball);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, ball);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, ball);
@@ -61,7 +61,7 @@ Entity EntityCreator::createEnnemyBall(float x, float y, std::string textureName
 //création d'un ennemi queue
 Entity EntityCreator::createEnnemyCue(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs) {
     Entity cue = ecs.createNewEntity();
-    compManager.addComponentToEntity(*(new CharacterComponent("Queue", "Ennemi", 0)), CharacterComponent::ID, cue);
+    compManager.addComponentToEntity(*(new CharacterComponent("Queue", TAG_ENEMY_CUE, 0)), CharacterComponent::ID, cue);
     compManager.addComponentToEntity(*(new RendererComponent("ball2", sf::Vector2f(0.1, 0.1), 3)), RendererComponent::ID, cue);
     compManager.addComponentToEntity(*(new PositionComponent(x, y)), PositionComponent::ID, cue);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, cue);

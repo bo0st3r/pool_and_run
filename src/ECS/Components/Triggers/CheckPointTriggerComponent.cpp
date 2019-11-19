@@ -30,7 +30,6 @@ void CheckPointTriggerComponent::onTrigger(Entity entity, std::string tag)
 {
     if(tag == "Joueur" && !lastTriggered && !isTriggered())
     {
-        std::cout << "feministe" << std::endl;
         setTriggered(true);
     }
 }

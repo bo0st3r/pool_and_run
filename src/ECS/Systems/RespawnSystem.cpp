@@ -56,7 +56,6 @@ void RespawnSystem::update(float dt)
             if(ch.getTag() == "Joueur")
             {
                 ///GAME OVER
-
             }else if(ch.getTag() == "Ennemi")
             {
                 ComponentManagerSingleton::getInstance()->removeAllFromEntity(entity);
