@@ -31,7 +31,7 @@ Entity EntityCreator::createPlayer(float x, float y, std::string textureName, Co
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, player);
     compManager.addComponentToEntity(*(new ConstraintComponent()), ConstraintComponent::ID, player);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::PixelPerfect, false, 0.8)), ColliderComponent::ID, player);
-    compManager.addComponentToEntity(*(new ControllerComponent(100, 100, 200, 5)), ControllerComponent::ID, player);
+    compManager.addComponentToEntity(*(new ControllerComponent(100, 200, 200, 5)), ControllerComponent::ID, player);
     return player;
 }
 

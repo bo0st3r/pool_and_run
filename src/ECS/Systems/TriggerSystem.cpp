@@ -1,4 +1,5 @@
 #include "TriggerSystem.h"
+#include <iostream>
 
 TriggerSystem::TriggerSystem(Triggers& t, Positions& p, Velocities& v, Renderers& r, Characters& c)
 {
@@ -116,6 +117,8 @@ void TriggerSystem::holeTriggered(Entity entity, HoleTriggerComponent& hole)
     ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());
 
     Entity other = hole.getTargetEntity();
+
+    std::cout << other << std::endl;
 
     compManager.addComponentToEntity(*(new RespawnComponent()), RespawnComponent::ID, other);
 

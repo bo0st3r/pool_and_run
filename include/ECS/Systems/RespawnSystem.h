@@ -2,6 +2,7 @@
 #define RESPAWNSYSTEM_H
 
 #include <System.h>
+#include "Configuration/Configuration.h"
 
 
 class RespawnSystem : public System

@@ -51,8 +51,8 @@ void PhysicSystem::addGravityToVelocity(Entity entity, float dt)
 
 void PhysicSystem::addVelocityToPosition(Entity entity, float dt)
 {
-    positions->at(entity)->translate(velocities->at(entity)->getVelocity() * dt);
 
+    positions->at(entity)->translate(velocities->at(entity)->getVelocity() * dt);
 }
 
 void PhysicSystem::applyConstraints(Entity entity)

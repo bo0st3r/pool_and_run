@@ -20,7 +20,7 @@ class GravityComponent : public Component
     protected:
 
     private:
-        static inline const float G = 60.0;
+        static inline const float G = 300.0;
 };
 
 #endif // GRAVITYCOMPONENT_H

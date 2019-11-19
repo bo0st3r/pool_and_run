@@ -46,7 +46,6 @@ void CollisionSystem::update(float dt)
 {
     for(Characters::iterator it1 = characters->begin(); it1 != characters->cend(); it1++)
     {
-
         Entity e1 = it1->first;
         CharacterComponent& ch1 = *(it1->second);
         PositionComponent& p1 = *(positions->at(e1));
@@ -129,6 +128,7 @@ void CollisionSystem::update(float dt)
                     {
                             addCollisionConstraints(r1.getSpriteRef(), r2.getSpriteRef(), e1);
                             floorBouncing(e1, e2, c2.getImpactAbsorption());
+
                     }
                 }
 
@@ -218,18 +218,18 @@ void CollisionSystem::addCollisionConstraints(sf::Sprite s1, sf::Sprite s2, Enti
 
     float angle = Vector2fMath::angleBetween(p2, p1) * 180 / M_PI;
 
-    if(angle > 120 || angle <= -120)//collision en bas
+    if(angle < -30 && angle >= -150)//collision en bas
     {
         c.addConstraint(ConstraintEnum::Down);
-    }else if(angle <= -45 && angle > -120) // collision a droite
-    {
-        c.addConstraint(ConstraintEnum::Right);
-    }else if(angle <= 120 && angle > 45) // collision à gauche
+    }else if(angle < 45 && angle >= -30) // collision a gauche
     {
         c.addConstraint(ConstraintEnum::Left);
-    }else //collision en haut
+    }else if(angle < 135 && angle >= 45) // collision en haut
     {
         c.addConstraint(ConstraintEnum::Up);
+    }else //collision à droite
+    {
+        c.addConstraint(ConstraintEnum::Right);
     }
 }
 
@@ -251,44 +251,72 @@ void CollisionSystem::transfertVelocity(Entity e1, Entity e2, float absorption)
     VelocityComponent& v1 = *(velocities->at(e1));
     VelocityComponent& v2 = *(velocities->at(e2));
 
-    float angle12 = Vector2fMath::angleBetween(s1.getPosition(), s2.getPosition());
-    float angle21 = Vector2fMath::angleBetween(s2.getPosition(), s1.getPosition());
-    float speed = Vector2fMath::magnitude(v1.getVelocity());
+    sf::Vector2f deltaSpeed = v1.getVelocity()-v2.getVelocity();
 
-    sf::Vector2f dv2 = sf::Vector2f(v1.getVelocity().x * std::sin(angle12) * absorption, v1.getVelocity().y * std::cos(angle12) * absorption);
-    sf::Vector2f dv1 = sf::Vector2f(speed * std::sin(angle21) * (1+absorption), speed * std::cos(angle21) * (1+absorption));
-    v2.addVelocity(dv2);
+    float angleV12 = Vector2fMath::angle(deltaSpeed);
+    float angleP12 = Vector2fMath::angleBetween(s1.getPosition(), s2.getPosition());
+
+    float deltaAngle = angleP12 - angleV12;
+    float deltaAngleInv = deltaAngle + M_PI;
+
+    sf::Vector2f dv1 = sf::Vector2((deltaSpeed.x * std::cos(deltaAngle) + deltaSpeed.y * std::sin(deltaAngle)) * (-2+absorption), (deltaSpeed.x * std::sin(deltaAngle) + deltaSpeed.y * std::cos(deltaAngle)) * (-2+absorption));
+    sf::Vector2f dv2 = sf::Vector2((deltaSpeed.x * std::cos(deltaAngle) + deltaSpeed.y * std::sin(deltaAngle)) * absorption, (deltaSpeed.x * std::sin(deltaAngle) + deltaSpeed.y * std::cos(deltaAngle)) * absorption);
+
+
     v1.addVelocity(dv1);
+    v2.addVelocity(dv2);
 }
 
 void CollisionSystem::floorBouncing(Entity character, Entity platform, float absorption)
 {
     ConstraintComponent& c = *(constraints->at(character));
 
-    VelocityComponent& v = *(velocities->at(character));
+    sf::Sprite& s1 = renderers->at(character)->getSpriteRef();
+    sf::Sprite& s2 = renderers->at(platform)->getSpriteRef();
 
-    sf::Vector2f dv = sf::Vector2f(0, 0);
+    VelocityComponent& v1 = *(velocities->at(character));
 
-    if(c.hasConstraint(ConstraintEnum::Down))
-    {
-        dv += sf::Vector2((float)0., -v.getVelocity().y * (1+(1-absorption)));
+    if(c.hasConstraint(ConstraintEnum::Up) && Vector2fMath::magnitude(sf::Vector2f(0, v1.getVelocity().y)) > minBouncingSpeed){
+        c.removeConstraint(ConstraintEnum::Up);
+        v1.addVelocity(0, v1.getVelocity().y * (absorption-2));
     }
-    if(c.hasConstraint(ConstraintEnum::Up))
-    {
-        dv += sf::Vector2((float)0., -v.getVelocity().y * (1+(1-absorption)));
-
+    if(c.hasConstraint(ConstraintEnum::Left) && Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){
+        c.removeConstraint(ConstraintEnum::Left);
+        v1.addVelocity(v1.getVelocity().x * (absorption-2), 0);
     }
-    if(c.hasConstraint(ConstraintEnum::Left))
-    {
-        dv += sf::Vector2(-v.getVelocity().x * (1+(1-absorption)), (float)0.0);
-
+    if(c.hasConstraint(ConstraintEnum::Down) && Vector2fMath::magnitude(sf::Vector2f(0, v1.getVelocity().y)) > minBouncingSpeed){
+        c.removeConstraint(ConstraintEnum::Down);
+        v1.addVelocity(0, v1.getVelocity().y * (absorption-2));
     }
-    if(c.hasConstraint(ConstraintEnum::Right))
-    {
-        dv += sf::Vector2(-v.getVelocity().x * (1+(1-absorption)), (float)0.0);
-
+    if(c.hasConstraint(ConstraintEnum::Right) && Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){
+        c.removeConstraint(ConstraintEnum::Right);
+        v1.addVelocity(v1.getVelocity().x * (absorption-2), 0);
     }
-    v.addVelocity(dv);
+    /*
+    float deltaAngle = (angleP12 - angleV12) * 180 / M_PI;
+
+    if(deltaAngle < -30 && deltaAngle >= -150)//collision en bas
+    {
+        if(Vector2fMath::magnitude(sf::Vector2f(0, v1.getVelocity().y)) > minBouncingSpeed){canBounce = true;}
+        deltaAngle = -M_PI / 2;
+    }else if(deltaAngle < 45 && deltaAngle >= -30) // collision a gauche
+    {
+        if(Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){canBounce = true;}
+        deltaAngle = M_PI;
+    }else if(deltaAngle < 135 && deltaAngle >= 45) // collision en haut
+    {
+        deltaAngle = -M_PI / 2;
+    }else //collision à droite
+    {
+        if(Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){canBounce = true;}
+        deltaAngle = M_PI;
+    }
+
+
+    hasBounce = true;
+    sf::Vector2f dv = sf::Vector2(v1.getVelocity().x * std::cos(deltaAngle) * (1+1-absorption), v1.getVelocity().y * std::sin(deltaAngle) * (1+1-absorption));
+    v1.addVelocity(dv);
+    */
 }
 
 
