@@ -61,7 +61,17 @@ void RenderSystem::updateRender(float dt, sf::RenderWindow& window, sf::View& vi
             //si l'entité a une position, applique cette position au sprite, sinon lui assigne la position (0, 0);
             if(positions->find(entity) != positions->cend())
             {
-                sprite.setPosition(positions->at(entity)->getPosition());
+                if(render.getLayer() < 5)
+                {
+                    sprite.setPosition(positions->at(entity)->getPosition());
+                }else
+                {
+                    sf::Vector2f viewSize = view.getSize();
+                    sf::Vector2f viewCenter = view.getCenter();
+                    sf::Vector2f origin = sf::Vector2f(viewCenter.x - viewSize.x/2, viewCenter.y - viewSize.y/2);
+
+                    sprite.setPosition(origin + positions->at(entity)->getPosition());
+                }
             }else
             {
                 sprite.setPosition(0.0, 0.0);
