@@ -12,6 +12,7 @@ class EntityManagerSingleton
         static const Entity MAX_ENTITY = 5000; //nombre maximum d'entités qui pourront être créées
 
         static EntityManagerSingleton* getInstance(); //renvois l'instance du singleton
+        static void releaseInstance();
         virtual ~EntityManagerSingleton(); //destructeur
 
         Entity createNewEntity(); //ajoute une nouvelle entités à la liste des entité existantes et renvoie cette entité

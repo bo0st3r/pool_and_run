@@ -1,4 +1,5 @@
 #include "StateMachine.h"
+#include <iostream>
 
 
 namespace pr{
@@ -44,7 +45,13 @@ namespace pr{
             {
                 if(_isReplacing)
                 {
+//                    State* state = _states.top().release();
+//                    delete state;
+//                    getActiveState().reset();
+
+                    _states.top()->str();
                     _states.pop();
+                    _newState->str();
                 }
                 else
                 {
@@ -54,12 +61,12 @@ namespace pr{
 
             // Adds and inits the new state
             // Set isAdding to false
+
             _states.push(std::move(_newState));
             _states.top()->init();
             _isAdding = false;
         }
     }
-
 
     // Returns the reference of the state at the top of the _states Stack
     StateRef& StateMachine::getActiveState()

@@ -45,6 +45,8 @@ namespace pr{
             /////
             void resizeBackground();
 
+            void str();
+
         private:
             GameDataRef _data;
             Sprite _background;

@@ -10,9 +10,9 @@ RenderSystem::RenderSystem(Positions& p, Renderers& r, pr::AssetManager& am)
 
 RenderSystem::~RenderSystem()
 {
-    delete positions;
-    delete renderers;
-    delete asset;
+//    delete positions;
+//    delete renderers;
+//    delete asset;
 }
 
 void RenderSystem::update(float dt)

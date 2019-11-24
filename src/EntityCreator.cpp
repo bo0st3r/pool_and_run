@@ -103,7 +103,7 @@ void EntityCreator::createWarp(float x1, float y1,float x2, float y2,  Component
 
 }
 //creation des trous
-Entity EntityCreator::createHole(float x, float y, std::string targetTag, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton ecs){
+Entity EntityCreator::createHole(float x, float y, std::string targetTag, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs){
 
     Entity hole = ecs.createNewEntity();
     compManager.addComponentToEntity(*(new RendererComponent("ball9", sf::Vector2f(0.1, 0.1), 2)), RendererComponent::ID, hole);

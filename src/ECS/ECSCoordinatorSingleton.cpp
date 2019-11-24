@@ -1,13 +1,18 @@
 #include "ECSCoordinatorSingleton.h"
+#include <iostream>
 
 ECSCoordinatorSingleton::ECSCoordinatorSingleton()
 {
-    //ctor
+    entityManager = EntityManagerSingleton::getInstance();
+    componentManager = ComponentManagerSingleton::getInstance();
+    systemManager = SystemManagerSingleton::getInstance();
 }
 
 ECSCoordinatorSingleton::~ECSCoordinatorSingleton()
 {
-    //dtor
+    EntityManagerSingleton::releaseInstance();
+    ComponentManagerSingleton::releaseInstance();
+    SystemManagerSingleton::releaseInstance();
 }
 
 ECSCoordinatorSingleton* ECSCoordinatorSingleton::getInstance()
@@ -19,6 +24,12 @@ ECSCoordinatorSingleton* ECSCoordinatorSingleton::getInstance()
 
     return instance;
 }
+
+void ECSCoordinatorSingleton::releaseInstance(){
+    delete instance;
+    instance = 0;
+}
+
 
 Entity ECSCoordinatorSingleton::createNewEntity()
 {

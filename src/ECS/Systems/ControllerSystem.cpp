@@ -12,9 +12,9 @@ ControllerSystem::ControllerSystem(Velocities& v, Constraints& cons, Controllers
 ControllerSystem::~ControllerSystem()
 {
 
-    delete velocities;
-    delete constraints;
-    delete controllers;
+//    delete velocities;
+//    delete constraints;
+//    delete controllers;
 }
 void ControllerSystem::update(float dt){
 

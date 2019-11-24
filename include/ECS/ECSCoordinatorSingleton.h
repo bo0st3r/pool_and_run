@@ -10,6 +10,8 @@ class ECSCoordinatorSingleton
     public:
         static ECSCoordinatorSingleton* getInstance();
         virtual ~ECSCoordinatorSingleton();
+        static void releaseInstance();
+
 
         Entity createNewEntity(); //crée une nouvelle entité et la renvoie pour utilisation
         void removeEntity(Entity entity); //supprime une Entité du système

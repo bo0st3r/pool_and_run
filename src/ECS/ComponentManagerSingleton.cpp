@@ -1,15 +1,20 @@
 #include "ComponentManagerSingleton.h"
 #include <iostream>
 
-ComponentManagerSingleton::ComponentManagerSingleton()
-{}
+ComponentManagerSingleton::ComponentManagerSingleton(){
+        std::cout << "component" << std::endl;
+}
 
 ComponentManagerSingleton::~ComponentManagerSingleton()
 {
-
-
-    delete instance;
+//    delete instance;
 }
+
+void ComponentManagerSingleton::releaseInstance(){
+    delete instance;
+    instance = 0;
+}
+
 
 ComponentManagerSingleton* ComponentManagerSingleton::getInstance()
 {

@@ -18,6 +18,9 @@ namespace pr{
         scaleBackgroundToWindow(_background, _data);
     }
 
+    void SplashState::str(){
+        std::cout << "splash" << std::endl;
+    }
 
     void SplashState::handleInput(Event event){
         switch(event.type){

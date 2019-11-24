@@ -1,15 +1,23 @@
 #include "EntityManagerSingleton.h"
+#include <iostream>
+
 
 EntityManagerSingleton::EntityManagerSingleton()
 {
-    //ctor
+    std::cout << "entity" << std::endl;
 }
 
 EntityManagerSingleton::~EntityManagerSingleton()
 {
     //supprime l'instance du singleton à sa destruction
-    delete instance;
+//    delete instance;
 }
+
+void EntityManagerSingleton::releaseInstance(){
+    delete instance;
+    instance = 0;
+}
+
 
 EntityManagerSingleton* EntityManagerSingleton::getInstance()
 {

@@ -1,20 +1,25 @@
 #include "SystemManagerSingleton.h"
 #include <iostream>
 
-SystemManagerSingleton::SystemManagerSingleton()
-{}
+SystemManagerSingleton::SystemManagerSingleton(){
+    std::cout << "system" << std::endl;
+}
 
 SystemManagerSingleton::~SystemManagerSingleton()
 {
-
     for(System* system : systems)
     {
       delete system;
     }
 
-    delete instance;
     delete render;
 }
+
+void SystemManagerSingleton::releaseInstance(){
+    delete instance;
+    instance = 0;
+}
+
 
 SystemManagerSingleton* SystemManagerSingleton::getInstance()
 {

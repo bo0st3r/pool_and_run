@@ -26,13 +26,13 @@ CollisionSystem::CollisionSystem(Characters& cha,
 
 CollisionSystem::~CollisionSystem()
 {
-    delete characters;
-    delete renderers;
-    delete positions;
-    delete velocities;
-    delete colliders;
-    delete triggers;
-    delete constraints;
+//    delete characters;
+//    delete renderers;
+//    delete positions;
+//    delete velocities;
+//    delete colliders;
+//    delete triggers;
+//    delete constraints;
 }
 
 ///le collisionSystem va permettre de détecter les collisions entre les personnages et les autres éléments du jeu

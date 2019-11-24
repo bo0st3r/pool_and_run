@@ -8,6 +8,12 @@
 #define MAIN_MENU_TITLE_FILEPATH "ressources/img/main_menu/title.png"
 #define PLAY_BTN_FILEPATH "ressources/img/main_menu/play_btn.png"
 
+// END GAME MENU
+#define END_GAME_BACKGROUND_FILEPATH MAIN_MENU_BACKGROUND_FILEPATH
+#define END_GAME_WON_TITLE_FILEPATH "ressources/img/end_game_menu/won_title.png"
+#define END_GAME_LOST_TITLE_FILEPATH "ressources/img/end_game_menu/lost_title.png"
+#define END_GAME_MENU_BTN_FILEPATH "ressources/img/end_game_menu/menu_btn.png"
+
 // GAME
 #define GAME_BACKGROUND_FILEPATH "ressources/img/game/background.png"
 

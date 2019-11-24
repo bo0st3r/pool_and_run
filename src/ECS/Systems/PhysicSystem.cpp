@@ -11,10 +11,10 @@ PhysicSystem::PhysicSystem(Positions& p, Velocities& v, Gravities& g, Constraint
 
 PhysicSystem::~PhysicSystem()
 {
-    delete positions;
-    delete velocities;
-    delete gravities;
-    delete constraints;
+//    delete positions;
+//    delete velocities;
+//    delete gravities;
+//    delete constraints;
 }
 
 

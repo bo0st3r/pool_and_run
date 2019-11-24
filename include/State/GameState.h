@@ -33,23 +33,28 @@ namespace pr{
             void handleInput(Event event);
             void update(float dt);
             void draw(float dt);
+
             ///////////////////////
             /// \brief Inits the game's tile map.
             ///////////////////////
             void initTileMap();
+
             ///////////////////////
-            /// \brief Inits the ECS
+            /// \brief Inits the ECS itself
             ///////////////////////
             void initECS();
 
+            ///////////////////////
+            /// \brief Inits the ECS's entities
+            ///////////////////////
             void initEntities();
-
 
             ///////////////////////
             /// \brief Resizes the view based on the window.
             ///////////////////////
             void resizeView();
 
+            void str();
 
         protected:
 
@@ -58,14 +63,13 @@ namespace pr{
 
             Sprite _background;
             TileMap _tileMap;
-
             ViewRef _view;
+
+            bool _isEnding;
+            bool _isWinning;
 
             ECSCoordinatorSingleton* ecs;
             ComponentManagerSingleton* compManager;
-
-
-
     };
 }
 

@@ -18,7 +18,7 @@ class EntityCreator
         static Entity createEnnemyCue(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
         static Entity createCheckPoint(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
         static void createWarp(float x1, float y1,float x2, float y2, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
-        static Entity createHole(float x, float y, std::string targetTag, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton ecs);
+        static Entity createHole(float x, float y, std::string targetTag, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
         static Entity createEndLevel(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton ecs);
         static Entity createTile(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
 
