@@ -34,7 +34,7 @@ void RespawnSystem::update(float dt)
         ch.addLive(-1);
         ComponentManagerSingleton::getInstance()->removeComponentFromEntity(RespawnComponent::ID, entity);
 
-        if(ch.getLive() > 0)
+        if(ch.getLive() >= 0)
         {
 
             for(Triggers::iterator tcIt = triggers->begin(); tcIt != triggers->cend(); tcIt++)

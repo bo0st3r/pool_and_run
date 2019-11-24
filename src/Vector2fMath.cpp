@@ -36,3 +36,10 @@ sf::Vector2f Vector2fMath::directionBetween(sf::Vector2f v1, sf::Vector2f v2)
 {
     return sf::Vector2f(v2.x - v1.x, v2.y - v1.y);
 }
+
+sf::Vector2f Vector2fMath::normalize(sf::Vector2f v)
+{
+    float vMagnitude = magnitude(v);
+    sf::Vector2f normalizedV =  sf::Vector2f(v.x / vMagnitude, v.y / vMagnitude);
+    return normalizedV;
+}

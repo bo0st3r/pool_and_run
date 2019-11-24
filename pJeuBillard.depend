@@ -555,18 +555,18 @@
 1572350183 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\entitymanagersingleton.cpp
 	"EntityManagerSingleton.h"
 
-1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\entitymanagersingleton.h
+1574543221 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\entitymanagersingleton.h
 	<cstdint>
 	<vector>
 
 1574007300 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\entitymanagersingleton.cpp
 	"EntityManagerSingleton.h"
 
-1574007299 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
+1574606094 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\componentmanagersingleton.cpp
 	"ComponentManagerSingleton.h"
 	<iostream>
 
-1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\componentmanagersingleton.h
+1574605897 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\componentmanagersingleton.h
 	<unordered_map>
 	<cstdint>
 	<vector>
@@ -583,6 +583,7 @@
 	<ConstraintComponent.h>
 	<RespawnComponent.h>
 	<ControllerComponent.h>
+	<UIComponent.h>
 
 1572448590 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\component.cpp
 
@@ -616,7 +617,7 @@
 	"TriggerSystem.h"
 	"ControllerSystem.h"
 
-1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\system.h
+1574606140 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\system.h
 	<unordered_map>
 	<vector>
 	<EntityManagerSingleton.h>
@@ -632,6 +633,7 @@
 	<CharacterComponent.h>
 	<ConstraintComponent.h>
 	<ControllerComponent.h>
+	<UIComponent.h>
 	<TriggerComponent.h>
 	<CheckPointTriggerComponent.h>
 	<CueAttackTriggerComponent.h>
@@ -661,7 +663,7 @@
 	"PhysicSystem.h"
 	<iostream>
 
-1574172307 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\physicsystem.h
+1574546169 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\physicsystem.h
 	<System.h>
 	<iostream>
 
@@ -2060,12 +2062,13 @@
 	<SFML/Graphics.hpp>
 	<Component.h>
 
-1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\rendersystem.h
+1574607374 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\rendersystem.h
 	<SFML/Graphics.hpp>
 	<System.h>
 	<AssetManager.h>
+	<Configuration/Configuration.h>
 
-1574339814 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\rendersystem.cpp
+1574609267 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\rendersystem.cpp
 	"RenderSystem.h"
 	<iostream>
 
@@ -2081,11 +2084,11 @@
 1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggercomponent.h
 	<Component.h>
 
-1574180707 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\collisionsystem.cpp
+1574604506 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\collisionsystem.cpp
 	"CollisionSystem.h"
 	<iostream>
 
-1574180707 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\collisionsystem.h
+1574603420 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\collisionsystem.h
 	<System.h>
 	<Collision.h>
 	"Configuration/Configuration.h"
@@ -2097,7 +2100,7 @@
 1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\checkpointtriggercomponent.h
 	<TriggerComponent.h>
 
-1574167229 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\vector2fmath.h
+1574610516 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\vector2fmath.h
 	<cmath>
 	<SFML/System.hpp>
 
@@ -2108,7 +2111,7 @@
 1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\charactercomponent.h
 	<Component.h>
 
-1574167425 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\vector2fmath.cpp
+1574610340 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\vector2fmath.cpp
 	"Vector2fMath.h"
 
 1574007300 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\constraintcomponent.cpp
@@ -2155,13 +2158,13 @@
 	<System.h>
 	"Configuration/Configuration.h"
 
-1574174892 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\respawnsystem.cpp
+1574609551 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\respawnsystem.cpp
 	"RespawnSystem.h"
 
 1574007300 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\cueattacktriggercomponent.cpp
 	"CueAttackTriggerComponent.h"
 
-1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\cueattacktriggercomponent.h
+1574610889 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\cueattacktriggercomponent.h
 	<TriggerComponent.h>
 
 1574174787 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\triggers\holetriggercomponent.cpp
@@ -2185,7 +2188,7 @@
 1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\triggers\endleveltriggercomponent.h
 	<TriggerComponent.h>
 
-1574174821 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\triggersystem.cpp
+1574610777 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\triggersystem.cpp
 	"TriggerSystem.h"
 	<iostream>
 
@@ -3116,15 +3119,16 @@
 	"ComponentManagerSingleton.h"
 	<iostream>
 
-1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\entitycreator.h
+1574607975 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\entitycreator.h
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	"ECSCoordinatorSingleton.h"
 	"AssetManager.h"
 	"InputManager.h"
 	"ComponentManagerSingleton.h"
+	"Configuration/Configuration.h"
 
-1574181157 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\entitycreator.cpp
+1574609559 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\entitycreator.cpp
 	"EntityCreator.h"
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
@@ -3144,7 +3148,7 @@
 	<iostream>
 	"State/GameState.h"
 
-1574155951 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\configuration\configuration.h
+1574539166 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\configuration\configuration.h
 
 1574007300 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\state\splashstate.cpp
 	"Configuration/Configuration.h"
@@ -3156,19 +3160,19 @@
 	"State.h"
 	"Game.h"
 
-1574007300 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\tilemap.cpp
+1574603458 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\tilemap.cpp
 	"Collision.h"
 	"AssetManager.h"
 	"TileMap.h"
 	<iostream>
 
-1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\tilemap.h
+1574603475 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\tilemap.h
 	<SFML/Graphics.hpp>
 	<ECSCoordinatorSingleton.h>
 	<ComponentManagerSingleton.h>
 	<EntityCreator.h>
 
-1574181522 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\state\gamestate.cpp
+1574609362 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\state\gamestate.cpp
 	"Configuration/Configuration.h"
 	"State/GameState.h"
 	<iostream>
@@ -3240,10 +3244,19 @@
 1574007300 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\controllercomponent.cpp
 	"ControllerComponent.h"
 
-1574007300 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\controllersystem.cpp
+1574607337 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\systems\controllersystem.cpp
 	"ControllerSystem.h"
 	<iostream>
 
 1574007298 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\systems\controllersystem.h
 	<System.h>
+
+1574605771 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\ecs\components\uicomponent.h
+	<Component.h>
+	<UITypeEnum.h>
+
+1574605473 c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\include\uitypeenum.h
+
+1574605830 source:c:\users\niborobin\desktop\cours\bloc 3\c++ jv\ppoolandrun\src\ecs\components\uicomponent.cpp
+	"UIComponent.h"
 

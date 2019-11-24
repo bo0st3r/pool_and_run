@@ -18,6 +18,7 @@
 #include <CharacterComponent.h>
 #include <ConstraintComponent.h>
 #include <ControllerComponent.h>
+#include <UIComponent.h>
 
 #include <TriggerComponent.h>
 #include <CheckPointTriggerComponent.h>
@@ -36,6 +37,7 @@ using Characters = EntityComponentMap<CharacterComponent>;
 using Constraints = EntityComponentMap<ConstraintComponent>;
 using Respawns = EntityComponentMap<RespawnComponent>;
 using Controllers = EntityComponentMap<ControllerComponent>;
+using UIs = EntityComponentMap<UIComponent>;
 
 class System
 {

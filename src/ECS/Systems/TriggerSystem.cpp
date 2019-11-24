@@ -92,9 +92,9 @@ void TriggerSystem::cueAttackTriggered(Entity entity, CueAttackTriggerComponent&
         compManager.addComponentToEntity(*(new RespawnComponent()), RespawnComponent::ID, entity);
     }else //pousse violemment le joueur dans la direction opposée
     {
-        float angle = Vector2fMath::angleBetween(positions->at(entity)->getPosition(), positions->at(other)->getPosition());
+        sf::Vector2f normalizedDirection = Vector2fMath::normalize(Vector2fMath::directionBetween(positions->at(entity)->getPosition(), positions->at(other)->getPosition()));
         float bumpSpeed = CueAttackTriggerComponent::BUMP_SPEED;
-        sf::Vector2f newVelocity = sf::Vector2f(bumpSpeed * std::sin(angle), bumpSpeed * std::cos(angle));
+        sf::Vector2f newVelocity = sf::Vector2f(bumpSpeed * normalizedDirection.x, bumpSpeed * normalizedDirection.y);
 
         velocities->at(other)->setVelocity(newVelocity);
     }
