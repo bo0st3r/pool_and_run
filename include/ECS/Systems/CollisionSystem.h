@@ -18,7 +18,8 @@ class CollisionSystem : public System
                         Colliders& col,
                         Triggers& t,
                         Constraints& con,
-                        sf::View& v
+                        sf::View& v,
+                        std::unordered_map<int, Entity>& temp
                         );
         virtual ~CollisionSystem();
 
@@ -29,6 +30,9 @@ class CollisionSystem : public System
         void removeCollisionConstraints(Entity entity);
         void transfertVelocity(Entity e1, Entity e2, float absorption);
         void floorBouncing(Entity character, Entity platform, float absorption);
+
+        bool tryCollision(Entity e1, PositionComponent& p1, ColliderComponent& co1, RendererComponent& r1, CharacterComponent& ch1,
+                          Entity e2, PositionComponent& p2, ColliderComponent& co2, RendererComponent& r2);
 
     protected:
 
@@ -43,7 +47,9 @@ class CollisionSystem : public System
         Constraints* constraints;
         sf::View* view;
 
-        static inline float maxCollidingDistance = 45;
+        std::unordered_map<int, Entity>* tileEntityMap;
+
+        static inline float maxCollidingDistance = 50;
         static inline float minBouncingSpeed = 5;
 };
 

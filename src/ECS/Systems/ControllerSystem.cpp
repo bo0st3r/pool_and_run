@@ -25,19 +25,23 @@ void ControllerSystem::update(float dt){
         controller.decreaseDashTime(dt);
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+
             constraints->at(entity)->removeConstraint(ConstraintEnum::Right);
             velocities->at(entity)->addVelocity(-controller.getSpeed()*dt, 0);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+
             constraints->at(entity)->removeConstraint(ConstraintEnum::Left);
             velocities->at(entity)->addVelocity(controller.getSpeed()*dt, 0);
 
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && constraints->at(entity)->hasConstraint(ConstraintEnum::Down)){
+
             constraints->at(entity)->removeConstraint(ConstraintEnum::Down);
             velocities->at(entity)->addVelocity(0, -controller.getJumpForce());
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && controller.getDashTime()<=0){            controller.resetDashTime();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && controller.getDashTime()<=0){
+            controller.resetDashTime();
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
                 constraints->at(entity)->removeConstraint(ConstraintEnum::Right);
                 velocities->at(entity)->addVelocity(-controller.getDashSpeed(), 0);

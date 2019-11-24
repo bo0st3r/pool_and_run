@@ -1,18 +1,30 @@
 #include "RenderSystem.h"
 #include <iostream>
 
-RenderSystem::RenderSystem(Positions& p, Renderers& r, pr::AssetManager& am)
+RenderSystem::RenderSystem(Positions& p, Renderers& r, Characters& ch, Controllers& co, UIs& u, pr::AssetManager& am)
 {
     positions = &p;
     renderers = &r;
+    characters = &ch;
+    controllers = &co;
+    uis = &u;
     asset = &am;
 }
 
 RenderSystem::~RenderSystem()
 {
+<<<<<<< HEAD
 //    delete positions;
 //    delete renderers;
 //    delete asset;
+=======
+    delete positions;
+    delete renderers;
+    delete characters;
+    delete controllers;
+    delete uis;
+    delete asset;
+>>>>>>> 25c12bb88d5b7163c5b66f4ad4372690a330b1a3
 }
 
 void RenderSystem::update(float dt)
@@ -46,8 +58,41 @@ void RenderSystem::updateRender(float dt, sf::RenderWindow& window, sf::View& vi
             RendererComponent& render = *(it->second);
             sf::Sprite& sprite = render.getSpriteRef();
 
+            int renderLayer = render.getLayer();
+
+            //si c'est un élément d'UI, fait un test pour l'affichage
+            if(renderLayer == 5 && uis->find(entity) != uis->cend())
+            {
+                Entity player = EntityManagerSingleton::MAX_ENTITY;
+                for(Characters::iterator it2 = characters->begin(); it2 != characters->cend(); it2++)
+                {
+                    if(it2->second->getTag() == TAG_PLAYER)
+                    {
+                        player = it2->first;
+
+                    }
+                }
+
+                UIComponent ui = *(uis->at(entity));
+                switch (ui.getUIType())
+                {
+                    case UITypeEnum::DashIndicator:{
+                        if(controllers->at(player)->getDashTime() > 0)
+                        {
+                            renderLayer = -1;
+                        }
+                    break;}
+                    case UITypeEnum::HealthBar:{
+                        if(characters->at(player)->getLive() < ui.getDataValue())
+                        {
+                            renderLayer = -1;
+                        }
+                    break;}
+                }
+            }
+
             //saute l'entité pour cette boucle
-            if (render.getLayer() != layer)
+            if (renderLayer != layer)
             {
                 continue;
             }
@@ -61,15 +106,38 @@ void RenderSystem::updateRender(float dt, sf::RenderWindow& window, sf::View& vi
             //si l'entité a une position, applique cette position au sprite, sinon lui assigne la position (0, 0);
             if(positions->find(entity) != positions->cend())
             {
-                sprite.setPosition(positions->at(entity)->getPosition());
+                if(renderLayer < 5)
+                {
+                    sprite.setPosition(positions->at(entity)->getPosition());
+                }else
+                {
+                    sf::Vector2f viewSize = view.getSize();
+                    sf::Vector2f viewCenter = view.getCenter();
+                    sf::Vector2f origin = sf::Vector2f(viewCenter.x - viewSize.x/2, viewCenter.y - viewSize.y/2);
+
+                    sprite.setPosition(origin + positions->at(entity)->getPosition());
+                }
             }else
             {
                 sprite.setPosition(0.0, 0.0);
             }
 
             //dessinne le sprite
-            if(layer >= 0){window.draw(sprite);}
+            if(layer >= 0 && isInsideView(sprite, view)){window.draw(sprite);}
 
         }
     }
+}
+
+bool RenderSystem::isInsideView(sf::Sprite sprite, sf::View view)
+{
+    sf::Vector2f spritePos = sprite.getPosition();
+    sf::Vector2f viewCenter = view.getCenter();
+    sf::Vector2f viewSize = view.getSize();
+
+    return (spritePos.x + sprite.getGlobalBounds().width >= (viewCenter.x - viewSize.x / 2) &&
+       spritePos.x < (viewCenter.x + viewSize.x / 2) &&
+       spritePos.y + sprite.getGlobalBounds().height >= (viewCenter.y - viewSize.y / 2) &&
+       spritePos.y < (viewCenter.y + viewSize.y / 2));
+
 }

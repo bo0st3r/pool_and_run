@@ -9,7 +9,7 @@ using Entity = uint32_t; //une entité n'étant représentée que par un ID, on crée
 class EntityManagerSingleton
 {
     public:
-        static const Entity MAX_ENTITY = 5000; //nombre maximum d'entités qui pourront être créées
+        static const Entity MAX_ENTITY = 10000; //nombre maximum d'entités qui pourront être créées
 
         static EntityManagerSingleton* getInstance(); //renvois l'instance du singleton
         static void releaseInstance();

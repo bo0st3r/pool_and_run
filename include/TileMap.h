@@ -17,17 +17,19 @@ namespace pr{
             TileMap();
             virtual ~TileMap();
 
+
             ///////////////
             /// \brief Loads the map as an VertexArray into _vertices and an Texture into _tileSet.
             ///////////////
             loadMap(const string& tileSet, Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height, ECSCoordinatorSingleton* ecs, ComponentManagerSingleton* compManager);
 
+            static std::unordered_map<int, Entity>& getloadedTileEntitiesRef();
         protected:
 
         private:
             sf::VertexArray _vertices;
             sf::Texture _tileSet;
-
+            static inline std::unordered_map<int, Entity> loadedTileEntities = std::unordered_map<int, Entity>();
             virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const{
                 // Apply the transform
                 states.transform *= getTransform();

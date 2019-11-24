@@ -19,8 +19,8 @@
 
 #define TILE_WIDTH 32
 #define TILE_HEIGHT 32
-#define MAP_WIDTH 60
-#define MAP_HEIGHT 20
+#define MAP_WIDTH 285
+#define MAP_HEIGHT 35
 
 // TILE MAP
 #define GAME_TILE_SET_FILEPATH "ressources/tilesets/tileset.png"

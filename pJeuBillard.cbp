@@ -85,6 +85,7 @@
 		<Unit filename="include/ECS/Components/Triggers/EndLevelTriggerComponent.h" />
 		<Unit filename="include/ECS/Components/Triggers/HoleTriggerComponent.h" />
 		<Unit filename="include/ECS/Components/Triggers/WarpTriggerComponent.h" />
+		<Unit filename="include/ECS/Components/UIComponent.h" />
 		<Unit filename="include/ECS/Components/VelocityComponent.h" />
 		<Unit filename="include/ECS/ECSCoordinatorSingleton.h" />
 		<Unit filename="include/ECS/EntityManagerSingleton.h" />
@@ -106,6 +107,7 @@
 		<Unit filename="include/State/MainMenuState.h" />
 		<Unit filename="include/State/SplashState.h" />
 		<Unit filename="include/TileMap.h" />
+		<Unit filename="include/UITypeEnum.h" />
 		<Unit filename="include/Vector2fMath.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AssetManager.cpp" />
@@ -125,6 +127,7 @@
 		<Unit filename="src/ECS/Components/Triggers/EndLevelTriggerComponent.cpp" />
 		<Unit filename="src/ECS/Components/Triggers/HoleTriggerComponent.cpp" />
 		<Unit filename="src/ECS/Components/Triggers/WarpTriggerComponent.cpp" />
+		<Unit filename="src/ECS/Components/UIComponent.cpp" />
 		<Unit filename="src/ECS/Components/VelocityComponent.cpp" />
 		<Unit filename="src/ECS/ECSCoordinatorSingleton.cpp" />
 		<Unit filename="src/ECS/EntityManagerSingleton.cpp" />

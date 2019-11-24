@@ -22,10 +22,13 @@ namespace pr{
         // Tries to load file
         if(!Collision::CreateTextureAndBitmask(_tileSet, tileSet))
             return false;
+
+        // clear the loaded tile - entity map
+        TileMap::loadedTileEntities.clear();
+
         // Resizes the vertex array so it can contain the whole level
         _vertices.setPrimitiveType(sf::Quads);
         _vertices.resize(width * height * 4);
-
 
         for(unsigned int i =0; i < width; ++i){
             for(unsigned int j =0; j < height; ++j){
@@ -33,9 +36,26 @@ namespace pr{
                 // Get the current tile number
                 int tileNb = tiles[i + j * width];
 
+                //create the entity if needed (to compute collision)
+                Entity tileEntity = EntityManagerSingleton::MAX_ENTITY;
+                if(tileNb != -1)
+                {
+                    tileEntity = EntityCreator::createTile((float)i, (float)j, *compManager, *ecs);
+                }
+
+                TileMap::loadedTileEntities[i + j * width] = tileEntity;
+
                 // Finds its position in the tileset
-                int tu = tileNb % (_tileSet.getSize().x / tileSize.x);
-                int tv = tileNb / (_tileSet.getSize().y / tileSize.y);
+                int tu, tv;
+                if(tileNb != -1)
+                {
+                    tu = tileNb % (_tileSet.getSize().x / tileSize.x);
+                    tv = tileNb / (_tileSet.getSize().y / tileSize.y);
+                }else
+                {
+                    tu = -tileSize.x;
+                    tv = -tileSize.y;
+                }
 
                 // Gets a pointer to the current tile's quad
                 sf::Vertex* quad = &_vertices[(i + j * width) * 4];
@@ -45,10 +65,6 @@ namespace pr{
                 quad[1].position = Vector2f((i + 1) * tileSize.x, j * tileSize.y);
                 quad[2].position = Vector2f((i + 1) * tileSize.x, (j + 1) * tileSize.y);
                 quad[3].position = Vector2f(i * tileSize.x, (j + 1) * tileSize.y);
-                if(tileNb != -1)
-                {
-                    EntityCreator::createTile((float)i * tileSize.x, (float)j * tileSize.y, *compManager, *ecs);
-                }
 
                 // Defines its 4 texture coordinates
                 quad[0].texCoords = Vector2f(tu * tileSize.x, tv * tileSize.y);
@@ -61,5 +77,10 @@ namespace pr{
         return true;
     }
 
+    std::unordered_map<int, Entity>& TileMap::getloadedTileEntitiesRef()
+    {
+        return TileMap::loadedTileEntities;
+    }
 }
+
 

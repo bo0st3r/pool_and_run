@@ -2,6 +2,7 @@
 #define PHYSICSYSTEM_H
 
 #include <System.h>
+#include <iostream>
 
 class PhysicSystem : public System
 {
@@ -24,7 +25,7 @@ class PhysicSystem : public System
         Velocities* velocities;
         Gravities* gravities;
         Constraints* constraints;
-        static inline const float frictionCoefficient = 0.3;
+        static inline const float frictionCoefficient = 0.8;
 };
 
 #endif // PHYSICSYSTEM_H

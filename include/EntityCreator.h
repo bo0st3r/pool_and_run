@@ -7,6 +7,7 @@
 #include "AssetManager.h"
 #include "InputManager.h"
 #include "ComponentManagerSingleton.h"
+#include "Configuration/Configuration.h"
 
 class EntityCreator
 {
@@ -21,6 +22,10 @@ class EntityCreator
         static Entity createHole(float x, float y, std::string targetTag, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
         static Entity createEndLevel(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton ecs);
         static Entity createTile(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
+        static Entity createUIElement(float x, float y, float sx, float sy, UITypeEnum uiType, int data, std::string textureName, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
+        static void createHealthBar(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
+
+        static sf::Vector2f coordinateConverter(sf::Vector2f position);
 
 
 

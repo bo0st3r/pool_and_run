@@ -34,7 +34,7 @@ void RespawnSystem::update(float dt)
         ch.addLive(-1);
         ComponentManagerSingleton::getInstance()->removeComponentFromEntity(RespawnComponent::ID, entity);
 
-        if(ch.getLive() > 0)
+        if(ch.getLive() >= 0)
         {
 
             for(Triggers::iterator tcIt = triggers->begin(); tcIt != triggers->cend(); tcIt++)
@@ -53,10 +53,10 @@ void RespawnSystem::update(float dt)
         }else
         {
             //si le personnage est un joueur
-            if(ch.getTag() == "Joueur")
+            if(ch.getTag() == TAG_PLAYER)
             {
                 ///GAME OVER
-            }else if(ch.getTag() == "Ennemi")
+            }else if(ch.getTag() == TAG_ENEMY_BALL || ch.getTag() == TAG_ENEMY_CUE)
             {
                 ComponentManagerSingleton::getInstance()->removeAllFromEntity(entity);
                 EntityManagerSingleton::getInstance()->deleteEntity(entity);

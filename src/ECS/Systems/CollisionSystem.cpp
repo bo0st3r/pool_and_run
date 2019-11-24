@@ -9,7 +9,8 @@ CollisionSystem::CollisionSystem(Characters& cha,
                         Colliders& col,
                         Triggers& t,
                         Constraints& con,
-                        sf::View& v
+                        sf::View& v,
+                        std::unordered_map<int, Entity>& tem
                         )
 {
     characters = &cha;
@@ -22,10 +23,13 @@ CollisionSystem::CollisionSystem(Characters& cha,
     constraints = &con;
     view = &v;
 
+    tileEntityMap = &tem;
+
 }
 
 CollisionSystem::~CollisionSystem()
 {
+<<<<<<< HEAD
 //    delete characters;
 //    delete renderers;
 //    delete positions;
@@ -33,6 +37,17 @@ CollisionSystem::~CollisionSystem()
 //    delete colliders;
 //    delete triggers;
 //    delete constraints;
+=======
+    delete characters;
+    delete renderers;
+    delete positions;
+    delete velocities;
+    delete colliders;
+    delete triggers;
+    delete constraints;
+
+    delete tileEntityMap;
+>>>>>>> 25c12bb88d5b7163c5b66f4ad4372690a330b1a3
 }
 
 ///le collisionSystem va permettre de détecter les collisions entre les personnages et les autres éléments du jeu
@@ -46,7 +61,6 @@ void CollisionSystem::update(float dt)
 {
     for(Characters::iterator it1 = characters->begin(); it1 != characters->cend(); it1++)
     {
-
         Entity e1 = it1->first;
         CharacterComponent& ch1 = *(it1->second);
         PositionComponent& p1 = *(positions->at(e1));
@@ -59,6 +73,9 @@ void CollisionSystem::update(float dt)
         v1.addVelocity(0, g1.getG() * dt);
         r1.getSpriteRef().move(v1.getVelocity() * dt);
 
+        //trouve la tile du sprite du personnage sur la tilemap
+        sf::Vector2i tmPosition = sf::Vector2i((int)(r1.getSpriteRef().getPosition().x / TILE_WIDTH), (int)(r1.getSpriteRef().getPosition().y / TILE_HEIGHT));
+
         //y a-t-il eu une collision?
         bool colliding = false;
 
@@ -70,68 +87,66 @@ void CollisionSystem::update(float dt)
             colliding = addViewBorderConstraints(r1.getSpriteRef(), e1);
         }
 
-        //test de collision avec d'autres entité
-        for(Colliders::iterator it2 = colliders->begin(); it2 != colliders->cend(); it2++)
+        //test de collision avec le terrain (les 8 tiles adjacentes a celles du personnage et celle ou il se trouve)
+        for(int i = -1; i <= 1; i++)
+        {
+            for(int j = -1; j <= 1; j++)
+            {
+
+                Entity e2 = EntityManagerSingleton::MAX_ENTITY;
+                int tablePos = tmPosition.x + i + (tmPosition.y + j) * MAP_WIDTH;
+
+                if(tileEntityMap->find(tablePos) != tileEntityMap->cend())
+                {
+                    e2 = (*tileEntityMap)[tablePos];
+                }
+
+                if(e2 != EntityManagerSingleton::MAX_ENTITY && colliders->find(e2) != colliders->cend())
+                {
+                    PositionComponent& p2 = *(positions->at(e2));
+                    ColliderComponent& co2 = *(colliders->at(e2));
+                    RendererComponent& r2 = *(renderers->at(e2));
+                    if(tryCollision(e1, p1, co1, r1, ch1, e2, p2, co2, r2))
+                    {
+                        colliding = true;
+                    }
+                }
+
+            }
+        }
+
+        //test de collision avec les autres personnages
+        for(Characters::iterator it2 = characters->begin(); it2 != characters->cend(); it2++)
         {
             Entity e2 = it2->first;
-            ColliderComponent& c2 = *(it2->second);
-            PositionComponent& p2 = *(positions->at(e2));
-            RendererComponent& r2 = *(renderers->at(e2));
-
-
+            //on passe l'entité si c'est la même que celle en cours
             if(e1 == e2)
             {
                 continue;
             }
-
-            bool collideWith = false;
-
-            //verifie si il y a une collision selon 3 test possibles
-            if(Vector2fMath::distanceBetween(p1.getPosition(), p2.getPosition()) <= maxCollidingDistance)
+            PositionComponent& p2 = *(positions->at(e2));
+            ColliderComponent& co2 = *(colliders->at(e2));
+            RendererComponent& r2 = *(renderers->at(e2));
+            if(tryCollision(e1, p1, co1, r1, ch1, e2, p2, co2, r2))
             {
-                switch (co1.getColliderType())
-                {
-                    case ColliderTypeEnum::Circle:{
-                        collideWith = Collision::CircleTest(r1.getSpriteRef(), r2.getSpriteRef());
-                        break;
-                    }
-                    case ColliderTypeEnum::PixelPerfect:{
-                        collideWith = Collision::PixelPerfectTest(r1.getSpriteRef(), r2.getSpriteRef());
-                        break;
-                    }
-                    default:{//box par defaut
-                        collideWith = Collision::BoundingBoxTest(r1.getSpriteRef(), r2.getSpriteRef());
-                        break;
-                    }
-                }
-
+                colliding = true;
             }
+        }
 
-            // en cas de collision...
-            if(collideWith)
+        //test de collision avec les trigger (autre que la queue deja testée dans personnage)
+        for(Triggers::iterator it2 = triggers->begin(); it2 != triggers->cend(); it2++)
+        {
+            Entity e2 = it2->first;
+            //on passe l'entité si c'est la même que celle en cours ou si c'est un personnage (les trigger des personnages etant declenchés à la boucle précédente)
+            if(e1 == e2 && characters->find(e2) != characters->cend())
             {
-
-                //declenche le trigger de la deuxieme entité si il existe
-                if(triggers->find(e2) != triggers->cend())
-                {
-                    triggers->at(e2)->onTrigger(e1, ch1.getTag());
-                }
-                //si on ne passe pas au travers de l'autre objet
-                else if(!co1.isCrossable())
-                {
-                    //transfert de vitesse si l'autre entité c'est un personnage
-                    if(characters->find(e2) != characters->cend() && velocities->find(e2) != velocities->cend())
-                    {
-                        transfertVelocity(e1, e2, c2.getImpactAbsorption());
-                    }
-                    //sinon evalue la vitesse pour soit rebondir, soit appliquer des contraintes
-                    else
-                    {
-                            addCollisionConstraints(r1.getSpriteRef(), r2.getSpriteRef(), e1);
-                            floorBouncing(e1, e2, c2.getImpactAbsorption());
-                    }
-                }
-
+                continue;
+            }
+            PositionComponent& p2 = *(positions->at(e2));
+            ColliderComponent& co2 = *(colliders->at(e2));
+            RendererComponent& r2 = *(renderers->at(e2));
+            if(tryCollision(e1, p1, co1, r1, ch1, e2, p2, co2, r2))
+            {
                 colliding = true;
             }
         }
@@ -218,18 +233,18 @@ void CollisionSystem::addCollisionConstraints(sf::Sprite s1, sf::Sprite s2, Enti
 
     float angle = Vector2fMath::angleBetween(p2, p1) * 180 / M_PI;
 
-    if(angle > 120 || angle <= -120)//collision en bas
+    if(angle < -30 && angle >= -150)//collision en bas
     {
         c.addConstraint(ConstraintEnum::Down);
-    }else if(angle <= -45 && angle > -120) // collision a droite
-    {
-        c.addConstraint(ConstraintEnum::Right);
-    }else if(angle <= 120 && angle > 45) // collision à gauche
+    }else if(angle < 45 && angle >= -30) // collision a gauche
     {
         c.addConstraint(ConstraintEnum::Left);
-    }else //collision en haut
+    }else if(angle < 135 && angle >= 45) // collision en haut
     {
         c.addConstraint(ConstraintEnum::Up);
+    }else //collision à droite
+    {
+        c.addConstraint(ConstraintEnum::Right);
     }
 }
 
@@ -251,44 +266,128 @@ void CollisionSystem::transfertVelocity(Entity e1, Entity e2, float absorption)
     VelocityComponent& v1 = *(velocities->at(e1));
     VelocityComponent& v2 = *(velocities->at(e2));
 
-    float angle12 = Vector2fMath::angleBetween(s1.getPosition(), s2.getPosition());
-    float angle21 = Vector2fMath::angleBetween(s2.getPosition(), s1.getPosition());
-    float speed = Vector2fMath::magnitude(v1.getVelocity());
+    sf::Vector2f deltaSpeed = v1.getVelocity()-v2.getVelocity();
 
-    sf::Vector2f dv2 = sf::Vector2f(v1.getVelocity().x * std::sin(angle12) * absorption, v1.getVelocity().y * std::cos(angle12) * absorption);
-    sf::Vector2f dv1 = sf::Vector2f(speed * std::sin(angle21) * (1+absorption), speed * std::cos(angle21) * (1+absorption));
-    v2.addVelocity(dv2);
+    float angleV12 = Vector2fMath::angle(deltaSpeed);
+    float angleP12 = Vector2fMath::angleBetween(s1.getPosition(), s2.getPosition());
+
+    float deltaAngle = angleP12 - angleV12;
+    float deltaAngleInv = deltaAngle + M_PI;
+
+    sf::Vector2f dv1 = sf::Vector2((deltaSpeed.x * std::cos(deltaAngle) + deltaSpeed.y * std::sin(deltaAngle)) * (-2+absorption), (deltaSpeed.x * std::sin(deltaAngle) + deltaSpeed.y * std::cos(deltaAngle)) * (-2+absorption));
+    sf::Vector2f dv2 = sf::Vector2((deltaSpeed.x * std::cos(deltaAngle) + deltaSpeed.y * std::sin(deltaAngle)) * absorption, (deltaSpeed.x * std::sin(deltaAngle) + deltaSpeed.y * std::cos(deltaAngle)) * absorption);
+
+
     v1.addVelocity(dv1);
+    v2.addVelocity(dv2);
 }
 
 void CollisionSystem::floorBouncing(Entity character, Entity platform, float absorption)
 {
     ConstraintComponent& c = *(constraints->at(character));
 
-    VelocityComponent& v = *(velocities->at(character));
+    sf::Sprite& s1 = renderers->at(character)->getSpriteRef();
+    sf::Sprite& s2 = renderers->at(platform)->getSpriteRef();
 
-    sf::Vector2f dv = sf::Vector2f(0, 0);
+    VelocityComponent& v1 = *(velocities->at(character));
 
-    if(c.hasConstraint(ConstraintEnum::Down))
-    {
-        dv += sf::Vector2((float)0., -v.getVelocity().y * (1+(1-absorption)));
+    if(c.hasConstraint(ConstraintEnum::Up) && Vector2fMath::magnitude(sf::Vector2f(0, v1.getVelocity().y)) > minBouncingSpeed){
+        c.removeConstraint(ConstraintEnum::Up);
+        v1.addVelocity(0, v1.getVelocity().y * (absorption-2));
     }
-    if(c.hasConstraint(ConstraintEnum::Up))
+    if(c.hasConstraint(ConstraintEnum::Left) && Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){
+        c.removeConstraint(ConstraintEnum::Left);
+        v1.addVelocity(v1.getVelocity().x * (absorption-2), 0);
+    }
+    if(c.hasConstraint(ConstraintEnum::Down) && Vector2fMath::magnitude(sf::Vector2f(0, v1.getVelocity().y)) > minBouncingSpeed){
+        c.removeConstraint(ConstraintEnum::Down);
+        v1.addVelocity(0, v1.getVelocity().y * (absorption-2));
+    }
+    if(c.hasConstraint(ConstraintEnum::Right) && Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){
+        c.removeConstraint(ConstraintEnum::Right);
+        v1.addVelocity(v1.getVelocity().x * (absorption-2), 0);
+    }
+    /*
+    float deltaAngle = (angleP12 - angleV12) * 180 / M_PI;
+
+    if(deltaAngle < -30 && deltaAngle >= -150)//collision en bas
     {
-        dv += sf::Vector2((float)0., -v.getVelocity().y * (1+(1-absorption)));
+        if(Vector2fMath::magnitude(sf::Vector2f(0, v1.getVelocity().y)) > minBouncingSpeed){canBounce = true;}
+        deltaAngle = -M_PI / 2;
+    }else if(deltaAngle < 45 && deltaAngle >= -30) // collision a gauche
+    {
+        if(Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){canBounce = true;}
+        deltaAngle = M_PI;
+    }else if(deltaAngle < 135 && deltaAngle >= 45) // collision en haut
+    {
+        deltaAngle = -M_PI / 2;
+    }else //collision à droite
+    {
+        if(Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){canBounce = true;}
+        deltaAngle = M_PI;
+    }
+
+
+    hasBounce = true;
+    sf::Vector2f dv = sf::Vector2(v1.getVelocity().x * std::cos(deltaAngle) * (1+1-absorption), v1.getVelocity().y * std::sin(deltaAngle) * (1+1-absorption));
+    v1.addVelocity(dv);
+    */
+}
+
+bool CollisionSystem::tryCollision( Entity e1, PositionComponent& p1, ColliderComponent& co1, RendererComponent& r1, CharacterComponent& ch1,
+                                    Entity e2, PositionComponent& p2, ColliderComponent& co2, RendererComponent& r2)
+{
+    bool collideWith = false;
+
+    //verifie si il y a une collision selon 3 test possibles
+    if(Vector2fMath::distanceBetween(p1.getPosition(), p2.getPosition()) <= maxCollidingDistance)
+    {
+        switch (co1.getColliderType())
+        {
+            case ColliderTypeEnum::Circle:{
+                collideWith = Collision::CircleTest(r1.getSpriteRef(), r2.getSpriteRef());
+                break;
+            }
+            case ColliderTypeEnum::PixelPerfect:{
+                collideWith = Collision::PixelPerfectTest(r1.getSpriteRef(), r2.getSpriteRef());
+                break;
+            }
+            default:{//box par defaut
+                collideWith = Collision::BoundingBoxTest(r1.getSpriteRef(), r2.getSpriteRef());
+                break;
+            }
+        }
 
     }
-    if(c.hasConstraint(ConstraintEnum::Left))
+
+    // en cas de collision...
+    if(collideWith)
     {
-        dv += sf::Vector2(-v.getVelocity().x * (1+(1-absorption)), (float)0.0);
+        //declenche le trigger de la deuxieme entité si il existe
+        if(triggers->find(e2) != triggers->cend())
+        {
+            triggers->at(e2)->onTrigger(e1, ch1.getTag());
+        }
+        //si on ne passe pas au travers de l'autre objet
+        else if(!co1.isCrossable())
+        {
+            //transfert de vitesse si l'autre entité c'est un personnage
+            if(characters->find(e2) != characters->cend() && velocities->find(e2) != velocities->cend())
+            {
+                transfertVelocity(e1, e2, co2.getImpactAbsorption());
+            }
+            //sinon evalue la vitesse pour soit rebondir, soit appliquer des contraintes
+            else
+            {
+                    addCollisionConstraints(r1.getSpriteRef(), r2.getSpriteRef(), e1);
+                    floorBouncing(e1, e2, co2.getImpactAbsorption());
+
+            }
+        }
 
     }
-    if(c.hasConstraint(ConstraintEnum::Right))
-    {
-        dv += sf::Vector2(-v.getVelocity().x * (1+(1-absorption)), (float)0.0);
 
-    }
-    v.addVelocity(dv);
+    return collideWith;
 }
 
 

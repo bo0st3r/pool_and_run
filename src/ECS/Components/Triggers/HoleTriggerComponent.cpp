@@ -1,4 +1,5 @@
 #include "HoleTriggerComponent.h"
+#include <iostream>
 
 HoleTriggerComponent::HoleTriggerComponent(std::string targetTag)
 :TriggerComponent()
