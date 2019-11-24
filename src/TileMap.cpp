@@ -46,8 +46,16 @@ namespace pr{
                 TileMap::loadedTileEntities[i + j * width] = tileEntity;
 
                 // Finds its position in the tileset
-                int tu = tileNb % (_tileSet.getSize().x / tileSize.x);
-                int tv = tileNb / (_tileSet.getSize().y / tileSize.y);
+                int tu, tv;
+                if(tileNb != -1)
+                {
+                    tu = tileNb % (_tileSet.getSize().x / tileSize.x);
+                    tv = tileNb / (_tileSet.getSize().y / tileSize.y);
+                }else
+                {
+                    tu = -tileSize.x;
+                    tv = -tileSize.y;
+                }
 
                 // Gets a pointer to the current tile's quad
                 sf::Vertex* quad = &_vertices[(i + j * width) * 4];

@@ -82,7 +82,15 @@ void CollisionSystem::update(float dt)
         {
             for(int j = -1; j <= 1; j++)
             {
-                Entity e2 = (*tileEntityMap)[tmPosition.x + i + (tmPosition.y + j) * MAP_WIDTH];
+
+                Entity e2 = EntityManagerSingleton::MAX_ENTITY;
+                int tablePos = tmPosition.x + i + (tmPosition.y + j) * MAP_WIDTH;
+
+                if(tileEntityMap->find(tablePos) != tileEntityMap->cend())
+                {
+                    e2 = (*tileEntityMap)[tablePos];
+                }
+
                 if(e2 != EntityManagerSingleton::MAX_ENTITY && colliders->find(e2) != colliders->cend())
                 {
                     PositionComponent& p2 = *(positions->at(e2));
