@@ -1,4 +1,5 @@
 #include "ECSCoordinatorSingleton.h"
+#include <iostream>
 
 ECSCoordinatorSingleton::ECSCoordinatorSingleton()
 {
@@ -7,7 +8,15 @@ ECSCoordinatorSingleton::ECSCoordinatorSingleton()
 
 ECSCoordinatorSingleton::~ECSCoordinatorSingleton()
 {
-    //dtor
+
+}
+
+void ECSCoordinatorSingleton::releaseInstance()
+{
+    SystemManagerSingleton::releaseInstance();
+    ComponentManagerSingleton::releaseInstance();
+    EntityManagerSingleton::releaseInstance();
+    delete instance;
 }
 
 ECSCoordinatorSingleton* ECSCoordinatorSingleton::getInstance()

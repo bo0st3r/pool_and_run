@@ -7,7 +7,11 @@ EntityManagerSingleton::EntityManagerSingleton()
 
 EntityManagerSingleton::~EntityManagerSingleton()
 {
-    //supprime l'instance du singleton à sa destruction
+    //dtor
+}
+
+void EntityManagerSingleton::releaseInstance()
+{
     delete instance;
 }
 

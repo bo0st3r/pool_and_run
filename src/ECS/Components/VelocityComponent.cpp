@@ -1,4 +1,5 @@
 #include "VelocityComponent.h"
+#include <iostream>
 
 VelocityComponent::VelocityComponent()
 {

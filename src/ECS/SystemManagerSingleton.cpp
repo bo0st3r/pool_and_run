@@ -12,9 +12,14 @@ SystemManagerSingleton::~SystemManagerSingleton()
       delete system;
     }
 
-    delete instance;
     delete render;
 }
+
+void SystemManagerSingleton::releaseInstance()
+{
+    delete instance;
+}
+
 
 SystemManagerSingleton* SystemManagerSingleton::getInstance()
 {

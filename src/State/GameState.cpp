@@ -152,11 +152,11 @@ namespace pr{
         EntityCreator::createEnnemyBall(192, 19, "ball15", *compManager, *ecs);
         EntityCreator::createEnnemyBall(243, 13, "ball8", *compManager, *ecs);
 
-        EntityCreator::createEnnemyCue(55, 28, *compManager, *ecs);
-        EntityCreator::createEnnemyCue(93, 22, *compManager, *ecs);
-        EntityCreator::createEnnemyCue(121, 28, *compManager, *ecs);
-        EntityCreator::createEnnemyCue(147, 23, *compManager, *ecs);
-        EntityCreator::createEnnemyCue(209, 15, *compManager, *ecs);
+        EntityCreator::createEnnemyCue(59, 28, "cueLeft", *compManager, *ecs);
+        EntityCreator::createEnnemyCue(93, 22, "cueRight", *compManager, *ecs);
+        EntityCreator::createEnnemyCue(121, 28, "cueLeft", *compManager, *ecs);
+        EntityCreator::createEnnemyCue(147, 23, "cueLeft", *compManager, *ecs);
+        EntityCreator::createEnnemyCue(209, 15, "cueLeft", *compManager, *ecs);
 
         EntityCreator::createCheckPoint(2, 28, *compManager, *ecs);
         EntityCreator::createCheckPoint(48, 23, *compManager, *ecs);
@@ -201,7 +201,7 @@ namespace pr{
         EntityCreator::createHole(257, 27, TAG_PLAYER, *compManager, *ecs);
         EntityCreator::createHole(257, 28, TAG_PLAYER, *compManager, *ecs);
 
-        EntityCreator::createWarp(1, 22, 46, 23, *compManager, *ecs);
+        EntityCreator::createWarp(3, 22, 46, 23, *compManager, *ecs);
         EntityCreator::createWarp(76, 28, 87, 20, *compManager, *ecs);
         EntityCreator::createWarp(165, 28, 181, 28, *compManager, *ecs);
         EntityCreator::createWarp(280, 28, 181, 9, *compManager, *ecs);
@@ -226,23 +226,6 @@ namespace pr{
     void GameState::update(float dt){
         ecs->updateSystems(dt);
 
-            // Put that one line below after entities updates to avoid stuttering
-       // _view->setCenter(Vector2f(336.0f, 380.0f));
-//        if(_view->getCenter)
-/*
-ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-https://www.youtube.com/watch?v=CpVbMeYryKo
-https://www.youtube.com/watch?v=CpVbMeYryKo
-https://www.youtube.com/watch?v=CpVbMeYryKo
-https://www.youtube.com/watch?v=CpVbMeYryKo
-ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-    */
         resizeView();
         _data->window.setView(*_view);
     }

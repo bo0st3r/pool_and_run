@@ -49,7 +49,7 @@ class CollisionSystem : public System
 
         std::unordered_map<int, Entity>* tileEntityMap;
 
-        static inline float maxCollidingDistance = 50;
+        static inline float maxCollidingDistance = 150;
         static inline float minBouncingSpeed = 5;
 };
 

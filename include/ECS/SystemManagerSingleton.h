@@ -15,6 +15,8 @@ class SystemManagerSingleton
     public:
         static SystemManagerSingleton* getInstance();
         virtual ~SystemManagerSingleton();
+        static void releaseInstance();
+
 
         void addSystem(System* system);
         void addSystem(RenderSystem* system);

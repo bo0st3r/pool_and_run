@@ -54,10 +54,10 @@ void CollisionSystem::update(float dt)
         Entity e1 = it1->first;
         CharacterComponent& ch1 = *(it1->second);
         PositionComponent& p1 = *(positions->at(e1));
-        VelocityComponent v1 = *(velocities->at(e1));
         GravityComponent& g1 = *(gravities->at(e1));
-        RendererComponent& r1 = *(renderers->at(e1));
         ColliderComponent& co1 = *(colliders->at(e1));
+        RendererComponent& r1 = *(renderers->at(e1));
+        VelocityComponent v1 = *(velocities->at(e1));
 
        //on bouge le sprite pour la durée du test de collision
         v1.addVelocity(0, g1.getG() * dt);
@@ -101,7 +101,6 @@ void CollisionSystem::update(float dt)
                         colliding = true;
                     }
                 }
-
             }
         }
 
@@ -151,6 +150,7 @@ void CollisionSystem::update(float dt)
 
 
     }
+
 }
 
 void CollisionSystem::viewClamping()
@@ -262,10 +262,9 @@ void CollisionSystem::transfertVelocity(Entity e1, Entity e2, float absorption)
     float angleP12 = Vector2fMath::angleBetween(s1.getPosition(), s2.getPosition());
 
     float deltaAngle = angleP12 - angleV12;
-    float deltaAngleInv = deltaAngle + M_PI;
 
-    sf::Vector2f dv1 = sf::Vector2((deltaSpeed.x * std::cos(deltaAngle) + deltaSpeed.y * std::sin(deltaAngle)) * (-2+absorption), (deltaSpeed.x * std::sin(deltaAngle) + deltaSpeed.y * std::cos(deltaAngle)) * (-2+absorption));
-    sf::Vector2f dv2 = sf::Vector2((deltaSpeed.x * std::cos(deltaAngle) + deltaSpeed.y * std::sin(deltaAngle)) * absorption, (deltaSpeed.x * std::sin(deltaAngle) + deltaSpeed.y * std::cos(deltaAngle)) * absorption);
+    sf::Vector2f dv1 = sf::Vector2(((deltaSpeed.x * std::cos(deltaAngle) + deltaSpeed.y * std::sin(deltaAngle))) * (-2+absorption), (deltaSpeed.x * std::sin(deltaAngle) + deltaSpeed.y * std::cos(deltaAngle)) * (-2+absorption));
+    sf::Vector2f dv2 = sf::Vector2(((deltaSpeed.x * std::cos(deltaAngle) + deltaSpeed.y * std::sin(deltaAngle))) * absorption, (deltaSpeed.x * std::sin(deltaAngle) + deltaSpeed.y * std::cos(deltaAngle)) * absorption);
 
 
     v1.addVelocity(dv1);
@@ -275,9 +274,6 @@ void CollisionSystem::transfertVelocity(Entity e1, Entity e2, float absorption)
 void CollisionSystem::floorBouncing(Entity character, Entity platform, float absorption)
 {
     ConstraintComponent& c = *(constraints->at(character));
-
-    sf::Sprite& s1 = renderers->at(character)->getSpriteRef();
-    sf::Sprite& s2 = renderers->at(platform)->getSpriteRef();
 
     VelocityComponent& v1 = *(velocities->at(character));
 
@@ -297,31 +293,6 @@ void CollisionSystem::floorBouncing(Entity character, Entity platform, float abs
         c.removeConstraint(ConstraintEnum::Right);
         v1.addVelocity(v1.getVelocity().x * (absorption-2), 0);
     }
-    /*
-    float deltaAngle = (angleP12 - angleV12) * 180 / M_PI;
-
-    if(deltaAngle < -30 && deltaAngle >= -150)//collision en bas
-    {
-        if(Vector2fMath::magnitude(sf::Vector2f(0, v1.getVelocity().y)) > minBouncingSpeed){canBounce = true;}
-        deltaAngle = -M_PI / 2;
-    }else if(deltaAngle < 45 && deltaAngle >= -30) // collision a gauche
-    {
-        if(Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){canBounce = true;}
-        deltaAngle = M_PI;
-    }else if(deltaAngle < 135 && deltaAngle >= 45) // collision en haut
-    {
-        deltaAngle = -M_PI / 2;
-    }else //collision à droite
-    {
-        if(Vector2fMath::magnitude(sf::Vector2f(v1.getVelocity().x, 0)) > minBouncingSpeed){canBounce = true;}
-        deltaAngle = M_PI;
-    }
-
-
-    hasBounce = true;
-    sf::Vector2f dv = sf::Vector2(v1.getVelocity().x * std::cos(deltaAngle) * (1+1-absorption), v1.getVelocity().y * std::sin(deltaAngle) * (1+1-absorption));
-    v1.addVelocity(dv);
-    */
 }
 
 bool CollisionSystem::tryCollision( Entity e1, PositionComponent& p1, ColliderComponent& co1, RendererComponent& r1, CharacterComponent& ch1,

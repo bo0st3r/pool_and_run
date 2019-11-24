@@ -107,7 +107,7 @@ void TriggerSystem::endLevelTriggered(Entity entity, EndLevelTriggerComponent& e
 {
     if(remainingBalls() == 0)
     {
-
+        std::cout << "gagné!!!" << std::endl;
     }
     endLevel.setTriggered(false);
 }
@@ -117,8 +117,6 @@ void TriggerSystem::holeTriggered(Entity entity, HoleTriggerComponent& hole)
     ComponentManagerSingleton& compManager = *(ComponentManagerSingleton::getInstance());
 
     Entity other = hole.getTargetEntity();
-
-    std::cout << other << std::endl;
 
     compManager.addComponentToEntity(*(new RespawnComponent()), RespawnComponent::ID, other);
 
@@ -151,7 +149,6 @@ int TriggerSystem::remainingBalls()
     int remaining = 0;
     for(Characters::iterator it = characters->begin(); it != characters->cend(); it++)
     {
-        Entity entity = it->first;
         CharacterComponent& character = *(it->second);
         if(character.getTag() == TAG_ENEMY_BALL)
         {

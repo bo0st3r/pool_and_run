@@ -6,8 +6,11 @@ ComponentManagerSingleton::ComponentManagerSingleton()
 
 ComponentManagerSingleton::~ComponentManagerSingleton()
 {
+    //dtor
+}
 
-
+void ComponentManagerSingleton::releaseInstance()
+{
     delete instance;
 }
 
@@ -35,6 +38,8 @@ void ComponentManagerSingleton::addComponentToEntity(Component& component, Compo
         case VelocityComponent::ID :{
                 VelocityComponent& casted = dynamic_cast<VelocityComponent&>(component);
                 entityVelocities.insert(std::pair<Entity, std::unique_ptr<VelocityComponent>>(entity, std::unique_ptr<VelocityComponent>(&casted)));
+                //entityVelocities.at(entity)->str();
+
                 break;
         }
 
@@ -89,7 +94,9 @@ void ComponentManagerSingleton::addComponentToEntity(Component& component, Compo
                 entityUI.insert(std::pair<Entity, std::unique_ptr<UIComponent>>(entity, std::unique_ptr<UIComponent>(&casted)));
                 break;
         }
+
     }
+
 }
 
 void ComponentManagerSingleton::removeComponentFromEntity(ComponentID component, Entity entity)

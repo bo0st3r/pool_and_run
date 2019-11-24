@@ -22,7 +22,7 @@ namespace pr{
     void Game::run(){
         _data->machine.addState(pr::StateRef(new pr::SplashState(_data)));
 
-        float newTime, frameTime, interpolation;
+        float newTime, frameTime;
 
         float currentTime = _clock.getElapsedTime().asSeconds();
         float accumulator = 0.0f;
@@ -81,6 +81,14 @@ namespace pr{
         _data->assets.loadTexture("ball14", AssetManager::BALLS_PATH + "ball14.png");
         _data->assets.loadTexture("ball15", AssetManager::BALLS_PATH + "ball15.png");
         _data->assets.loadTexture("tile", AssetManager::GAME_PATH + "tileHitBox.png");
+        _data->assets.loadTexture("cueLeft", AssetManager::GAME_PATH + "cueLeft.png");
+        _data->assets.loadTexture("cueRight", AssetManager::GAME_PATH + "cueRight.png");
+        _data->assets.loadTexture("checkPoint", AssetManager::GAME_PATH + "holeWhite.png");
+        _data->assets.loadTexture("warpIn", AssetManager::GAME_PATH + "holeOrange.png");
+        _data->assets.loadTexture("warpOut", AssetManager::GAME_PATH + "holeCyan.png");
+        _data->assets.loadTexture("holeEnemy", AssetManager::GAME_PATH + "holeGreen.png");
+        _data->assets.loadTexture("holePlayer", AssetManager::GAME_PATH + "holeRed.png");
+        _data->assets.loadTexture("endLevel", AssetManager::GAME_PATH + "holeYellow.png");
     }
 
 }

@@ -30,6 +30,7 @@ class ComponentManagerSingleton
     public:
         static ComponentManagerSingleton* getInstance(); //récupère l'instance du singleton
         virtual ~ComponentManagerSingleton(); //destructeur du singleton
+        static void releaseInstance();
 
 //        template<typename T>
         void addComponentToEntity(Component& component, ComponentID componentId, Entity entity); //ajoute un composant donné à l'entité
