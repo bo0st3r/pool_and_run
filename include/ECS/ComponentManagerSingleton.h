@@ -32,7 +32,6 @@ class ComponentManagerSingleton
         virtual ~ComponentManagerSingleton(); //destructeur du singleton
         static void releaseInstance();
 
-//        template<typename T>
         void addComponentToEntity(Component& component, ComponentID componentId, Entity entity); //ajoute un composant donné à l'entité
         void removeComponentFromEntity(ComponentID component, Entity entity); //retire le composant donné de l'entité
         void removeAllFromEntity(Entity entity); //retire tous les composant de l'entité (avant suppresion de l'entité par exemple)

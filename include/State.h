@@ -17,6 +17,8 @@ namespace pr{
     class State
     {
         public:
+            virtual ~State(){}
+
             // Inits the new state
             virtual void init() = 0;
 
@@ -34,6 +36,8 @@ namespace pr{
 
             // Resumes the state
             virtual void resume(){}
+
+            virtual void str(){}
 
 
         protected:

@@ -15,11 +15,11 @@ RespawnSystem::RespawnSystem(Respawns& r,
 
 RespawnSystem::~RespawnSystem()
 {
-    delete respawns;
-    delete characters;
-    delete positions;
-    delete velocities;
-    delete triggers;
+//    delete respawns;
+//    delete characters;
+//    delete positions;
+//    delete velocities;
+//    delete triggers;
 }
 
 ///le respawn system va permettre le respawn du joueur au dernier checkpoint activé en echange d'une vie

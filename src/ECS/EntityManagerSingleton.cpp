@@ -1,8 +1,10 @@
 #include "EntityManagerSingleton.h"
+#include <iostream>
+
 
 EntityManagerSingleton::EntityManagerSingleton()
 {
-    //ctor
+    std::cout << "entity" << std::endl;
 }
 
 EntityManagerSingleton::~EntityManagerSingleton()
@@ -10,10 +12,11 @@ EntityManagerSingleton::~EntityManagerSingleton()
     //dtor
 }
 
-void EntityManagerSingleton::releaseInstance()
-{
+void EntityManagerSingleton::releaseInstance(){
     delete instance;
+    instance = 0;
 }
+
 
 EntityManagerSingleton* EntityManagerSingleton::getInstance()
 {

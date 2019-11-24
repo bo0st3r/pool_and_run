@@ -12,11 +12,11 @@ TriggerSystem::TriggerSystem(Triggers& t, Positions& p, Velocities& v, Renderers
 
 TriggerSystem::~TriggerSystem()
 {
-    delete triggers;
-    delete positions;
-    delete velocities;
-    delete renderers;
-    delete characters;
+//    delete triggers;
+//    delete positions;
+//    delete velocities;
+//    delete renderers;
+//    delete characters;
 }
 
 void TriggerSystem::update(float dt)

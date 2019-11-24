@@ -1,4 +1,5 @@
 #include "Configuration/Configuration.h"
+#include "EndGameState.h"
 #include "State/GameState.h"
 
 #include <iostream>
@@ -9,17 +10,20 @@ namespace pr{
     GameState::GameState(GameDataRef data):_data(data){
         _view = ViewRef(new View(Vector2f(0.0f, 0.0f), Vector2f(float(Game::VIEW_WIDTH), float(Game::VIEW_HEIGHT))));
 
-        ecs = ECSCoordinatorSingleton::getInstance();
-        compManager = ComponentManagerSingleton::getInstance();
+        _isEnding = false;
+        _isWinning = false;
     }
 
     GameState::~GameState()
     {
-        delete ecs;
-        delete compManager;
+        ECSCoordinatorSingleton::releaseInstance();
     }
 
     void GameState::init(){
+            std::cout << "INIT" << std::endl;
+        ecs = ECSCoordinatorSingleton::getInstance();
+        compManager = ComponentManagerSingleton::getInstance();
+
         initECS();
         initEntities();
         initTileMap();
@@ -31,11 +35,9 @@ namespace pr{
 
         // Scales the background to fit the window size
         scaleBackgroundToWindow(_background, _data);
-
     }
 
     void GameState::initTileMap(){
-
         const int level[] = {
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,-1,-1,-1,-1,-1,22,22,22,22,22,22,22,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,-1,-1,-1,-1,22,21,21,20,21,21,21,21,22,22,22,22,22,22,22,22,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -214,6 +216,19 @@ namespace pr{
 
     void GameState::handleInput(Event event){
         switch(event.type){
+            case Event::KeyPressed:
+                if(event.key.code == sf::Keyboard::Num1){
+                    _isEnding = true;
+                    _isWinning = true;
+                } else if(event.key.code == sf::Keyboard::Num2){
+                    _isEnding = true;
+                    _isWinning = false;
+                } else if(event.key.code == sf::Keyboard::Num5){
+                    _data->window.close();
+                }
+                break;
+
+
             case Event::Closed:
                 _data->window.close();
                 break;
@@ -228,10 +243,17 @@ namespace pr{
 
         resizeView();
         _data->window.setView(*_view);
-    }
+
+        if(_isEnding){
+            _data->machine.addState(StateRef(new EndGameState(_data, _isWinning)));
+        }    }
+
+
+    void GameState::str(){
+        std::cout << "game" << std::endl;
+    }
 
     void GameState::draw(float dt){
-
         _data->window.draw(_background);
         _data->window.draw(_tileMap);
         ecs->updateRender(dt, _data->window, *_view);

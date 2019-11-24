@@ -7,11 +7,11 @@
 
 namespace pr{
     MainMenuState::MainMenuState(GameDataRef data):_data(data){
-        ///////////////////////////// REMOVE THIS WHEN DONE TESTING        ///////////////////////////// REMOVE THIS WHEN DONE TESTING        ///////////////////////////// REMOVE THIS WHEN DONE TESTING
-        _clickedPlay = true;
-        ///////////////////////////// REMOVE THIS WHEN DONE TESTING
-        ///////////////////////////// REMOVE THIS WHEN DONE TESTING
-        ///////////////////////////// REMOVE THIS WHEN DONE TESTING
+        ///////////////////////////// UNCOMMENT THIS WHEN DONE TESTING        ///////////////////////////// UNCOMMENT THIS WHEN DONE TESTING        ///////////////////////////// UNCOMMENT THIS WHEN DONE TESTING
+        _clickedPlay = false;
+        ///////////////////////////// UNCOMMENT THIS WHEN DONE TESTING
+        ///////////////////////////// UNCOMMENT THIS WHEN DONE TESTING
+        ///////////////////////////// UNCOMMENT THIS WHEN DONE TESTING
     }
 
     MainMenuState::~MainMenuState(){
@@ -29,13 +29,13 @@ namespace pr{
         _data->assets.loadTexture(TITLE_NAME, MAIN_MENU_TITLE_FILEPATH);
         _data->assets.setSpriteTexture(_title, TITLE_NAME);
         _data->assets.centerSpriteOrigin(_title, TITLE_NAME);
-        _title.setPosition(_data->window.getSize().x * 0.5, 150.0);
+        _title.setPosition(_data->window.getSize().x * 0.5, Game::SCREEN_HEIGHT*0.34);
 
         // Loads and sets the play button
         _data->assets.loadTexture(PLAY_BTN_NAME, PLAY_BTN_FILEPATH);
         _data->assets.setSpriteTexture(_playBtn, PLAY_BTN_NAME);
         _data->assets.centerSpriteOrigin(_playBtn, PLAY_BTN_NAME);
-        _playBtn.setPosition(_data->window.getSize().x * 0.5, 430.0);
+        _playBtn.setPosition(_data->window.getSize().x * 0.5, Game::SCREEN_HEIGHT*0.64);
     }
 
     void MainMenuState::handleInput(Event event){
@@ -58,11 +58,14 @@ namespace pr{
         }
     }
 
+    void MainMenuState::str(){
+        std::cout << "menu" << std::endl;
+    }
+
     void MainMenuState::update(float dt){
         // If the play button has been clicked, remplace the current state with GameState
         if(_clickedPlay){
             _data->machine.addState(StateRef(new GameState(_data)));
-            _data->machine.processStateChanges();
             _clickedPlay = false;
         }
     }

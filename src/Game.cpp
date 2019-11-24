@@ -5,19 +5,19 @@
 #include "State/SplashState.h"
 
 namespace pr{
-    Game::Game(int screenWidth, int screenHeight, string screenTitle)
+    Game::Game(int screenWidth, int screenHeight, string screenTitle, bool isFullscreen)
     {
-        _data->window.create(sf::VideoMode(screenWidth, screenHeight), screenTitle);
-//        _data->window.create(sf::VideoMode(screenWidth, screenHeight), screenTitle, sf::Style::Fullscreen);
-//        _data->window.setPosition(sf::Vector2i(0 - GetSystemMetrics(SM_CXSIZEFRAME), 0));
+        if(isFullscreen){
+            _data->window.create(sf::VideoMode(screenWidth, screenHeight), screenTitle, sf::Style::Fullscreen);
+        }  else {
+            _data->window.create(sf::VideoMode(screenWidth, screenHeight), screenTitle);
+        }
+
         initTextures();
         run();
     }
 
-    Game::~Game()
-    {
-
-    }
+    Game::~Game(){}
 
     void Game::run(){
         _data->machine.addState(pr::StateRef(new pr::SplashState(_data)));

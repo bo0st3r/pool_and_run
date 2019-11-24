@@ -1,12 +1,12 @@
 #include "SystemManagerSingleton.h"
 #include <iostream>
 
-SystemManagerSingleton::SystemManagerSingleton()
-{}
+SystemManagerSingleton::SystemManagerSingleton(){
+    std::cout << "system" << std::endl;
+}
 
 SystemManagerSingleton::~SystemManagerSingleton()
 {
-
     for(System* system : systems)
     {
       delete system;
@@ -15,9 +15,10 @@ SystemManagerSingleton::~SystemManagerSingleton()
     delete render;
 }
 
-void SystemManagerSingleton::releaseInstance()
-{
+
+void SystemManagerSingleton::releaseInstance(){
     delete instance;
+    instance = 0;
 }
 
 

@@ -35,6 +35,8 @@ namespace pr{
             //////////////////////////////////////////
             void draw(float dt);
 
+            void str();
+
         protected:
 
         private:

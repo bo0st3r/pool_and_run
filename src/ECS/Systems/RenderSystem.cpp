@@ -13,12 +13,14 @@ RenderSystem::RenderSystem(Positions& p, Renderers& r, Characters& ch, Controlle
 
 RenderSystem::~RenderSystem()
 {
+/*
     delete positions;
     delete renderers;
     delete characters;
     delete controllers;
     delete uis;
     delete asset;
+    */
 }
 
 void RenderSystem::update(float dt)

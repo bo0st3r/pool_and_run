@@ -3,20 +3,14 @@
 
 ECSCoordinatorSingleton::ECSCoordinatorSingleton()
 {
-    //ctor
+    entityManager = EntityManagerSingleton::getInstance();
+    componentManager = ComponentManagerSingleton::getInstance();
+    systemManager = SystemManagerSingleton::getInstance();
 }
 
 ECSCoordinatorSingleton::~ECSCoordinatorSingleton()
 {
 
-}
-
-void ECSCoordinatorSingleton::releaseInstance()
-{
-    SystemManagerSingleton::releaseInstance();
-    ComponentManagerSingleton::releaseInstance();
-    EntityManagerSingleton::releaseInstance();
-    delete instance;
 }
 
 ECSCoordinatorSingleton* ECSCoordinatorSingleton::getInstance()
@@ -28,6 +22,12 @@ ECSCoordinatorSingleton* ECSCoordinatorSingleton::getInstance()
 
     return instance;
 }
+
+void ECSCoordinatorSingleton::releaseInstance(){
+    delete instance;
+    instance = 0;
+}
+
 
 Entity ECSCoordinatorSingleton::createNewEntity()
 {
