@@ -58,10 +58,6 @@ namespace pr{
         }
     }
 
-    void MainMenuState::str(){
-        std::cout << "menu" << std::endl;
-    }
-
     void MainMenuState::update(float dt){
         // If the play button has been clicked, remplace the current state with GameState
         if(_clickedPlay){

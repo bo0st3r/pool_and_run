@@ -17,10 +17,10 @@ namespace pr{
     GameState::~GameState()
     {
         ECSCoordinatorSingleton::releaseInstance();
+        delete triggerSystem, respawnSystem;
     }
 
     void GameState::init(){
-            std::cout << "INIT" << std::endl;
         ecs = ECSCoordinatorSingleton::getInstance();
         compManager = ComponentManagerSingleton::getInstance();
 
@@ -117,6 +117,7 @@ namespace pr{
                                            _data->assets
                                            );
 
+
         RespawnSystem* respawn = new RespawnSystem(
                                               compManager->getEntityRespawnMap(),
                                               compManager->getEntityCharacterMap(),
@@ -124,6 +125,7 @@ namespace pr{
                                               compManager->getEntityVelocityMap(),
                                               compManager->getEntityTriggerMap()
                                               );
+        respawnSystem = respawn;
 
         TriggerSystem* trigger = new TriggerSystem(
                                               compManager->getEntityTriggerMap(),
@@ -132,6 +134,7 @@ namespace pr{
                                               compManager->getEntityRendererMap(),
                                               compManager->getEntityCharacterMap()
                                               );
+        triggerSystem = trigger;
 
         ecs->addSystem(controller);
         ecs->addSystem(collision);
@@ -146,7 +149,6 @@ namespace pr{
         EntityCreator::createPlayer(2, 28, "ball0", *compManager, *ecs);
 
         EntityCreator::createEnnemyBall(11, 28, "ball9", *compManager, *ecs);
-        EntityCreator::createEnnemyBall(8, 22, "ball10", *compManager, *ecs);
         EntityCreator::createEnnemyBall(67, 28, "ball11", *compManager, *ecs);
         EntityCreator::createEnnemyBall(70, 20, "ball12", *compManager, *ecs);
         EntityCreator::createEnnemyBall(145, 28, "ball13", *compManager, *ecs);
@@ -210,7 +212,7 @@ namespace pr{
 
         EntityCreator::createEndLevel(280, 23, *compManager, *ecs);
 
-        EntityCreator::createUIElement(10, 10, 0.05, 0.05, UITypeEnum::DashIndicator, -1, "ball8", *compManager, *ecs);
+        EntityCreator::createUIElement(10, 10, 0.10, 0.10, UITypeEnum::DashIndicator, -1, "chalk", *compManager, *ecs);
         EntityCreator::createHealthBar(100, 10, *compManager, *ecs);
 
         EntityCreator::createTutorial(2, 24.15, *compManager, *ecs);
@@ -225,7 +227,7 @@ namespace pr{
                 } else if(event.key.code == sf::Keyboard::Num2){
                     _isEnding = true;
                     _isWinning = false;
-                } else if(event.key.code == sf::Keyboard::Num5){
+                } else if(event.key.code == sf::Keyboard::Escape){
                     _data->window.close();
                 }
                 break;
@@ -246,16 +248,25 @@ namespace pr{
         resizeView();
         _data->window.setView(*_view);
 
+        if(respawnSystem->isPlayerDead()){
+            _isEnding = true;
+            _isWinning = false;
+        } else if(triggerSystem->hasPlayerWon()){
+            _isEnding = true;
+            _isWinning = true;
+        }
+
         if(_isEnding){
             _data->machine.addState(StateRef(new EndGameState(_data, _isWinning)));
         }    }
 
 
-    void GameState::str(){
-        std::cout << "game" << std::endl;
-    }
-
     void GameState::draw(float dt){
+        Vector2f backPosition = _view->getCenter();
+        backPosition.x -= _view->getSize().x;
+        backPosition.y -= _view->getSize().y;
+        _background.setPosition(backPosition);
+
         _data->window.draw(_background);
         _data->window.draw(_tileMap);
         ecs->updateRender(dt, _data->window, *_view);

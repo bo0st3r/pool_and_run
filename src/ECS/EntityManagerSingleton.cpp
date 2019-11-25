@@ -16,6 +16,7 @@ EntityManagerSingleton::~EntityManagerSingleton()
 void EntityManagerSingleton::releaseInstance()
 {
     delete instance;
+    nextEntity = 0;
     instance = 0;
 }
 

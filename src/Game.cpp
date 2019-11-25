@@ -89,7 +89,11 @@ namespace pr{
         _data->assets.loadTexture("holeEnemy", AssetManager::GAME_PATH + "holeGreen.png");
         _data->assets.loadTexture("holePlayer", AssetManager::GAME_PATH + "holeRed.png");
         _data->assets.loadTexture("endLevel", AssetManager::GAME_PATH + "holeYellow.png");
+<<<<<<< HEAD
         _data->assets.loadTexture("tuto", AssetManager::GAME_PATH + "Tuto.png");
+=======
+        _data->assets.loadTexture("chalk", AssetManager::GAME_PATH + "chalk.png");
+>>>>>>> 6b5653ccf5f937cb53ca2797f1c04113dbbd6869
     }
 
 }

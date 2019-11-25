@@ -17,9 +17,13 @@ class RespawnSystem : public System
 
         virtual void update(float dt);
 
+        bool isPlayerDead();
+
     protected:
 
     private:
+        bool playerCanRespawn;
+
         Respawns* respawns;
         Characters* characters;
         Positions* positions;

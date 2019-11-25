@@ -54,8 +54,6 @@ namespace pr{
             ///////////////////////
             void resizeView();
 
-            void str();
-
         protected:
 
         private:
@@ -70,6 +68,9 @@ namespace pr{
 
             ECSCoordinatorSingleton* ecs;
             ComponentManagerSingleton* compManager;
+            RespawnSystem* respawnSystem;
+            TriggerSystem* triggerSystem;
+
     };
 }
 

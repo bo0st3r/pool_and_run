@@ -45,13 +45,7 @@ namespace pr{
             {
                 if(_isReplacing)
                 {
-//                    State* state = _states.top().release();
-//                    delete state;
-//                    getActiveState().reset();
-
-                    _states.top()->str();
                     _states.pop();
-                    _newState->str();
                 }
                 else
                 {
