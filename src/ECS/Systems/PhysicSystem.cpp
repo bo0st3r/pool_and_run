@@ -19,7 +19,7 @@ PhysicSystem::~PhysicSystem()
 
 
 ///Le physicSystem va permettre la gestion de la partie physique du jeu
-///en particulier l'application de forces sur les entités ainsi que leurs calculs de déplacement
+///en particulier l'application de forces sur les entités ainsi que les calculs de déplacement
 void PhysicSystem::update(float dt)
 {
 

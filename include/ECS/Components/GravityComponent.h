@@ -10,7 +10,7 @@ class GravityComponent : public Component
         GravityComponent();
         virtual ~GravityComponent();
 
-        static inline const ComponentID ID = 2;
+        static inline const ComponentID ID = 2; //l'ID du composant
 
         static float getG(){return G;};
         virtual ComponentID getTypeId() const;
@@ -20,7 +20,7 @@ class GravityComponent : public Component
     protected:
 
     private:
-        static inline const float G = 300.0;
+        static inline const float G = 300.0; //force de gravité en pixel/seconde^2
 };
 
 #endif // GRAVITYCOMPONENT_H

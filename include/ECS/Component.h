@@ -11,6 +11,7 @@
 #include <EntityManagerSingleton.h>
 #include <ColliderTypeEnum.h>
 #include <ConstraintEnum.h>
+#include <UITypeEnum.h>
 
 using ComponentID = uint32_t;
 
@@ -25,3 +26,4 @@ class Component
 };
 
 #endif // COMPONENT_H
+

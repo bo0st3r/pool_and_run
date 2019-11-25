@@ -24,6 +24,7 @@ class EntityCreator
         static Entity createTile(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
         static Entity createUIElement(float x, float y, float sx, float sy, UITypeEnum uiType, int data, std::string textureName, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
         static void createHealthBar(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
+        static Entity createTutorial(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs);
 
         static sf::Vector2f coordinateConverter(sf::Vector2f position);
 

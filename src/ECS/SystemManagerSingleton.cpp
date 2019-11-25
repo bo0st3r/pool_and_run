@@ -1,26 +1,21 @@
-#include "SystemManagerSingleton.h"
-#include <iostream>
 
-SystemManagerSingleton::SystemManagerSingleton(){
-    std::cout << "system" << std::endl;
-}
+#include "SystemManagerSingleton.h"
+
+SystemManagerSingleton::SystemManagerSingleton(){}
 
 SystemManagerSingleton::~SystemManagerSingleton()
 {
-    for(System* system : systems)
+    for(System* system : systems) //supprime chacun des pointeurs de système
     {
       delete system;
     }
-
-    delete render;
+    delete render; //supprime le poirteur du renderSystem
 }
-
 
 void SystemManagerSingleton::releaseInstance(){
     delete instance;
     instance = 0;
 }
-
 
 SystemManagerSingleton* SystemManagerSingleton::getInstance()
 {
@@ -28,7 +23,6 @@ SystemManagerSingleton* SystemManagerSingleton::getInstance()
     {
         instance = new SystemManagerSingleton();
     }
-
     return instance;
 }
 

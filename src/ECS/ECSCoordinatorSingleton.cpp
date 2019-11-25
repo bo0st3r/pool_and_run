@@ -1,3 +1,4 @@
+
 #include "ECSCoordinatorSingleton.h"
 #include <iostream>
 
@@ -8,10 +9,7 @@ ECSCoordinatorSingleton::ECSCoordinatorSingleton()
     systemManager = SystemManagerSingleton::getInstance();
 }
 
-ECSCoordinatorSingleton::~ECSCoordinatorSingleton()
-{
-
-}
+ECSCoordinatorSingleton::~ECSCoordinatorSingleton(){}
 
 ECSCoordinatorSingleton* ECSCoordinatorSingleton::getInstance()
 {
@@ -19,7 +17,6 @@ ECSCoordinatorSingleton* ECSCoordinatorSingleton::getInstance()
     {
         instance = new ECSCoordinatorSingleton();
     }
-
     return instance;
 }
 
@@ -27,7 +24,6 @@ void ECSCoordinatorSingleton::releaseInstance(){
     delete instance;
     instance = 0;
 }
-
 
 Entity ECSCoordinatorSingleton::createNewEntity()
 {

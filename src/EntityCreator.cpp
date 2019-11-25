@@ -154,6 +154,15 @@ void EntityCreator::createHealthBar(float x, float y, ComponentManagerSingleton&
     createUIElement(x+90, y, 0.05, 0.05, UITypeEnum::HealthBar, 7, "ball7", compManager, ecs);
 }
 
+//creation du tutoriel
+Entity EntityCreator::createTutorial(float x, float y, ComponentManagerSingleton& compManager, ECSCoordinatorSingleton& ecs)
+{
+    Entity tuto = ecs.createNewEntity();
+    compManager.addComponentToEntity(*(new RendererComponent("tuto", sf::Vector2f(0.15, 0.15), 2)), RendererComponent::ID, tuto);
+    compManager.addComponentToEntity(*(new PositionComponent(coordinateConverter(sf::Vector2f(x, y)))), PositionComponent::ID, tuto);
+
+}
+
 //convertit les coordonnée de création en position
 sf::Vector2f EntityCreator::coordinateConverter(sf::Vector2f position)
 {

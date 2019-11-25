@@ -17,11 +17,10 @@ class SystemManagerSingleton
         virtual ~SystemManagerSingleton();
         static void releaseInstance();
 
-
-        void addSystem(System* system);
-        void addSystem(RenderSystem* system);
-        void updateSystems(float dt);
-        void updateRender(float dt, sf::RenderWindow& window, sf::View& view);
+        void addSystem(System* system); //ajoute un systeme à l'ECS
+        void addSystem(RenderSystem* system); //ajoute le systeme qui gère le rendu à l'ECS
+        void updateSystems(float dt); //met a jour tous les système dans leur ordre d'ajout
+        void updateRender(float dt, sf::RenderWindow& window, sf::View& view); //permet de mettre a jour le rendu séparement des autres systèmes
 
     protected:
 
@@ -30,7 +29,7 @@ class SystemManagerSingleton
         static inline SystemManagerSingleton* instance = 0;
 
         std::vector<System*> systems;
-        RenderSystem* render = 0;
+        RenderSystem* render = 0; //le systeme de rendu, sera ignoré dans l'updateSystems
 
 };
 
