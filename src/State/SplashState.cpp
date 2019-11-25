@@ -18,10 +18,6 @@ namespace pr{
         scaleBackgroundToWindow(_background, _data);
     }
 
-    void SplashState::str(){
-        std::cout << "splash" << std::endl;
-    }
-
     void SplashState::handleInput(Event event){
         switch(event.type){
             // Sets the scene duration to 0 on pressing Escape
@@ -57,9 +53,4 @@ namespace pr{
     void SplashState::draw(float dt){
         _data->window.draw(_background);
     }
-
-//    void SplashState::resizeBackground(){
-//        Vector2f windowSize = (Vector2f) _data->window.getSize();
-//        _background.setScale(windowSize.x / rect.width, windowSize.y / rect.height);
-//    }
 }

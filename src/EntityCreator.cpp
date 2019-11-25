@@ -24,14 +24,14 @@ Entity EntityCreator::createPlayer(float x, float y, std::string textureName, Co
 
     Entity player = ecs.createNewEntity();
 
-    compManager.addComponentToEntity(*(new CharacterComponent("Héro", TAG_PLAYER, 7)), CharacterComponent::ID, player);
+    compManager.addComponentToEntity(*(new CharacterComponent("Héro", TAG_PLAYER, 3)), CharacterComponent::ID, player);
     compManager.addComponentToEntity(*(new RendererComponent(textureName, sf::Vector2f(0.075, 0.075), 4)), RendererComponent::ID, player);
     compManager.addComponentToEntity(*(new PositionComponent(coordinateConverter(sf::Vector2f(x, y)))), PositionComponent::ID, player);
     compManager.addComponentToEntity(*(new VelocityComponent()), VelocityComponent::ID, player);
     compManager.addComponentToEntity(*(new GravityComponent()), GravityComponent::ID, player);
     compManager.addComponentToEntity(*(new ConstraintComponent()), ConstraintComponent::ID, player);
     compManager.addComponentToEntity(*(new ColliderComponent(ColliderTypeEnum::PixelPerfect, false, 0.8)), ColliderComponent::ID, player);
-    compManager.addComponentToEntity(*(new ControllerComponent(100, 320, 200, 2.5)), ControllerComponent::ID, player);
+    compManager.addComponentToEntity(*(new ControllerComponent(100, 320, 200, 1.8)), ControllerComponent::ID, player);
     return player;
 }
 

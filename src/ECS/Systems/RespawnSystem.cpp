@@ -11,6 +11,8 @@ RespawnSystem::RespawnSystem(Respawns& r,
     positions = &p;
     velocities = &v;
     triggers = &t;
+
+    playerCanRespawn = true;
 }
 
 RespawnSystem::~RespawnSystem()
@@ -21,6 +23,11 @@ RespawnSystem::~RespawnSystem()
 //    delete velocities;
 //    delete triggers;
 }
+
+bool RespawnSystem::isPlayerDead(){
+    return !playerCanRespawn;
+}
+
 
 ///le respawn system va permettre le respawn du joueur au dernier checkpoint activé en echange d'une vie
 ///si le joueur n'a plus de vie, le game over s'affiche
@@ -55,7 +62,7 @@ void RespawnSystem::update(float dt)
             //si le personnage est un joueur
             if(ch.getTag() == TAG_PLAYER)
             {
-                ///GAME OVER
+                playerCanRespawn = false;
             }else if(ch.getTag() == TAG_ENEMY_BALL || ch.getTag() == TAG_ENEMY_CUE)
             {
                 ComponentManagerSingleton::getInstance()->removeAllFromEntity(entity);

@@ -38,8 +38,8 @@ CollisionSystem::~CollisionSystem()
     delete triggers;
     delete constraints;
 
-    delete tileEntityMap;
     */
+    delete tileEntityMap;
 }
 
 ///le collisionSystem va permettre de détecter les collisions entre les personnages et les autres éléments du jeu

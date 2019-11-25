@@ -17,7 +17,6 @@ class SystemManagerSingleton
         virtual ~SystemManagerSingleton();
         static void releaseInstance();
 
-
         void addSystem(System* system);
         void addSystem(RenderSystem* system);
         void updateSystems(float dt);

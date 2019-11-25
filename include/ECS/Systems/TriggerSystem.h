@@ -21,10 +21,14 @@ class TriggerSystem : public System
         void warpTriggered(Entity entity, WarpTriggerComponent& warp);
 
         int remainingBalls();
+        bool hasPlayerWon();
 
     protected:
 
     private:
+
+        bool playerHasWon;
+
         Triggers* triggers;
         Positions* positions;
         Velocities* velocities;

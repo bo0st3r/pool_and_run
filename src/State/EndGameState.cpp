@@ -57,10 +57,6 @@ namespace pr{
 
     }
 
-    void EndGameState::str(){
-        std::cout << "end" << std::endl;
-    }
-
     void EndGameState::update(float dt){
         // If the menu button has been clicked, remplace the current state with MainMenuState
         if(_clickedMenuBtn){

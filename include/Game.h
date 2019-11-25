@@ -34,7 +34,7 @@ namespace pr{
             inline static int VIEW_HEIGHT = SCREEN_HEIGHT * 0.25;
 
             /// \brief Builds the window (default is 1920x1090, titled "Pool and Run") and runs the game.
-            Game(int screenWidth = SCREEN_WIDTH, int screenHeight = SCREEN_HEIGHT, string screenTitle = "Pool and Run", bool isFullscreen = false);
+            Game(int screenWidth = SCREEN_WIDTH, int screenHeight = SCREEN_HEIGHT, string screenTitle = "Pool and Run", bool isFullscreen = true);
             virtual ~Game();
 
             void initTextures();

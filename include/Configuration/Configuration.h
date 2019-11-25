@@ -1,10 +1,10 @@
 #pragma once
 
 // SPLASH
-#define SPLASH_SCENE_BACKGROUND_FILEPATH "ressources/img/backgrounds/splash_1.jpg"
+#define SPLASH_SCENE_BACKGROUND_FILEPATH "ressources/img/splash/splash_2.jpg"
 
 // MAIN MENU
-#define MAIN_MENU_BACKGROUND_FILEPATH "ressources/img/main_menu/background.jpg"
+#define MAIN_MENU_BACKGROUND_FILEPATH "ressources/img/main_menu/background.png"
 #define MAIN_MENU_TITLE_FILEPATH "ressources/img/main_menu/title.png"
 #define PLAY_BTN_FILEPATH "ressources/img/main_menu/play_btn.png"
 

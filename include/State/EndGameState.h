@@ -20,7 +20,6 @@ namespace pr{
             void handleInput(Event event);
             void update(float dt);
             void draw(float dt);
-            void str();
 
         protected:
 

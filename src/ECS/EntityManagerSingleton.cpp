@@ -9,11 +9,12 @@ EntityManagerSingleton::EntityManagerSingleton()
 
 EntityManagerSingleton::~EntityManagerSingleton()
 {
-    //dtor
+    entities.clear();
 }
 
 void EntityManagerSingleton::releaseInstance(){
     delete instance;
+    nextEntity = 0;
     instance = 0;
 }
 

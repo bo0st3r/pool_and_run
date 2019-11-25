@@ -45,14 +45,12 @@ namespace pr{
             /////
             void resizeBackground();
 
-            void str();
-
         private:
             GameDataRef _data;
             Sprite _background;
             /// \brief Represents the time left for the scene to end.
-//            float sceneTimeLeft = 1.8;
-            float sceneTimeLeft = 0.0001;
+            float sceneTimeLeft = 0.8;
+//            float sceneTimeLeft = 0.0001;
 //            float sceneTimeLeft = 5;
     };
 }

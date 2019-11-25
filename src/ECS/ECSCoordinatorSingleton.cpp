@@ -10,7 +10,9 @@ ECSCoordinatorSingleton::ECSCoordinatorSingleton()
 
 ECSCoordinatorSingleton::~ECSCoordinatorSingleton()
 {
-
+    EntityManagerSingleton::releaseInstance();
+    ComponentManagerSingleton::releaseInstance();
+    SystemManagerSingleton::releaseInstance();
 }
 
 ECSCoordinatorSingleton* ECSCoordinatorSingleton::getInstance()

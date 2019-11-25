@@ -8,6 +8,8 @@ TriggerSystem::TriggerSystem(Triggers& t, Positions& p, Velocities& v, Renderers
     velocities = &v;
     renderers = &r;
     characters = &c;
+
+    playerHasWon = false;
 }
 
 TriggerSystem::~TriggerSystem()
@@ -107,9 +109,13 @@ void TriggerSystem::endLevelTriggered(Entity entity, EndLevelTriggerComponent& e
 {
     if(remainingBalls() == 0)
     {
-        std::cout << "gagné!!!" << std::endl;
+        playerHasWon = true;
     }
     endLevel.setTriggered(false);
+}
+
+bool TriggerSystem::hasPlayerWon(){
+    return playerHasWon;
 }
 
 void TriggerSystem::holeTriggered(Entity entity, HoleTriggerComponent& hole)
